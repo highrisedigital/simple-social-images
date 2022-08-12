@@ -1,0 +1,129 @@
+img.ssi-image {
+	width: 400px;
+	height: 210px;
+	display: block;
+}
+.wp-core-ui .generate-ssi-image-button,
+.wp-core-ui .delete-ssi-image-button {
+	margin-bottom: 1em;
+}
+.wp-core-ui .ssi-hidden {
+	display: none;
+}
+.hd-ssi-input--image,
+.hd-ssi-input--gallery {
+	display: none !important;
+}
+.hd-ssi-image,
+.hd-ssi-gallery-image{
+	border: 4px solid #CCCCCC;
+	padding: 4px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.hd-ssi-image-wrapper {
+	position: relative;
+	width: 25em;
+}
+.hd-ssi-image-wrapper img {
+	max-width: 100%;
+	height: auto;
+	box-sizing: border-box;
+}
+.hd-ssi-image--remove,
+.hd-ssi-gallery--remove {
+	position: absolute;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.hd-ssi-gallery-item {
+	display: inline-block;
+	margin: 0;
+    margin-right: 32px;
+}
+.hd-ssi-input-description {
+	font-style: italic;
+}
+.form-table .hd-ssi-gallery-button,
+.form-table .hd-ssi-image-button {
+	margin-bottom: 8px;
+}
+
+.setting-type--section {
+	border-top: 1px solid #CCCCCC;
+}
+.hd-ssi-settings-form .setting-type--section th {
+	flex-basis: 100%;
+	font-size: 130%;
+	font-weight: bold;
+}
+.hd-ssi-settings-form .setting-type--section {
+	gap: 0;
+}
+
+.hd-ssi-settings-form .setting-type--hidden {
+	display: none;
+}
+
+.hd-ssi-settings-form tr {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2em;
+}
+.hd-ssi-settings-form th {
+	padding: 20px 0 0;
+	flex-basis: 25%;
+}
+.hd-ssi-settings-form td {
+	padding: 15px 0;
+}
+.hd-ssi-settings-form .form-table {
+	width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+	.hd-ssi-settings-form .form-table {
+		width: calc(100% - 520px - 4em);
+	}
+}
+
+
+.hd-ssi-template-preview  {
+	
+	max-width: var(--hdsmi-template--width);
+
+}
+
+@media screen and (min-width: 1000px) {
+
+	.hd-ssi-template-preview  {
+		
+		position: fixed;
+		bottom: 3em;
+		right: 2em;
+
+	}
+
+}
+
+.hd-ssi-template-preview .hdsmi-template {
+
+	--hdsmi-template--width: 80vw;
+	box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
+
+}
+
+@media screen and (min-width: 600px) {
+	
+	.hd-ssi-template-preview .hdsmi-template {
+
+		--hdsmi-template--width: 520px;
+	
+	}
+
+}
+
+.hd-ssi-error {
+	color: red;
+}

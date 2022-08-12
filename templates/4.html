@@ -1,0 +1,54 @@
+<style>
+	.hdsmi-template--4 {
+		--hdsmi--title--font-size: 4;
+		--hdsmi--location--font-size: 2.5;
+		--hdsmi--salary--font-size: 2.5;
+		--hdsmi--logo--height: 5;
+		--hdsmi--line-height: 1.25;
+	}
+	.hdsmi-template--4 .hdsmi-template__inner {
+		display: grid;
+		align-items: end;
+		justify-items: center
+	}
+	.hdsmi-template--4 .hdsmi-template__image {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		object-fit: cover;
+	}
+	.hdsmi-template--4 .hdsmi-template__text {
+		position: relative;
+		z-index: 1;
+		max-width: 66.66%;
+		background-color: var(--hdsmi--text--background-color);
+		padding: calc(4 * var(--hdsmi-template--unit));
+		margin: calc(4 * var(--hdsmi-template--unit)) 1calc(5 * var(--hdsmi-template--unit));
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		gap: calc(2 * var(--hdsmi-template--unit))
+	}
+	.hdsmi-template--4 .hdsmi-template__logo {
+		position: absolute;
+		top: calc(3 * var(--hdsmi-template--unit));
+		z-index: 0
+	}
+</style>
+
+<div class="hdsmi-template hdsmi-template--4">
+	<div class="hdsmi-template__inner">
+		<div class="hdsmi-template__text">
+			<span class="hdsmi-template__title">
+				<span class="hdsmi-template__title__inner">[post:post_title]</span>
+			</span>
+		</div>
+		<img class="hdsmi-template__image" src="[image]" />
+		<img class="hdsmi-template__logo" src="[logo]" />
+	</div>
+</div>

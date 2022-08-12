@@ -1,0 +1,58 @@
+<style>
+	.hdsmi-template--3 {
+		--hdsmi--title--font-weight: bold;
+		--hdsmi--line-height: 1.25;
+	}
+	.hdsmi-template--3 {
+		--hdsmi--title--font-size: 4;
+		--hdsmi--location--font-size: 3;
+		--hdsmi--logo--height: 6;
+	}
+	.hdsmi-template--3 .hdsmi-template__text {
+		width: calc(66.6 * var(--hdsmi-template--unit));
+		z-index: 2;
+		position: absolute;
+		bottom: calc(4 * var(--hdsmi-template--unit));
+		left: calc(4 * var(--hdsmi-template--unit));
+		background-color: var(--hdsmi--text--background-color);
+		padding: calc(2 * var(--hdsmi-template--unit));
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: calc(2 * var(--hdsmi-template--unit))
+	}
+	.hdsmi-template--3 .hdsmi-template__title {
+		width: 100%
+	}
+	.hdsmi-template--3 .hdsmi-template__salary {
+		/* margin-left: auto */
+	}
+	.hdsmi-template--3 .hdsmi-template__image {
+		width: calc(66.6 * var(--hdsmi-template--unit));
+		height: calc(40 * var(--hdsmi-template--unit));
+		position: absolute;
+		z-index: 1;
+		top: calc(5 * var(--hdsmi-template--unit));
+		right: 0;
+		bottom: calc(5 * var(--hdsmi-template--unit));
+		object-fit: cover
+	}
+	.hdsmi-template--3 .hdsmi-template__logo {
+		position: absolute;
+		top: calc(3 * var(--hdsmi-template--unit));
+		left: calc(3 * var(--hdsmi-template--unit))
+	}
+</style>
+
+<div class="hdsmi-template hdsmi-template--3">
+	<div class="hdsmi-template__inner">
+		<div class="hdsmi-template__text">
+			<span class="hdsmi-template__title">
+				<span class="hdsmi-template__title__inner">[post:post_title]</span>
+			</span>
+		</div>
+		<img class="hdsmi-template__image" src="[image]" />
+		<img class="hdsmi-template__logo" src="[logo]" />
+	</div>
+</div>

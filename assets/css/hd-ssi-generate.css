@@ -1,0 +1,70 @@
+/**
+ * CSS rules that apply to all templates.
+ */
+body {
+	margin: 0;
+	padding: 0
+}
+.hdsmi-template {
+	--hdsmi-template--width: 100vw;
+	--hdsmi-template--unit: calc(var(--hdsmi-template--width) / 100);
+	--hdsmi--text--color: white;
+	--hdsmi--text--background-color: transparent;
+	--hdsmi--background-color: rgb(23, 139, 145);
+	--hdsmi--font-family: sans-serif;
+	--hdsmi--font-size: 6;
+	--hdsmi--title--font-size: 6;
+	--hdsmi--title--font-weight: inherit;
+	--hdsmi--title--text-transform: inherit;
+	--hdsmi--location--font-size: 4;
+	--hdsmi--location--font-weight: inherit;
+	--hdsmi--location--text-transform: inherit;
+	--hdsmi--salary--font-size: 3;
+	--hdsmi--salary--font-weight: inherit;
+	--hdsmi--salary--text-transform: inherit;
+	--hdsmi--image--background-blend-mode: none;
+	--hdsmi--logo--height: 4;
+	--hdsmi--logo--width: auto;
+	width: var(--hdsmi-template--width);
+	aspect-ratio: 120/63;
+	display: grid;
+	place-items: center;
+	background-color: var(--hdsmi--background-color);
+}
+
+.hdsmi-template__inner {
+position: relative;
+	aspect-ratio: 120/63;
+	width: 100%
+}
+.hdsmi-template__text {
+	font-size: calc(var(--hdsmi--font-size) * var(--hdsmi-template--unit));
+	line-height: var(--hdsmi--line-height);
+	font-family: var(--hdsmi--font-family);
+	color: var(--hdsmi--text--color)
+}
+.hdsmi-template__title {
+	color: var(--hdsmi--title--color,var(--hdsmi--text--color));
+	font-size: calc(var(--hdsmi--title--font-size, var(--hdsmi--font-size)) * var(--hdsmi-template--unit));
+	font-weight: var(--hdsmi--title--font-weight);
+	text-transform: var(--hdsmi--title--text-transform)
+}
+.hdsmi-template__location {
+	color: var(--hdsmi--location--color,var(--hdsmi--text--color));
+	font-size: calc(var(--hdsmi--location--font-size, var(--hdsmi--font-size)) * var(--hdsmi-template--unit));
+	font-weight: var(--hdsmi--location--font-weight);
+	text-transform: var(--hdsmi--location--text-transform)
+}
+.hdsmi-template__salary {
+	color: var(--hdsmi--salary--color,var(--hdsmi--text--color));
+	font-size: calc(var(--hdsmi--salary--font-size, var(--hdsmi--font-size)) * var(--hdsmi-template--unit));
+	font-weight: var(--hdsmi--salary--font-weight);
+	text-transform: var(--hdsmi--salary--text-transform)
+}
+.hdsmi-template__logo {
+	height: calc(var(--hdsmi--logo--height) * var(--hdsmi-template--unit));
+	width: var(--hdsmi--logo--width)
+}
+.hdsmi-template__image {
+	display: block;
+}
