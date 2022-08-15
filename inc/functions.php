@@ -74,6 +74,14 @@ add_action( 'hd_ssi_before_settings_form_output', 'hd_ssi_add_template_custom_pr
  */
 function hd_ssi_add_preview_markup_to_settings_page() {
 
+	// get the currently selected template.
+	$selected_template = hd_ssi_get_template();
+
+	// if the current template is from the plugin folder.
+	if ( ! str_contains( $selected_template, HD_SSI_LOCATION ) ) {
+		return;
+	}
+
 	// set a place holder transparent pixel to use as defaults.
 	$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 				
@@ -383,6 +391,7 @@ function hd_ssi_render_template( $text, $args ) {
 		'image'    => '',
 		'logo'     => '',
 		'template' => '1',
+		'post_id'  => 0
 	);
 
 	// merge the args with the defaults.

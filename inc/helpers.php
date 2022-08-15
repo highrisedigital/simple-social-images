@@ -193,7 +193,7 @@ function hd_ssi_get_templates() {
 			HD_SSI_LOCATION . '/templates/',
 			STYLESHEETPATH . '/ssi/templates/',
 		)
-		
+
 	);
 
 	// to store template names in.

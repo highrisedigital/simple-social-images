@@ -69,6 +69,9 @@ add_action( 'admin_init', 'hd_ssi_register_settings' );
  */
 function hd_ssi_register_default_settings( $settings ) {
 
+	// get the selected template.
+	$selected_template = hd_ssi_get_template();
+
 	$settings['license_key'] = array(
 		'option_name'    => 'hd_ssi_license_key',
 		'label'          => __( 'License Key', 'simple-social-images' ),
@@ -102,36 +105,41 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'          => 16,
 	);
 
-	$settings['colors_section'] = array(
-		'option_name'    => 'hd_ssi_colors_section',
-		'label'          => __( 'Colour Settings', 'simple-social-images' ),
-		'input_type'     => 'section',
-		'order'          => 20,
-	);
+	// if the current template is from the plugin folder.
+	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
 
-	$settings['text_color'] = array(
-		'option_name'    => 'hd_ssi_text_color',
-		'label'          => __( 'Text Colour', 'simple-social-images' ),
-		'description'    => __( 'Enter or choose the text colour.', 'simple-social-images' ),
-		'input_type'     => 'color_picker',
-		'order'          => 30,
-	);
-
-	$settings['text_bg_color'] = array(
-		'option_name'    => 'hd_ssi_text_bg_color',
-		'label'          => __( 'Text Background Colour', 'simple-social-images' ),
-		'description'    => __( 'Enter or choose the text background colour.', 'simple-social-images' ),
-		'input_type'     => 'color_picker',
-		'order'          => 40,
-	);
-
-	$settings['bg_color'] = array(
-		'option_name'    => 'hd_ssi_bg_color',
-		'label'          => __( 'Background Colour', 'simple-social-images' ),
-		'description'    => __( 'Enter or choose the background colour.', 'simple-social-images' ),
-		'input_type'     => 'color_picker',
-		'order'          => 50,
-	);
+		$settings['colors_section'] = array(
+			'option_name'    => 'hd_ssi_colors_section',
+			'label'          => __( 'Colour Settings', 'simple-social-images' ),
+			'input_type'     => 'section',
+			'order'          => 20,
+		);
+	
+		$settings['text_color'] = array(
+			'option_name'    => 'hd_ssi_text_color',
+			'label'          => __( 'Text Colour', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the text colour.', 'simple-social-images' ),
+			'input_type'     => 'color_picker',
+			'order'          => 30,
+		);
+	
+		$settings['text_bg_color'] = array(
+			'option_name'    => 'hd_ssi_text_bg_color',
+			'label'          => __( 'Text Background Colour', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the text background colour.', 'simple-social-images' ),
+			'input_type'     => 'color_picker',
+			'order'          => 40,
+		);
+	
+		$settings['bg_color'] = array(
+			'option_name'    => 'hd_ssi_bg_color',
+			'label'          => __( 'Background Colour', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the background colour.', 'simple-social-images' ),
+			'input_type'     => 'color_picker',
+			'order'          => 50,
+		);
+		
+	}
 
 	$settings['logo_section'] = array(
 		'option_name' => 'hd_ssi_logo_section',
@@ -148,16 +156,21 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'       => 70,
 	);
 
-	$settings['logo_size'] = array(
-		'option_name' => 'hd_ssi_logo_size',
-		'label'       => __( 'Size', 'simple-social-images' ),
-		'description' => __( 'Select a size for the logo.', 'simple-social-images' ),
-		'input_type'  => 'range',
-		'min'         => '4',
-		'max'         => '12',
-		'step'        => '0.1', 
-		'order'       => 80,
-	);
+	// if the current template is from the plugin folder.
+	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
+
+		$settings['logo_size'] = array(
+			'option_name' => 'hd_ssi_logo_size',
+			'label'       => __( 'Size', 'simple-social-images' ),
+			'description' => __( 'Select a size for the logo.', 'simple-social-images' ),
+			'input_type'  => 'range',
+			'min'         => '4',
+			'max'         => '12',
+			'step'        => '0.1', 
+			'order'       => 80,
+		);
+
+	}
 
 	$settings['background_images_section'] = array(
 		'option_name' => 'hd_ssi_background_images_section',
@@ -174,41 +187,46 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'       => 100,
 	);
 
-	$settings['fonts_section'] = array(
-		'option_name' => 'hd_ssi_font_sizes_section',
-		'label'       => __( 'Font Settings', 'simple-social-images' ),
-		'input_type'  => 'section',
-		'order'       => 110,
-	);
+	// if the current template is from the plugin folder.
+	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
 
-	$settings['title_size'] = array(
-		'option_name' => 'hd_ssi_title_size',
-		'label'       => __( 'Title Size', 'simple-social-images' ),
-		'description' => __( 'Select a size for the title.', 'simple-social-images' ),
-		'input_type'  => 'range',
-		'min'         => '2',
-		'max'         => '8',
-		'step'        => '0.5',
-		'order'       => 120,
-	);
+		$settings['fonts_section'] = array(
+			'option_name' => 'hd_ssi_font_sizes_section',
+			'label'       => __( 'Font Settings', 'simple-social-images' ),
+			'input_type'  => 'section',
+			'order'       => 110,
+		);
 
-	$settings['google_font_url'] = array(
-		'option_name'       => 'hd_ssi_google_font_url',
-		'label'             => __( 'Google Font URL', 'simple-social-images' ),
-		'description'       => __( 'Enter the URL of the Google font you wish to use.', 'simple-social-images' ),
-		'description'  => sprintf( __( 'Enter the URL of the Google font. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
-		'input_type'        => 'text',
-		'sanitize_callback' => 'sanitize_url',
-		'order'             => 150,
-	);
+		$settings['title_size'] = array(
+			'option_name' => 'hd_ssi_title_size',
+			'label'       => __( 'Title Size', 'simple-social-images' ),
+			'description' => __( 'Select a size for the title.', 'simple-social-images' ),
+			'input_type'  => 'range',
+			'min'         => '2',
+			'max'         => '8',
+			'step'        => '0.5',
+			'order'       => 120,
+		);
 
-	$settings['google_font_family'] = array(
-		'option_name' => 'hd_ssi_google_font_family',
-		'label'       => __( 'Google Font Family', 'simple-social-images' ),
-		'description'  => sprintf( __( 'Enter the name of the Google font family. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
-		'input_type'  => 'text',
-		'order'       => 160,
-	);
+		$settings['google_font_url'] = array(
+			'option_name'       => 'hd_ssi_google_font_url',
+			'label'             => __( 'Google Font URL', 'simple-social-images' ),
+			'description'       => __( 'Enter the URL of the Google font you wish to use.', 'simple-social-images' ),
+			'description'  => sprintf( __( 'Enter the URL of the Google font. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
+			'input_type'        => 'text',
+			'sanitize_callback' => 'sanitize_url',
+			'order'             => 150,
+		);
+
+		$settings['google_font_family'] = array(
+			'option_name' => 'hd_ssi_google_font_family',
+			'label'       => __( 'Google Font Family', 'simple-social-images' ),
+			'description'  => sprintf( __( 'Enter the name of the Google font family. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
+			'input_type'  => 'text',
+			'order'       => 160,
+		);
+
+	}
 
 	// return the registered settings array.
 	return $settings;
@@ -453,7 +471,7 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 	// handle output for a gallery input.
 	?>
 	
-	<div class="hd-ssi-gallery-wrapper" data-placeholder="<?php echo esc_url( hd_ssi_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>">
+	<div class="hd-ssi-gallery-wrapper" data-placeholder="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>">
 		
 		<?php
 
