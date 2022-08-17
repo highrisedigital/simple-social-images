@@ -80,88 +80,6 @@ function hd_ssi_output_template_custom_properties() {
 }
 
 /**
- * Adds markup to the end of the settings page for the template preview.
- */
-function hd_ssi_add_preview_markup_to_settings_page() {
-
-	// set a place holder transparent pixel to use as defaults.
-	$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-				
-	// set the logo and background images to default to transparent pixel.
-	$logo_src = $placeholder_pixel;
-	$bg_img_src = $placeholder_pixel;
-
-	// if we have a logo already added.
-	if ( ! empty( hd_ssi_get_logo_id() ) ) {
-
-		// set the logo src to the added logo image src.
-		$logo_src = wp_get_attachment_image_url( hd_ssi_get_logo_id(), 'full' );
-
-	}
-
-	// if we have background images already added.
-	if ( ! empty( hd_ssi_get_background_images() ) ) {
-
-		// set a random background image src to the added background image src.
-		$bg_img_src = wp_get_attachment_image_url( hd_ssi_get_random_image_id(), 'full' );
-
-	}
-
-	// set default title placeholder.
-	$title_placeholder = __( 'Sample job title (click to edit)', 'simple-social-images' );
-
-	// if the title placeholder has been set, use that one.
-	if ( ! empty( hd_ssi_get_title_placeholder_text() ) ) {
-		$title_placeholder = hd_ssi_get_title_placeholder_text();
-	}
-
-	// default template.
-	$template = '1';
-
-	// get the current template.
-	if ( ! empty ( hd_ssi_get_template() ) ) {
-		$template = hd_ssi_get_template();
-	}
-
-	// output the custom properties.
-	hd_ssi_output_template_custom_properties();
-
-	?>
-	
-	<div class="hd-ssi-template-preview" data-title="<?php echo esc_attr( $title_placeholder ); ?>" data-logo="<?php echo esc_url( $logo_src ); ?>" data-bgimage="<?php echo esc_url( $bg_img_src ); ?>" data-template="<?php echo esc_attr( $template ); ?>">
-
-		<?php
-
-		ob_start();
-
-		// load in the template.
-		load_template( $template );
-
-		// get the contents of the buffer, the template markup and clean the buffer.
-		$preview = ob_get_clean();
-
-		$preview = hd_ssi_render_template(
-			$preview,
-			array(
-				'template' => $template,
-				'logo'     => $logo_src,
-				'image'    => $bg_img_src,
-			)
-		);
-
-		echo $preview;
-
-		?>
-
-	</div>
-
-	<?php
-
-}
-
-add_action( 'hd_ssi_after_settings_form_output', 'hd_ssi_add_preview_markup_to_settings_page' );
-
-/**
  * Generates the social media sharing image for a post.
  * Also saves the image to the media library and attaches it to the post.
  *
@@ -425,7 +343,7 @@ function hd_ssi_render_template( $text, $args ) {
 				$match_value = get_post_meta( $args['post_id'], $match_key, true );
 
 				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_' . $match_key, $match_value, $match_key );
+				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
 
 				// replace the original text string with the new 
 				$text = str_replace( $match, $match_value, $text );
@@ -460,7 +378,7 @@ function hd_ssi_render_template( $text, $args ) {
 				}
 
 				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_' . $match_key, $match_value, $match_key );
+				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
 
 				// replace the original text string with the new 
 				$text = str_replace( $match, $match_value, $text );
@@ -485,7 +403,7 @@ function hd_ssi_render_template( $text, $args ) {
 				}
 
 				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_' . $match_key, $match_value, $match_key, $args['post_id'] );
+				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $args['post_id'] );
 
 				// replace the original text string with the new 
 				$text = str_replace( $match, $match_value, $text );
