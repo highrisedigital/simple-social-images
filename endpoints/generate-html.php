@@ -1,5 +1,4 @@
 <?php
-
 // default job post.
 $post_id = 0;
 
@@ -11,34 +10,8 @@ if ( ! empty( $_GET['post_id'] ) ) {
 
 }
 
-// set some args.
-$args = array(
-	'template'           => hd_ssi_get_template(),
-	'post_id'           => $post_id,
-	'bg_color'           => hd_ssi_get_bg_color(),
-	'bg_text_color'      => hd_ssi_get_text_bg_color(),
-	'text_color'         => hd_ssi_get_text_color(),
-	'title_size'         => hd_ssi_get_title_font_size(),
-	'google_font_url'    => hd_ssi_get_google_font_url(),
-	'google_font_family' => hd_ssi_get_google_font_family(),
-	'logo_size'          => hd_ssi_get_logo_size(),
-	'image'              => wp_get_attachment_image_url( hd_ssi_get_random_image_id(), 'full' ),
-	'logo'               => wp_get_attachment_image_url( hd_ssi_get_logo_id(), 'full' ),
-);
-
-// if the current post has a featured image.
-if ( has_post_thumbnail( $args['post_id'] ) ) {
-
-	// set the image url to that of the featured image.
-	$args['image'] = get_the_post_thumbnail_url( $args['post_id'], 'full' );
-
-}
-
-// allow the args to be filtered.
-$args = apply_filters( 'hd_ssi_endpoint_generate_args', $args );
-
-// start output buffering.
-ob_start();
+// get the template.
+$template = hd_ssi_get_template();
 
 ?>
 <!doctype html>
@@ -54,14 +27,14 @@ ob_start();
 		hd_ssi_output_template_custom_properties();
 
 		// if we have a google font url.
-		if ( ! empty( $args['google_font_family'] ) && ! empty( $args['google_font_url'] ) ) {
+		if ( ! empty( hd_ssi_get_google_font_family() ) && ! empty( hd_ssi_get_google_font_url() ) ) {
 
 			// output the link elements to load the font.
 			?>
 
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="<?php echo esc_url( $args['google_font_url'] ); ?>" rel="stylesheet">
+			<link href="<?php echo esc_url( hd_ssi_get_google_font_url() ); ?>" rel="stylesheet">
 
 			<?php
 
@@ -73,11 +46,14 @@ ob_start();
 
 <?php
 
+// start output buffering.
+ob_start();
+
 // if our template exists.
-if ( file_exists( $args['template'] ) ) {
+if ( file_exists( $template ) ) {
 
 	// load the template markup, passing our args.
-	load_template( $args['template'], true, $args );
+	load_template( $template, true );
 
 }
 
@@ -86,7 +62,7 @@ $text = ob_get_clean();
 
 $text = hd_ssi_render_template(
 	$text,
-	$args
+	$post_id
 );
 
 echo $text . '</body></html>';

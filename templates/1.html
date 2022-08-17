@@ -1,55 +1,54 @@
 <style>
-	.hdsmi-template.hdsmi-template--1 {
-		--hdsmi--template--font-weight: bold;
-		--hdsmi--line-height: 1.5;
-		--hdsmi--line-gap: .1em;
+	.ssi-template.ssi-template--1 {
+		--ssi--template--font-weight: bold;
+		--ssi--line-height: 1.5;
+		--ssi--line-gap: .1em;
 	}
-	.hdsmi-template--1 .hdsmi-template__inner {
+	.ssi-template--1 .ssi-template__inner {
 		display: flex;
 		align-items: center;
 		width: 100%
 	}
-	.hdsmi-template--1 .hdsmi-template__text {
+	.ssi-template--1 .ssi-template__text {
 		width: 66.66%;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: calc(2 * var(--hdsmi-template--unit));
-		padding: calc(3 * var(--hdsmi-template--unit))
+		gap: calc(2 * var(--ssi-template--unit));
+		padding: calc(3 * var(--ssi-template--unit))
 	}
 
-	.hdsmi-template--1 .hdsmi-template__text > * {
+	.ssi-template--1 .ssi-template__text > * {
 		display: block;
 	}
 
-	.hdsmi-template--1 .hdsmi-template__text > * > [class*="__inner"] {
+	.ssi-template--1 .ssi-template__text > * > [class*="__inner"] {
 		display: inline;
-		line-height: var(--hdsmi--line-height);
-		padding: calc( ( ( (1em * var(--hdsmi--line-height)) - 1em) / 2) - (var(--hdsmi--line-gap) / 2) ) calc(2 * var(--hdsmi-template--unit));
-		background-color: var(--hdsmi--text--background-color);
+		line-height: var(--ssi--line-height);
+		padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
+		background-color: var(--ssi--text--background-color);
 		-webkit-box-decoration-break: clone;
 		box-decoration-break: clone
 	}
 
-	.hdsmi-template--1 .hdsmi-template__image {
+	.ssi-template--1 .ssi-template__image {
 		align-self: stretch;
 		width: 33%;
 		height: auto;
 		object-fit: cover
 	}
-	.hdsmi-template--1 .hdsmi-template__logo {
+	.ssi-template--1 .ssi-template__logo {
 		position: absolute;
-		top: calc(3 * var(--hdsmi-template--unit));
-		right: calc(3 * var(--hdsmi-template--unit))
+		top: calc(3 * var(--ssi-template--unit));
+		right: calc(3 * var(--ssi-template--unit))
 	}
 </style>
 
-<div class="[wrapper_classes]">
-	<div class="hdsmi-template__inner">
-		<div class="hdsmi-template__text">
-			<span class="hdsmi-template__title"><span class="hdsmi-template__title__inner">[post:post_title]</span></span>
-		</div>
-		<img class="hdsmi-template__image" src="[image]" />
-		<img class="hdsmi-template__logo" src="[logo]" />
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<span class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></span>
 	</div>
+	<img class="ssi-template__image" src="[image]" />
+	<img class="ssi-template__logo" src="[logo]" />
 </div>

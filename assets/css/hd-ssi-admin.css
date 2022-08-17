@@ -91,7 +91,7 @@ img.ssi-image {
 
 .hd-ssi-template-preview  {
 	
-	max-width: var(--hdsmi-template--width);
+	max-width: var(--ssi-template--width);
 
 }
 
@@ -107,18 +107,18 @@ img.ssi-image {
 
 }
 
-.hd-ssi-template-preview .hdsmi-template {
+.hd-ssi-template-preview .ssi-template {
 
-	--hdsmi-template--width: 80vw;
+	--ssi-template--width: 80vw;
 	box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
 
 }
 
 @media screen and (min-width: 600px) {
 	
-	.hd-ssi-template-preview .hdsmi-template {
+	.hd-ssi-template-preview .ssi-template {
 
-		--hdsmi-template--width: 520px;
+		--ssi-template--width: 520px;
 	
 	}
 

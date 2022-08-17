@@ -56,14 +56,7 @@ function hd_ssi_add_preview_markup_to_settings_page() {
 		// get the contents of the buffer, the template markup and clean the buffer.
 		$preview = ob_get_clean();
 
-		$preview = hd_ssi_render_template(
-			$preview,
-			array(
-				'template' => $template,
-				'logo'     => $logo_src,
-				'image'    => $bg_img_src,
-			)
-		);
+		$preview = hd_ssi_render_template( $preview );
 
 		echo $preview;
 

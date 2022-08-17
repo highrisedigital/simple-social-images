@@ -33,43 +33,43 @@ function hd_ssi_output_template_custom_properties() {
 	?>
 
 	<style>
-		.hdsmi-template{
+		.ssi-template{
 			<?php
 				if ( ! empty( hd_ssi_get_text_color() ) ) {
-					echo "--hdsmi--text--color:" . esc_attr( hd_ssi_get_text_color() ) . ";";
+					echo "--ssi--text--color:" . esc_attr( hd_ssi_get_text_color() ) . ";";
 				}
 
 				if ( ! empty(  hd_ssi_get_text_bg_color() ) ) {
-					echo "--hdsmi--text--background-color:" . esc_attr(  hd_ssi_get_text_bg_color() ) . ";";
+					echo "--ssi--text--background-color:" . esc_attr(  hd_ssi_get_text_bg_color() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_bg_color() ) ) {
-					echo "--hdsmi--background-color:" . esc_attr( hd_ssi_get_bg_color() ) . ";";
+					echo "--ssi--background-color:" . esc_attr( hd_ssi_get_bg_color() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_title_font_size() ) ) {
-					echo "--hdsmi--title--font-size:" . esc_attr( hd_ssi_get_title_font_size() ) . ";";
+					echo "--ssi--title--font-size:" . esc_attr( hd_ssi_get_title_font_size() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_logo_size() ) ) {
-					echo "--hdsmi--logo--height:" . esc_attr( hd_ssi_get_logo_size() ) . ";";
+					echo "--ssi--logo--height:" . esc_attr( hd_ssi_get_logo_size() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_google_font_family() ) ) {
 					// using wp_kses_post as do not want to escape single quotes in the font family name.
-					echo "--hdsmi--font-family:" . wp_kses_post( hd_ssi_get_google_font_family() ) . ";";
+					echo "--ssi--font-family:" . wp_kses_post( hd_ssi_get_google_font_family() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_font_weight() ) ) {
-					echo "--hdsmi--font-weight:" . esc_attr( hd_ssi_get_font_weight() ) . ";";
+					echo "--ssi--font-weight:" . esc_attr( hd_ssi_get_font_weight() ) . ";";
 				}
 				
 				if ( ! empty( hd_ssi_get_font_style() ) ) {
-					echo "--hdsmi--font-style:" . esc_attr( hd_ssi_get_font_style() ) . ";";
+					echo "--ssi--font-style:" . esc_attr( hd_ssi_get_font_style() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_text_alignment() ) ) {
-					echo "--hdsmi--text-align:" . esc_attr( hd_ssi_get_text_alignment() ) . ";";
+					echo "--ssi--text-align:" . esc_attr( hd_ssi_get_text_alignment() ) . ";";
 				}
 			?>
 		}
@@ -129,7 +129,7 @@ function hd_ssi_generate_social_image( $post_id = 0 ) {
 				'license_key' => sanitize_text_field( $license_key ),
 				'site_url'    => home_url(),
 				'url'         => urlencode( $social_image_html_url ),
-				'element'     => '.hdsmi-template',
+				'element'     => '.ssi-template',
 				'ttl'         => 300,
 			),
 		),
@@ -305,44 +305,71 @@ add_action( 'wp_head', 'hd_ssi_render_tags' );
  * @param  array $args An array of args for the function to use - see $defaults.
  * @return string      The classes to add to the template wrapper div.
  */
-function hd_ssi_output_template_wrapper_classes( $args ) {
-
-	// create some default args.
-	$defaults = array(
-		'image'    => '',
-		'logo'     => '',
-		'template' => '',
-		'post_id'  => 0
-	);
-
-	// merge the args with the defaults.
-	$args = wp_parse_args( $args, $defaults );
+function hd_ssi_output_template_wrapper_classes() {
 
 	// get the template file name.
-	$template = basename( $args['template'] );
+	$template = basename( hd_ssi_get_template() );
 
 	// remove the file type.
 	$template = str_replace( '.html', '', $template );
 
 	// create an array of wrapper classes.
 	$classes = array(
-		'hdsmi-template',
-		'hdsmi-template--' . $template,
+		'ssi-template',
+		'ssi-template--' . $template,
 	);
 
 	// if the template is reversed.
 	if ( 1 === hd_ssi_is_template_reversed() ) {
 
 		// add a reversed class.
-		$classes[] = 'hdsmi-template--reversed';
+		$classes[] = 'ssi-template--reversed';
 
 	}
 
+	// add the text align class.
+	$classes[] = 'ssi-template--text-align--' . hd_ssi_get_text_alignment();
+
 	// allow template classes to be filtered.
-	$classes = apply_filters( 'hd_ssi_template_wrapper_classes', $classes, $args );
+	$classes = apply_filters( 'hd_ssi_template_wrapper_classes', $classes );
 
 	// return the classes string;
 	return implode( ' ', $classes );
+
+}
+
+/**
+ * Returns the background image for a particular post.
+ *
+ * @param integer $post_id The post ID to return the image of.
+ * @return string          The URL of the image to use.
+ */
+function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
+
+	$image_url = '';
+
+	// if the current post has a featured image.
+	if ( has_post_thumbnail( $post_id ) ) {
+
+		// set the image URL to the featured image URL.
+		$image_url = get_the_post_thumbnail_url( $post_id, 'hd_ssi_image' );
+
+	} else {
+
+		// set the image url to a random image from settings.
+		$image_url = wp_get_attachment_image_url(
+			hd_ssi_get_random_image_id(),
+			'hd_ssi_image',
+		);
+
+	}
+
+	// return the image url.
+	return apply_filters(
+		'hd_ssi_post_background_image_url',
+		$image_url,
+		$post_id
+	);
 
 }
 
@@ -354,18 +381,17 @@ function hd_ssi_output_template_wrapper_classes( $args ) {
  *
  * @return string      The rendered template outut including merge tags replaced.
  */
-function hd_ssi_render_template( $text, $args ) {
+function hd_ssi_render_template( $text, $post_id = 0 ) {
 
-	// create some default args.
-	$defaults = array(
-		'image'    => '',
-		'logo'     => '',
-		'template' => '',
-		'post_id'  => 0
+	// get the logo and image urls.
+	$image_url = hd_ssi_get_post_background_image_url( $post_id );
+	$logo_url = wp_get_attachment_image_url(
+		hd_ssi_get_logo_id(),
+		'full'
 	);
 
-	// merge the args with the defaults.
-	$args = wp_parse_args( $args, $defaults );
+	// get the template.
+	$template = hd_ssi_get_template();
 
 	// find all of the strings that need replacing. These are in square brackets.
 	preg_match_all( "/\[[^\]]*\]/", $text, $matches );
@@ -387,7 +413,7 @@ function hd_ssi_render_template( $text, $args ) {
 				$match_key = str_replace( 'meta:', '', $match_value );
 
 				// get the value of this meta.
-				$match_value = get_post_meta( $args['post_id'], $match_key, true );
+				$match_value = get_post_meta( $post_id, $match_key, true );
 
 				// filter the match post value.
 				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
@@ -409,7 +435,7 @@ function hd_ssi_render_template( $text, $args ) {
 					// get the value of this meta.
 					$match_value = wp_strip_all_tags(
 						get_the_term_list(
-							$args['post_id'],
+							$post_id,
 							$match_key,
 							'',
 							', ',
@@ -439,10 +465,10 @@ function hd_ssi_render_template( $text, $args ) {
 				$match_key = str_replace( 'post:', '', $match_value );
 
 				// get the value of this meta.
-				$match_value = get_post_field( $match_key, $args['post_id'] );
+				$match_value = get_post_field( $match_key, $post_id );
 
 				// if we have no job post id.
-				if ( empty( $args['post_id'] ) ) {
+				if ( empty( $post_id ) ) {
 
 					// set the match value to the site title.
 					$match_value = get_bloginfo( 'title' );
@@ -450,7 +476,7 @@ function hd_ssi_render_template( $text, $args ) {
 				}
 
 				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $args['post_id'] );
+				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
 
 				// replace the original text string with the new 
 				$text = str_replace( $match, $match_value, $text );
@@ -458,45 +484,42 @@ function hd_ssi_render_template( $text, $args ) {
 			}
 			
 			// if we have a logo.
-			if ( empty( $args['logo'] ) ) {
+			if ( empty( $logo_url ) ) {
 
 				// set the logo to a transparent image.
-				$args['logo'] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				$logo_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
 			}
 
 			// if we have a image.
-			if ( empty( $args['image'] ) ) {
+			if ( empty( $image_url ) ) {
 
 				// set the image to a transparent image.
-				$args['image'] = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				$image_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
 			}
 
 			// if we have no template.
-			if ( empty( $args['template'] ) ) {
+			if ( empty( $template ) ) {
 
 				// default the template.
-				$args['template'] = HD_SSI_LOCATION . '/templates/1.html';
+				$template = HD_SSI_LOCATION . '/templates/1.html';
 
 			}
 			
 			// replace the logo string.
-			$text = str_replace( '[logo]', $args['logo'], $text );
+			$text = str_replace( '[logo]', $logo_url, $text );
 
 			// replace the template string.
-			$text = str_replace( '[template]', str_replace( '.html', '', basename( $args['template'] ) ), $text );
+			$text = str_replace( '[template]', str_replace( '.html', '', basename( $template ) ), $text );
 
 			// replace the image string.
-			$text = str_replace( '[image]', $args['image'], $text );
-
-			// replace the template wrapper merge tag.
-			$text = str_replace( '[wrapper_classes]', esc_attr( hd_ssi_output_template_wrapper_classes( $args ) ), $text );
+			$text = str_replace( '[image]', $image_url, $text );
 
 		}
 
 	}
 
-	return $text;
+	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $text . '</div>';
 
 }

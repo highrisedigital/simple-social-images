@@ -147,7 +147,7 @@
 
 	if ( logoSize ) {
 		logoSize.addEventListener("change", function() {
-			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--logo--height", this.value);
+			document.querySelector(".ssi-template").style.setProperty("--ssi--logo--height", this.value);
 		});
 	}
 	
@@ -162,12 +162,12 @@
 			$('.wp-picker-clear').on('click', function(){
 				
 				// update the custom property.
-				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
 
 			});
 
 			// update the custom property.
-			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--color", ui.color.toString());
+			document.querySelector(".ssi-template").style.setProperty("--ssi--text--color", ui.color.toString());
 			
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
@@ -187,12 +187,12 @@
 			$('.wp-picker-clear').on('click', function(){
 				
 				// update the custom property.
-				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
 
 			});
 			
 			// update the custom property.
-			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", ui.color.toString());
+			document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", ui.color.toString());
 			
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
@@ -211,12 +211,12 @@
 			$('.wp-picker-clear').on('click', function(){
 				
 				// update the custom property.
-				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
 
 			});
 
 			// update the custom property.
-			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--background-color", ui.color.toString());
+			document.querySelector(".ssi-template").style.setProperty("--ssi--background-color", ui.color.toString());
 
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
@@ -229,13 +229,13 @@
 
 	if ( titleFontSize ) {
 		titleFontSize.addEventListener("change", function() {
-			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--title--font-size", this.value);
+			document.querySelector(".ssi-template").style.setProperty("--ssi--title--font-size", this.value);
 		});
 	}
 
 	/* Logo file */
 	$('img.hd-ssi-image').on('load', function () {
-		$('.hdsmi-template__logo').attr('src', $('img.hd-ssi-image').attr('src'));
+		$('.ssi-template__logo').attr('src', $('img.hd-ssi-image').attr('src'));
 	});
 
 	/* Background images */
@@ -243,7 +243,7 @@
 
 		imgSrc = $(this).attr('src');
 		fullImgSrc = imgSrc.replace("-150x150", "");
-		$('.hdsmi-template__image').attr('src', fullImgSrc);
+		$('.ssi-template__image').attr('src', fullImgSrc);
 
 	});
 
@@ -254,7 +254,7 @@
 		fullImgSrc = imgSrc.replace("-150x150", "");
 
 		// set template image source.
-		$('.hdsmi-template__image').attr('src', fullImgSrc);
+		$('.ssi-template__image').attr('src', fullImgSrc);
 
 	});
 
