@@ -1,6 +1,6 @@
 <?php
 /**
- * Registers the associted plugin settings with the WP Job Manager plugin.
+ * Registers the associted plugin settings with WordPress.
  */
 
 /**
@@ -190,7 +190,7 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['background_images'] = array(
 		'option_name' => 'hd_ssi_background_images',
 		'label'       => __( 'Add Images', 'simple-social-images' ),
-		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your job does not have a featured image.', 'simple-social-images' ),
+		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your post does not have a featured image.', 'simple-social-images' ),
 		'input_type'  => 'gallery',
 		'order'       => 130,
 	);
@@ -470,7 +470,7 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 	// handle output for a text input.
 	?>
 	
-	<div class="hd-ssi-image-wrapper">
+	<div class="hd-ssi-image-wrapper" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>">
 		
 		<?php
 
@@ -484,27 +484,23 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 				false,
 				array(
 					'class' => 'hd-ssi-image',
-					'id'    => $setting['option_name'] . 'image',
+					'id'    => $setting['option_name'] . '-image',
 				)
 			);
 
-		} else {
-
 			?>
-			<img class="hd-ssi-image" src="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>" />
+			<span class="dashicons dashicons-no hd-ssi-image--remove" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>-input"></span>
 			<?php
 
 		}
 
 		?>
-		
-		<span class="dashicons dashicons-no hd-ssi-image--remove" data-placeholder="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>-input"></span>
+
+		<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
+
+		<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
 
 	</div>
-
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
-
-	<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
 
 	<?php
 

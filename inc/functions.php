@@ -381,7 +381,7 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
  *
  * @return string      The rendered template outut including merge tags replaced.
  */
-function hd_ssi_render_template( $text, $post_id = 0 ) {
+function hd_ssi_render_template( $post_id = 0 ) {
 
 	// get the logo and image urls.
 	$image_url = hd_ssi_get_post_background_image_url( $post_id );
@@ -393,8 +393,20 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 	// get the template.
 	$template = hd_ssi_get_template();
 
+	ob_start();
+
+	// if our template exists.
+	if ( file_exists( $template ) ) {
+
+		// load the template markup, passing our args.
+		load_template( $template, true );
+
+	}
+
+	$template_markup = ob_get_clean();
+
 	// find all of the strings that need replacing. These are in square brackets.
-	preg_match_all( "/\[[^\]]*\]/", $text, $matches );
+	preg_match_all( "/\[[^\]]*\]/", $template_markup, $matches );
 
 	// if we have matches.
 	if ( $matches !== false ) {
@@ -418,8 +430,8 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 				// filter the match post value.
 				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
 
-				// replace the original text string with the new 
-				$text = str_replace( $match, $match_value, $text );
+				// replace the original template_markup string with the new 
+				$template_markup = str_replace( $match, $match_value, $template_markup );
 
 			}
 
@@ -453,8 +465,8 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 				// filter the match post value.
 				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
 
-				// replace the original text string with the new 
-				$text = str_replace( $match, $match_value, $text );
+				// replace the original template_markup string with the new 
+				$template_markup = str_replace( $match, $match_value, $template_markup );
 
 			}
 
@@ -478,8 +490,8 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 				// filter the match post value.
 				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
 
-				// replace the original text string with the new 
-				$text = str_replace( $match, $match_value, $text );
+				// replace the original template_markup string with the new 
+				$template_markup = str_replace( $match, $match_value, $template_markup );
 
 			}
 
@@ -512,8 +524,8 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 				// filter the match post value.
 				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
 
-				// replace the original text string with the new 
-				$text = str_replace( $match, $match_value, $text );
+				// replace the original template_markup string with the new 
+				$template_markup = str_replace( $match, $match_value, $template_markup );
 
 			}
 			
@@ -542,18 +554,18 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 			}
 			
 			// replace the logo string.
-			$text = str_replace( '[logo]', $logo_url, $text );
+			$template_markup = str_replace( '[logo]', $logo_url, $template_markup );
 
 			// replace the template string.
-			$text = str_replace( '[template]', str_replace( '.html', '', basename( $template ) ), $text );
+			$template_markup = str_replace( '[template]', str_replace( '.html', '', basename( $template ) ), $template_markup );
 
 			// replace the image string.
-			$text = str_replace( '[image]', $image_url, $text );
+			$template_markup = str_replace( '[image]', $image_url, $template_markup );
 
 		}
 
 	}
 
-	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $text . '</div>';
+	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $template_markup . '</div>';
 
 }

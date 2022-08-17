@@ -33,6 +33,8 @@ img.ssi-image {
 .hd-ssi-image--remove,
 .hd-ssi-gallery--remove {
 	position: absolute;
+	top: -0.1em;
+    right: -0.5em;
     font-size: 28px;
     cursor: pointer;
 }
@@ -41,6 +43,7 @@ img.ssi-image {
 	display: inline-block;
 	margin: 0;
     margin-right: 32px;
+	position: relative;
 }
 .hd-ssi-input-description {
 	font-style: italic;

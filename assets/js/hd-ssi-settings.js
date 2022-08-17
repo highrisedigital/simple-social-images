@@ -10,7 +10,7 @@
 		
 		// get the previous input.
 		var inputID = $( this ).prev();
-		var imgID = $( inputID ).prev().children('img')[0];
+		var parentWrapper = $( this ).parent();
 
         hd_ssi_image_uploader = wp.media({
             title: 'Image',
@@ -22,7 +22,17 @@
 
 			var attachment = hd_ssi_image_uploader.state().get('selection').first().toJSON();
             $( inputID ).val(attachment.id);
-			$( imgID ).attr( 'src', attachment.sizes.full.url );
+
+			var logo = $('<img class="hd-ssi-image">');
+			logo.attr( 'src', attachment.sizes.full.url );
+			logo.attr( 'id', parentWrapper.data('input-id') );
+
+			var removeSpan = $('<span class="dashicons dashicons-no hd-ssi-image--remove"></span>');
+			removeSpan.attr( 'data-input-id', parentWrapper.data('input-id') );
+
+			parentWrapper.prepend( logo );
+			logo.after( removeSpan );
+
         })
         .open();
     });
@@ -32,8 +42,13 @@
 		// get the previous input.
 		var img = $( this ).prev();
 		
-		$( img ).attr( 'src', $( this ).data( 'placeholder' ) );
+		$( img ).remove();
+
+		// set the hidden input to have no value.
 		$( '#' + $( this ).data( 'input-id' ) ).val('');
+
+		// remove this button.
+		$( this ).remove();
 
 	});
 

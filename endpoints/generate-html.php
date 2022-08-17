@@ -15,7 +15,7 @@ $template = hd_ssi_get_template();
 
 ?>
 <!doctype html>
-<html class="no-js" lang="">
+<html>
 
 	<head>
 
@@ -34,25 +34,27 @@ $template = hd_ssi_get_template();
 
 	</head>
 
-<?php
+	<body>
 
-// start output buffering.
-ob_start();
+	<?php
 
-// if our template exists.
-if ( file_exists( $template ) ) {
+	// start output buffering.
+	//ob_start();
 
-	// load the template markup, passing our args.
-	load_template( $template, true );
+	// // if our template exists.
+	// if ( file_exists( $template ) ) {
 
-}
+	// 	// load the template markup, passing our args.
+	// 	load_template( $template, true );
 
-// get the contents of the buffer, the template markup and clean the buffer.
-$text = ob_get_clean();
+	// }
 
-$text = hd_ssi_render_template(
-	$text,
-	$post_id
-);
+	// get the contents of the buffer, the template markup and clean the buffer.
+	//$text = ob_get_clean();
 
-echo $text . '</body></html>';
+	echo hd_ssi_render_template( $post_id );
+
+	?>
+
+</body>
+</html>

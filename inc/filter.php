@@ -8,57 +8,17 @@
  */
 function hd_ssi_add_preview_markup_to_settings_page() {
 
-	// set a place holder transparent pixel to use as defaults.
-	$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-				
-	// set the logo and background images to default to transparent pixel.
-	$logo_src = $placeholder_pixel;
-	$bg_img_src = $placeholder_pixel;
-
-	// if we have a logo already added.
-	if ( ! empty( hd_ssi_get_logo_id() ) ) {
-
-		// set the logo src to the added logo image src.
-		$logo_src = wp_get_attachment_image_url( hd_ssi_get_logo_id(), 'full' );
-
-	}
-
-	// if we have background images already added.
-	if ( ! empty( hd_ssi_get_background_images() ) ) {
-
-		// set a random background image src to the added background image src.
-		$bg_img_src = wp_get_attachment_image_url( hd_ssi_get_random_image_id(), 'full' );
-
-	}
-
-	// default template.
-	$template = HD_SSI_LOCATION . '/templates/1.html';
-
-	// get the current template.
-	if ( ! empty ( hd_ssi_get_template() ) ) {
-		$template = hd_ssi_get_template();
-	}
-
 	// output the custom properties.
 	hd_ssi_output_template_custom_properties();
 
 	?>
 	
-	<div class="hd-ssi-template-preview" data-logo="<?php echo esc_url( $logo_src ); ?>" data-bgimage="<?php echo esc_url( $bg_img_src ); ?>" data-template="<?php echo esc_attr( $template ); ?>">
+	<div class="hd-ssi-template-preview">
 
 		<?php
 
-		ob_start();
-
-		// load in the template.
-		load_template( $template );
-
-		// get the contents of the buffer, the template markup and clean the buffer.
-		$preview = ob_get_clean();
-
-		$preview = hd_ssi_render_template( $preview );
-
-		echo $preview;
+		// render the template.
+		echo hd_ssi_render_template();
 
 		?>
 
