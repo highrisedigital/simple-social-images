@@ -253,9 +253,10 @@ function hd_ssi_register_default_settings( $settings ) {
 			'description'       => __( 'Choose how to align your text in your template.', 'simple-social-images' ),
 			'input_type'        => 'select',
 			'options'           => array(
-				'left'   => __( 'Left', 'simple-social-images' ),
-				'right'  => __( 'Right', 'simple-social-images' ),
-				'center' => __( 'Centre', 'simple-social-images' ),
+				'default' => __( 'Default', 'simple-social-images' ),
+				'left'    => __( 'Left', 'simple-social-images' ),
+				'right'   => __( 'Right', 'simple-social-images' ),
+				'center'  => __( 'Centre', 'simple-social-images' ),
 			),
 			'order'             => 180,
 		);
