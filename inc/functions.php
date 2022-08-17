@@ -59,6 +59,18 @@ function hd_ssi_output_template_custom_properties() {
 					// using wp_kses_post as do not want to escape single quotes in the font family name.
 					echo "--hdsmi--font-family:" . wp_kses_post( hd_ssi_get_google_font_family() ) . ";";
 				}
+
+				if ( ! empty( hd_ssi_get_font_weight() ) ) {
+					echo "--hdsmi--font-weight:" . esc_attr( hd_ssi_get_font_weight() ) . ";";
+				}
+				
+				if ( ! empty( hd_ssi_get_font_style() ) ) {
+					echo "--hdsmi--font-style:" . esc_attr( hd_ssi_get_font_style() ) . ";";
+				}
+
+				if ( ! empty( hd_ssi_get_text_alignment() ) ) {
+					echo "--hdsmi--text-align:" . esc_attr( hd_ssi_get_text_alignment() ) . ";";
+				}
 			?>
 		}
 	</style>

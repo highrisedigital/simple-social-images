@@ -323,6 +323,42 @@ function hd_ssi_get_title_font_size() {
 }
 
 /**
+ * Gets the current title font weight.
+ */
+function hd_ssi_get_font_weight() {
+
+	return apply_filters(
+		'hd_ssi_font_weight',
+		get_option( 'hd_ssi_font_weight' )
+	);
+
+}
+
+/**
+ * Gets the current title font style.
+ */
+function hd_ssi_get_font_style() {
+
+	return apply_filters(
+		'hd_ssi_font_style',
+		get_option( 'hd_ssi_font_style' )
+	);
+
+}
+
+/**
+ * Gets the current title text alignment.
+ */
+function hd_ssi_get_text_alignment() {
+
+	return apply_filters(
+		'hd_ssi_text_align',
+		get_option( 'hd_ssi_text_align' )
+	);
+
+}
+
+/**
  * Gets the title placeholder text.
  */
 function hd_ssi_get_title_placeholder_text() {

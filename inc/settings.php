@@ -86,14 +86,14 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description'    => __( 'Select the post types on which Simple Social Images will be activated and available on.' ),
 		'input_type'     => 'checkboxes',
 		'options'        => hd_ssi_get_site_post_types(),
-		'order'          => 12,
+		'order'          => 20,
 	);
 
 	$settings['template_section'] = array(
 		'option_name'    => 'hd_ssi_template_section',
 		'label'          => __( 'Template Settings', 'simple-social-images' ),
 		'input_type'     => 'section',
-		'order'          => 14,
+		'order'          => 30,
 	);
 
 	$settings['template'] = array(
@@ -102,7 +102,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description'    => __( 'Choose which template to use. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
 		'input_type'     => 'select',
 		'options'        => hd_ssi_get_templates(),
-		'order'          => 16,
+		'order'          => 40,
 	);
 
 	// if the current template is from the plugin folder.
@@ -112,7 +112,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'option_name'    => 'hd_ssi_colors_section',
 			'label'          => __( 'Colour Settings', 'simple-social-images' ),
 			'input_type'     => 'section',
-			'order'          => 20,
+			'order'          => 50,
 		);
 	
 		$settings['text_color'] = array(
@@ -120,7 +120,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'label'          => __( 'Text Colour', 'simple-social-images' ),
 			'description'    => __( 'Enter or choose the text colour.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
-			'order'          => 30,
+			'order'          => 60,
 		);
 	
 		$settings['text_bg_color'] = array(
@@ -128,7 +128,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'label'          => __( 'Text Background Colour', 'simple-social-images' ),
 			'description'    => __( 'Enter or choose the text background colour.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
-			'order'          => 40,
+			'order'          => 70,
 		);
 	
 		$settings['bg_color'] = array(
@@ -136,7 +136,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'label'          => __( 'Background Colour', 'simple-social-images' ),
 			'description'    => __( 'Enter or choose the background colour.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
-			'order'          => 50,
+			'order'          => 80,
 		);
 		
 	}
@@ -145,7 +145,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name' => 'hd_ssi_logo_section',
 		'label'       => __( 'Logo Settings', 'simple-social-images' ),
 		'input_type'  => 'section',
-		'order'       => 60,
+		'order'       => 90,
 	);
 
 	$settings['logo'] = array(
@@ -153,7 +153,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'       => __( 'Image', 'simple-social-images' ),
 		'description' => __( 'Upload your logo to display on your images.', 'simple-social-images' ),
 		'input_type'  => 'image',
-		'order'       => 70,
+		'order'       => 100,
 	);
 
 	// if the current template is from the plugin folder.
@@ -167,7 +167,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'min'         => '4',
 			'max'         => '12',
 			'step'        => '0.1', 
-			'order'       => 80,
+			'order'       => 110,
 		);
 
 	}
@@ -176,7 +176,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name' => 'hd_ssi_background_images_section',
 		'label'       => __( 'Background Images Settings', 'simple-social-images' ),
 		'input_type'  => 'section',
-		'order'       => 90,
+		'order'       => 120,
 	);
 
 	$settings['background_images'] = array(
@@ -184,7 +184,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'       => __( 'Add Images', 'simple-social-images' ),
 		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your job does not have a featured image.', 'simple-social-images' ),
 		'input_type'  => 'gallery',
-		'order'       => 100,
+		'order'       => 130,
 	);
 
 	// if the current template is from the plugin folder.
@@ -194,7 +194,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'option_name' => 'hd_ssi_font_sizes_section',
 			'label'       => __( 'Font Settings', 'simple-social-images' ),
 			'input_type'  => 'section',
-			'order'       => 110,
+			'order'       => 140,
 		);
 
 		$settings['title_size'] = array(
@@ -205,17 +205,60 @@ function hd_ssi_register_default_settings( $settings ) {
 			'min'         => '2',
 			'max'         => '8',
 			'step'        => '0.5',
-			'order'       => 120,
+			'order'       => 150,
+		);
+
+		$settings['font_weight'] = array(
+			'option_name'       => 'hd_ssi_font_weight',
+			'label'             => __( 'Font Weight', 'simple-social-images' ),
+			'description'       => __( 'Choose the font weight to use on your selected template.', 'simple-social-images' ),
+			'input_type'        => 'select',
+			'options'           => array(
+				'100' => __( '100 - Thin', 'simple-social-images' ),
+				'200' => '200',
+				'300' => '300',
+				'400' => __( '400 - Regular', 'simple-social-images' ),
+				'500' => '500',
+				'600' => '600',
+				'700' => __( '700 - Bold', 'simple-social-images' ),
+				'800' => '800',
+				'900' => __( '900 - Heavy', 'simple-social-images' ),
+			),
+			'order'             => 160,
+		);
+
+		$settings['font_style'] = array(
+			'option_name'       => 'hd_ssi_font_style',
+			'label'             => __( 'Font Style', 'simple-social-images' ),
+			'description'       => __( 'Choose the font style to use on your selected template.', 'simple-social-images' ),
+			'input_type'        => 'select',
+			'options'           => array(
+				'normal' => __( 'Normal', 'simple-social-images' ),
+				'italic' => __( 'Italic', 'simple-social-images' ),
+			),
+			'order'             => 170,
+		);
+
+		$settings['text_align'] = array(
+			'option_name'       => 'hd_ssi_text_align',
+			'label'             => __( 'Text Alignment', 'simple-social-images' ),
+			'description'       => __( 'Choose how to align your text in your template.', 'simple-social-images' ),
+			'input_type'        => 'select',
+			'options'           => array(
+				'left'   => __( 'Left', 'simple-social-images' ),
+				'right'  => __( 'Right', 'simple-social-images' ),
+				'center' => __( 'Centre', 'simple-social-images' ),
+			),
+			'order'             => 180,
 		);
 
 		$settings['google_font_url'] = array(
 			'option_name'       => 'hd_ssi_google_font_url',
 			'label'             => __( 'Google Font URL', 'simple-social-images' ),
-			'description'       => __( 'Enter the URL of the Google font you wish to use.', 'simple-social-images' ),
 			'description'  => sprintf( __( 'Enter the URL of the Google font. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
 			'input_type'        => 'text',
 			'sanitize_callback' => 'sanitize_url',
-			'order'             => 150,
+			'order'             => 190,
 		);
 
 		$settings['google_font_family'] = array(
@@ -223,7 +266,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'label'       => __( 'Google Font Family', 'simple-social-images' ),
 			'description'  => sprintf( __( 'Enter the name of the Google font family. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
 			'input_type'  => 'text',
-			'order'       => 160,
+			'order'       => 200,
 		);
 
 	}
