@@ -28,7 +28,7 @@ add_action( 'after_setup_theme', 'hd_ssi_add_image_size' );
 /**
  * Outputs the custom variables on the settings page for the template preview.
  */
-function hd_ssi_add_template_custom_properties() {
+function hd_ssi_output_template_custom_properties() {
 
 	?>
 
@@ -67,20 +67,10 @@ function hd_ssi_add_template_custom_properties() {
 
 }
 
-add_action( 'hd_ssi_before_settings_form_output', 'hd_ssi_add_template_custom_properties' );
-
 /**
  * Adds markup to the end of the settings page for the template preview.
  */
 function hd_ssi_add_preview_markup_to_settings_page() {
-
-	// get the currently selected template.
-	$selected_template = hd_ssi_get_template();
-
-	// if the current template is from the plugin folder.
-	if ( ! str_contains( $selected_template, HD_SSI_LOCATION ) ) {
-		return;
-	}
 
 	// set a place holder transparent pixel to use as defaults.
 	$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
@@ -120,6 +110,9 @@ function hd_ssi_add_preview_markup_to_settings_page() {
 	if ( ! empty ( hd_ssi_get_template() ) ) {
 		$template = hd_ssi_get_template();
 	}
+
+	// output the custom properties.
+	hd_ssi_output_template_custom_properties();
 
 	?>
 	

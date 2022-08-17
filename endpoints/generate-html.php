@@ -47,47 +47,11 @@ ob_start();
 	<head>
 
 		<link rel="stylesheet" href="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/css/hd-ssi-generate.css' ); ?>" />
-		<style>
-			.hdsmi-template{
-				<?php
-				if ( ! empty( $args['text_color'] ) ) {
-					echo "--hdsmi--text--color:" . esc_attr( $args['text_color'] ) . ";";
-				}
-
-				if ( ! empty( $args['bg_text_color'] ) ) {
-					echo "--hdsmi--text--background-color:" . esc_attr( $args['bg_text_color'] ) . ";";
-				}
-
-				if ( ! empty( $args['bg_color'] ) ) {
-					echo "--hdsmi--background-color:" . esc_attr( $args['bg_color'] ) . ";";
-				}
-
-				if ( ! empty( $args['title_size'] ) ) {
-					echo "--hdsmi--title--font-size:" . esc_attr( $args['title_size'] ) . ";";
-				}
-
-				if ( ! empty( $args['location_size'] ) ) {
-					echo "--hdsmi--location--font-size:" . esc_attr( $args['location_size'] ) . ";";
-				}
-
-				if ( ! empty( $args['salary_size'] ) ) {
-					echo "--hdsmi--salary--font-size:" . esc_attr( $args['salary_size'] ) . ";";
-				}
-
-				if ( ! empty( $args['logo_size'] ) ) {
-					echo "--hdsmi--logo--height:" . esc_attr( $args['logo_size'] ) . ";";
-				}
-
-				if ( ! empty( $args['google_font_family'] ) ) {
-					// using wp_kses_post here as we don't want to escape single quotes.
-					echo "--hdsmi--font-family:" . wp_kses_post( $args['google_font_family'] ) . ";";
-				}
-
-				?>
-			}
-		</style>
 		
 		<?php
+
+		// output the custom properties.
+		hd_ssi_output_template_custom_properties();
 
 		// if we have a google font url.
 		if ( ! empty( $args['google_font_family'] ) && ! empty( $args['google_font_url'] ) ) {
