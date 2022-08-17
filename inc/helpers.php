@@ -359,13 +359,13 @@ function hd_ssi_get_text_alignment() {
 }
 
 /**
- * Gets the title placeholder text.
+ * Gets the current title text alignment.
  */
-function hd_ssi_get_title_placeholder_text() {
+function hd_ssi_is_template_reversed() {
 
 	return apply_filters(
-		'hd_ssi_title_placeholder_text',
-		get_option( 'hd_ssi_title_placeholder_text' )
+		'hd_ssi_template_reversed',
+		absint( get_option( 'hd_ssi_template_reversed' ) )
 	);
 
 }

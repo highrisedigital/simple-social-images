@@ -31,16 +31,8 @@ function hd_ssi_add_preview_markup_to_settings_page() {
 
 	}
 
-	// set default title placeholder.
-	$title_placeholder = __( 'Sample job title (click to edit)', 'simple-social-images' );
-
-	// if the title placeholder has been set, use that one.
-	if ( ! empty( hd_ssi_get_title_placeholder_text() ) ) {
-		$title_placeholder = hd_ssi_get_title_placeholder_text();
-	}
-
 	// default template.
-	$template = '1';
+	$template = HD_SSI_LOCATION . '/templates/1.html';
 
 	// get the current template.
 	if ( ! empty ( hd_ssi_get_template() ) ) {
@@ -52,7 +44,7 @@ function hd_ssi_add_preview_markup_to_settings_page() {
 
 	?>
 	
-	<div class="hd-ssi-template-preview" data-title="<?php echo esc_attr( $title_placeholder ); ?>" data-logo="<?php echo esc_url( $logo_src ); ?>" data-bgimage="<?php echo esc_url( $bg_img_src ); ?>" data-template="<?php echo esc_attr( $template ); ?>">
+	<div class="hd-ssi-template-preview" data-logo="<?php echo esc_url( $logo_src ); ?>" data-bgimage="<?php echo esc_url( $bg_img_src ); ?>" data-template="<?php echo esc_attr( $template ); ?>">
 
 		<?php
 

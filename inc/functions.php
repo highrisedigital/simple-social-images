@@ -300,6 +300,53 @@ function hd_ssi_render_tags() {
 add_action( 'wp_head', 'hd_ssi_render_tags' );
 
 /**
+ * Builds an array of classes for the template wrapper and returns them as a string.
+ *
+ * @param  array $args An array of args for the function to use - see $defaults.
+ * @return string      The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_wrapper_classes( $args ) {
+
+	// create some default args.
+	$defaults = array(
+		'image'    => '',
+		'logo'     => '',
+		'template' => '',
+		'post_id'  => 0
+	);
+
+	// merge the args with the defaults.
+	$args = wp_parse_args( $args, $defaults );
+
+	// get the template file name.
+	$template = basename( $args['template'] );
+
+	// remove the file type.
+	$template = str_replace( '.html', '', $template );
+
+	// create an array of wrapper classes.
+	$classes = array(
+		'hdsmi-template',
+		'hdsmi-template--' . $template,
+	);
+
+	// if the template is reversed.
+	if ( 1 === hd_ssi_is_template_reversed() ) {
+
+		// add a reversed class.
+		$classes[] = 'hdsmi-template--reversed';
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_wrapper_classes', $classes, $args );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
  * Renders a templatem replacing the merge tags with actual values.
  *
  * @param string $text The contents of the template htnml file.
@@ -313,7 +360,7 @@ function hd_ssi_render_template( $text, $args ) {
 	$defaults = array(
 		'image'    => '',
 		'logo'     => '',
-		'template' => '1',
+		'template' => '',
 		'post_id'  => 0
 	);
 
@@ -442,6 +489,9 @@ function hd_ssi_render_template( $text, $args ) {
 
 			// replace the image string.
 			$text = str_replace( '[image]', $args['image'], $text );
+
+			// replace the template wrapper merge tag.
+			$text = str_replace( '[wrapper_classes]', esc_attr( hd_ssi_output_template_wrapper_classes( $args ) ), $text );
 
 		}
 

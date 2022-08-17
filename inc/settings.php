@@ -108,6 +108,14 @@ function hd_ssi_register_default_settings( $settings ) {
 	// if the current template is from the plugin folder.
 	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
 
+		$settings['template_reversed'] = array(
+			'option_name'    => 'hd_ssi_template_reversed',
+			'label'          => __( 'Reverse this template', 'simple-social-images' ),
+			'description'    => __( 'This will reverse the layout of the selected template, should the template support reversal.', 'simple-social-images' ),
+			'input_type'     => 'checkbox',
+			'order'          => 45,
+		);
+
 		$settings['colors_section'] = array(
 			'option_name'    => 'hd_ssi_colors_section',
 			'label'          => __( 'Colour Settings', 'simple-social-images' ),
@@ -642,7 +650,7 @@ add_action( 'wpbb_setting_type_section', 'hd_ssi_setting_input_type_section', 10
 function hd_ssi_output_setting_descriptions( $setting, $value ) {
 
 	// if we have a description.
-	if ( empty( $setting['description'] ) ) {
+	if ( empty( $setting['description'] ) || 'checkbox' === $setting['input_type'] ) {
 		return;
 	}
 
