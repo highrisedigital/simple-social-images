@@ -52,3 +52,8 @@ body {
 .ssi-template__image {
 	display: block;
 }
+
+.ssi-template__logo {
+	height: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
+	width: var(--ssi--logo--width)
+}
