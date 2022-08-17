@@ -19,28 +19,18 @@ $template = hd_ssi_get_template();
 
 	<head>
 
-		<link rel="stylesheet" href="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/css/hd-ssi-generate.css' ); ?>" />
-		
 		<?php
 
-		// output the custom properties.
-		hd_ssi_output_template_custom_properties();
+		/**
+		 * Fires an action in the head of the endpoint.
+		 *
+		 * @hooked hd_ssi_output_generate_css - 10
+		 * @hooked hd_ssi_output_generate_custom_properties - 20
+		 * @hookwd hd_ssi_output_generate_google_font_data - 30
+		 */
+		do_action( 'hd_ssi_generate_html_head', $post_id );
 
-		// if we have a google font url.
-		if ( ! empty( hd_ssi_get_google_font_family() ) && ! empty( hd_ssi_get_google_font_url() ) ) {
-
-			// output the link elements to load the font.
-			?>
-
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="<?php echo esc_url( hd_ssi_get_google_font_url() ); ?>" rel="stylesheet">
-
-			<?php
-
-		}
-
-	?>
+		?>
 
 	</head>
 
