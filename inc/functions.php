@@ -482,6 +482,40 @@ function hd_ssi_render_template( $text, $post_id = 0 ) {
 				$text = str_replace( $match, $match_value, $text );
 
 			}
+
+			// if this is a post field replace.
+			if ( strpos( $match_value, 'siteinfo' ) !== false ) {
+
+				// remove the tax: string
+				$match_key = str_replace( 'siteinfo:', '', $match_value );
+
+				// allowed list of keys.
+				$allowed_siteinfo = array(
+					'name',
+					'description',
+					'url',
+				);
+
+				// if the match key is allowed.
+				if ( in_array( $match_key, $allowed_siteinfo, true ) ) {
+
+					// get the value of this meta.
+					$match_value = get_bloginfo( $match_key, $post_id );
+				
+				} else {
+
+					// set the match value to nothing.
+					$match_value = '';
+					
+				}
+
+				// filter the match post value.
+				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
+
+				// replace the original text string with the new 
+				$text = str_replace( $match, $match_value, $text );
+
+			}
 			
 			// if we have a logo.
 			if ( empty( $logo_url ) ) {
