@@ -53,9 +53,17 @@ function hd_ssi_get_site_post_types() {
  */
 function hd_ssi_get_supported_post_types() {
 
+	// get the post types selected.
+	$post_types = get_option( 'hd_ssi_post_types' );
+
+	// if no post types are returned.
+	if ( empty( $post_types ) ) {
+		return array();
+	}
+
 	return apply_filters(
 		'hd_hd_ssi_supported_post_types',
-		get_option( 'hd_ssi_post_types' )
+		$post_types
 	);
 
 }
