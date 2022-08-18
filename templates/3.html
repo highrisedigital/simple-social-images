@@ -1,0 +1,66 @@
+<style>
+/* Template 3 */
+
+.ssi-template--3 {
+	--ssi--line-height: 1.25;
+}
+.ssi-template--3 {
+	--ssi--title--font-size: 4;
+	--ssi--logo--height: 6;
+}
+.ssi-template--3 .ssi-template__text {
+	width: calc(66.6 * var(--ssi-template--unit));
+	z-index: 2;
+	position: absolute;
+	bottom: calc(4 * var(--ssi-template--unit));
+	left: calc(4 * var(--ssi-template--unit));
+	background-color: var(--ssi--text--background-color);
+	padding: calc(2 * var(--ssi-template--unit));
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: calc(2 * var(--ssi-template--unit))
+}
+.ssi-template--3 .ssi-template__title {
+	width: 100%
+}
+.ssi-template--3 .ssi-template__image {
+	width: calc(66.6 * var(--ssi-template--unit));
+	height: calc(40 * var(--ssi-template--unit));
+	position: absolute;
+	z-index: 1;
+	top: calc(5 * var(--ssi-template--unit));
+	right: calc(5 * var(--ssi-template--unit));
+	bottom: calc(5 * var(--ssi-template--unit));
+	object-fit: cover
+}
+.ssi-template--3 .ssi-template__logo {
+	position: absolute;
+	top: calc(3 * var(--ssi-template--unit));
+	left: calc(3 * var(--ssi-template--unit))
+}
+
+.ssi-template--3.ssi-template--reverse .ssi-template__text {
+	bottom: calc(4 * var(--ssi-template--unit));
+	right: calc(4 * var(--ssi-template--unit));
+  left: auto;
+}
+.ssi-template--3.ssi-template--reverse .ssi-template__image {
+	left: calc(5 * var(--ssi-template--unit));
+  right: auto;
+}
+.ssi-template--3.ssi-template--reverse .ssi-template__logo {
+	right: calc(3 * var(--ssi-template--unit));
+	left: auto;
+}
+</style>
+
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<h1 class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></h1>
+	</div>
+	<img class="ssi-template__image" src="[image]" />
+	<img class="ssi-template__logo" src="[logo]" />
+</div>

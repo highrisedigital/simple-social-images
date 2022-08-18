@@ -1,0 +1,92 @@
+<style>
+/* Template 2 */
+
+.ssi-template--2 {
+	--ssi--line-height: 1.25;
+}
+.ssi-template--2 .ssi-template__inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end
+}
+.ssi-template--2 .ssi-template__image {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+.ssi-template--2 .ssi-template__text {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	gap: calc(2 * var(--ssi-template--unit));
+	padding: 0 calc(6 * var(--ssi-template--unit)) calc(4 * var(--ssi-template--unit))
+}
+.ssi-template--2 .ssi-template__text:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: calc(-10 * var(--ssi-template--unit));
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(#00000000,var(--ssi--text--background-color) 70%,var(--ssi--text--background-color))
+}
+.ssi-template--2 .ssi-template__title {
+	order: 2
+}
+.ssi-template--2 .ssi-template__logo {
+	position: absolute;
+	top: calc(3 * var(--ssi-template--unit));
+	left: calc(6 * var(--ssi-template--unit))
+}
+
+.ssi-template--2.ssi-template--reverse .ssi-template__inner {
+  justify-content: flex-start;
+}
+
+.ssi-template--2.ssi-template--reverse .ssi-template__text {
+    padding: calc(4 * var(--ssi-template--unit)) calc(6 * var(--ssi-template--unit)) 0;
+}
+
+.ssi-template--2.ssi-template--reverse .ssi-template__logo {
+    bottom: calc(3 * var(--ssi-template--unit));
+    top: auto;
+}
+
+.ssi-template--2.ssi-template--reverse .ssi-template__text:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	bottom: calc(-10 * var(--ssi-template--unit));
+	left: 0;
+	right: 0;
+	top: 0;
+	background: linear-gradient(to top, #00000000,var(--ssi--text--background-color) 70%,var(--ssi--text--background-color))
+}
+
+.ssi-template--2.ssi-template--text-align--right .ssi-template__logo {
+  left: auto;
+  right: calc(6 * var(--ssi-template--unit));
+}
+
+.ssi-template--2.ssi-template--text-align--center .ssi-template__logo {
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>
+
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<h1 class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></h1>
+	</div>
+	<img class="ssi-template__image" src="[image]" />
+	<img class="ssi-template__logo" src="[logo]" />
+</div>
