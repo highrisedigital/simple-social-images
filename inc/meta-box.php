@@ -9,6 +9,11 @@
  */
 function hd_ssi_add_ssi_jobs_meta_box() {
 
+	// if we have no supported post types.
+	if ( empty( hd_ssi_get_supported_post_types() ) ) {
+		return;
+	}
+
 	add_meta_box(
 		'hd_ssi',
 		__( 'Simple Social Images', 'simple-social-image' ),
