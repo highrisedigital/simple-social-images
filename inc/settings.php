@@ -414,19 +414,29 @@ add_action( 'hd_ssi_setting_type_checkbox', 'hd_ssi_setting_input_type_checkbox'
  */
 function hd_ssi_setting_input_type_checkboxes( $setting, $value ) {
 
-	$options = array();
-
 	// if we have options.
 	if ( ! empty( $setting['options'] ) ) {
 
+		// if the current value is not empty.
+		if ( empty( $value ) ) {
+			$value = array();
+		}
+
 		// loop through each option.
 		foreach ( $setting['options'] as $post_type => $label ) {
+
+			// if this post type is in the value array.
+			if ( in_array( $post_type, $value, true ) ) {
+				$checked = ' checked="checked"';
+			} else {
+				$checked = '';
+			}
 
 			?>
 
 			<label for="<?php echo esc_attr( $setting['option_name'] ); ?>">
 		
-				<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>[<?php echo esc_attr( $post_type ); ?>]" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="<?php echo esc_attr( $post_type ); ?>" <?php checked( $value[$post_type], $post_type ); ?> />
+				<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>[<?php echo esc_attr( $post_type ); ?>]" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="<?php echo esc_attr( $post_type ); ?>"<?php echo esc_attr( $checked ); ?> />
 				<span style="line-height: 1.8;"><?php echo esc_html( $label ); ?></span>
 			</label>
 

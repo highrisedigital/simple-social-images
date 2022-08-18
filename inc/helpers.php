@@ -288,9 +288,19 @@ function hd_ssi_get_random_image_id() {
 
 	// get the image ids from options.
 	$images = hd_ssi_get_background_images();
+	
+	// if we have images.
+	if ( ! empty( $images ) ) {
 
-	$image_id_key = array_rand( $images, 1 );
-	$image_id = $images[ $image_id_key ];	
+		$image_id_key = array_rand( $images, 1 );
+		$image_id = $images[ $image_id_key ];
+
+	} else {
+
+		// set the image id to zero.
+		$image_id = 0;
+	
+	}	
 
 	return absint( $image_id );
 
