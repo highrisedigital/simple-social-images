@@ -220,6 +220,10 @@ function hd_ssi_get_templates() {
 
 	}
 
+	// sort the list numerically.
+	asort( $templates );
+
+	// return the templates.
 	return $templates;
 
 }
