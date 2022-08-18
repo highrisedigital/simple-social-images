@@ -38,20 +38,7 @@ $template = hd_ssi_get_template();
 
 	<?php
 
-	// start output buffering.
-	//ob_start();
-
-	// // if our template exists.
-	// if ( file_exists( $template ) ) {
-
-	// 	// load the template markup, passing our args.
-	// 	load_template( $template, true );
-
-	// }
-
-	// get the contents of the buffer, the template markup and clean the buffer.
-	//$text = ob_get_clean();
-
+	// render the template.
 	echo hd_ssi_render_template( $post_id );
 
 	?>
