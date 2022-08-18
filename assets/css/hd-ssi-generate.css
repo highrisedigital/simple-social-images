@@ -9,21 +9,40 @@ body {
 	--ssi-template--width: 100vw;
 	--ssi-template--unit: calc(var(--ssi-template--width) / 100);
 	--ssi--text--color: white;
-	--ssi--text--background-color: transparent;
-	--ssi--background-color: rgb(23, 139, 145);
+	--ssi--text--background-color: red;
+	--ssi--background-color: blue;
 	--ssi--font-family: sans-serif;
 	--ssi--font-size: 6;
 	--ssi--title--font-size: 6;
+  --ssi--line-height: 1.25;
 	--ssi--title--font-weight: inherit;
 	--ssi--title--text-transform: inherit;
 	--ssi--image--background-blend-mode: none;
 	--ssi--logo--height: 4;
 	--ssi--logo--width: auto;
+
 	width: var(--ssi-template--width);
 	aspect-ratio: 120/63;
 	display: grid;
 	place-items: center;
 	background-color: var(--ssi--background-color);
+    text-align: var(--ssi--text-align);
+}
+
+.ssi-template--text-align--left {
+	--ssi--text-align: left !important;
+}
+
+.ssi-template--text-align--right {
+	--ssi--text-align: right !important;
+}
+
+.ssi-template--text-align--center {
+	--ssi--text-align: center !important;
+}
+
+.ssi-template * {
+	box-sizing: border-box;
 }
 
 .ssi-template__inner {
@@ -46,7 +65,6 @@ body {
 .ssi-template__image {
 	display: block;
 }
-
 .ssi-template__logo {
 	height: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
 	width: var(--ssi--logo--width)

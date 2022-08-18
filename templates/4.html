@@ -1,0 +1,88 @@
+<style>
+/* Template 4 */
+
+.ssi-template--4 {
+	--ssi--title--font-size: 4;
+	--ssi--logo--height: 5;
+	--ssi--line-height: 1.25;
+  --ssi--text-align: var(--ssi--text-align, center);
+}
+.ssi-template--4 .ssi-template__inner {
+	display: grid;
+	align-items: end;
+	justify-items: center
+}
+.ssi-template--4 .ssi-template__image {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	object-fit: cover;
+}
+.ssi-template--4 .ssi-template__text {
+	position: relative;
+	z-index: 1;
+	max-width: 66.66%;
+	margin: calc(4 * var(--ssi-template--unit)) calc(5 * var(--ssi-template--unit));
+	display: flex;
+	flex-direction: column;
+	gap: calc(2 * var(--ssi-template--unit))
+}
+.ssi-template--4 .ssi-template__title {
+  padding: .5em;
+  background-color: var(--ssi--text--background-color);
+}
+.ssi-template--4 .ssi-template__logo {
+	position: absolute;
+	top: calc(3 * var(--ssi-template--unit));
+	z-index: 0
+}
+
+.ssi-template--4.ssi-template--reverse .ssi-template__inner {
+  align-items: start;
+}
+
+.ssi-template--4.ssi-template--reverse .ssi-template__logo {
+    position: absolute;
+    bottom: calc(3 * var(--ssi-template--unit));
+    top: auto;
+    z-index: 0;
+}
+
+.ssi-template--4.ssi-template--text-align--left .ssi-template__logo {
+  left: calc(3 * var(--ssi-template--unit));
+}
+
+.ssi-template--4.ssi-template--text-align--right .ssi-template__logo {
+  right: calc(3 * var(--ssi-template--unit));
+}
+
+.ssi-template--4.ssi-template--text-align--left .ssi-template__inner {
+   justify-items: flex-start;
+}
+
+.ssi-template--4.ssi-template--text-align--right .ssi-template__inner {
+   justify-items: flex-end;
+}
+
+.ssi-template--4.ssi-template--text-align--left .ssi-template__text {
+   margin-left: calc(3 * var(--ssi-template--unit));
+}
+
+.ssi-template--4.ssi-template--text-align--right .ssi-template__text {
+   margin-right: calc(3 * var(--ssi-template--unit));
+}
+</style>
+
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<h1 class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></h1>
+	</div>
+	<img class="ssi-template__image" src="[image]" />
+	<img class="ssi-template__logo" src="[logo]" />
+</div>

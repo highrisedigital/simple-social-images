@@ -1,53 +1,63 @@
 <style>
-	.ssi-template.ssi-template--1 {
-		--ssi--template--font-weight: bold;
-		--ssi--line-height: 1.5;
-		--ssi--line-gap: .1em;
-	}
-	.ssi-template--1 .ssi-template__inner {
-		display: flex;
-		align-items: center;
-		width: 100%
-	}
-	.ssi-template--1 .ssi-template__text {
-		width: 66.66%;
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: calc(2 * var(--ssi-template--unit));
-		padding: calc(3 * var(--ssi-template--unit))
-	}
+/* Template 1 */
 
-	.ssi-template--1 .ssi-template__text > * {
-		display: block;
-	}
+.ssi-template.ssi-template--1 {
+	--ssi--line-height: 1.5;
+	--ssi--line-gap: .1em;
+}
+.ssi-template--1 .ssi-template__inner {
+	display: flex;
+	align-items: center;
+	width: 100%
+}
+.ssi-template--1 .ssi-template__text {
+	width: 66.66%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: calc(2 * var(--ssi-template--unit));
+	padding: calc(3 * var(--ssi-template--unit))
+}
 
-	.ssi-template--1 .ssi-template__text > * > [class*="__inner"] {
-		display: inline;
-		line-height: var(--ssi--line-height);
-		padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
-		background-color: var(--ssi--text--background-color);
-		-webkit-box-decoration-break: clone;
-		box-decoration-break: clone
-	}
+.ssi-template--1 .ssi-template__text > * {
+	display: block;
+}
 
-	.ssi-template--1 .ssi-template__image {
-		align-self: stretch;
-		width: 33%;
-		height: auto;
-		object-fit: cover
-	}
-	.ssi-template--1 .ssi-template__logo {
-		position: absolute;
-		top: calc(3 * var(--ssi-template--unit));
-		right: calc(3 * var(--ssi-template--unit))
-	}
+.ssi-template--1 .ssi-template__text > * > [class*="__inner"] {
+	display: inline;
+	line-height: var(--ssi--line-height);
+	padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
+	background-color: var(--ssi--text--background-color);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone
+}
+
+.ssi-template--1 .ssi-template__image {
+	align-self: stretch;
+	width: 33%;
+	height: auto;
+	object-fit: cover
+}
+.ssi-template--1 .ssi-template__logo {
+	position: absolute;
+	top: calc(3 * var(--ssi-template--unit));
+	right: calc(3 * var(--ssi-template--unit))
+}
+
+.ssi-template--1.ssi-template--reverse .ssi-template__inner {
+  flex-direction: row-reverse;
+}
+
+.ssi-template--1.ssi-template--reverse  .ssi-template__logo {
+	left: calc(3 * var(--ssi-template--unit));
+	right: auto;
+}
 </style>
 
 
 <div class="ssi-template__inner">
 	<div class="ssi-template__text">
-		<span class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></span>
+		<h1 class="ssi-template__title"><span class="ssi-template__title__inner">[post:post_title]</span></h1>
 	</div>
 	<img class="ssi-template__image" src="[image]" />
 	<img class="ssi-template__logo" src="[logo]" />
