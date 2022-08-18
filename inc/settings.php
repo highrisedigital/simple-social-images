@@ -433,10 +433,8 @@ function hd_ssi_setting_input_type_checkboxes( $setting, $value ) {
 			}
 
 			?>
-
-			<label for="<?php echo esc_attr( $setting['option_name'] ); ?>">
-		
-				<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>[<?php echo esc_attr( $post_type ); ?>]" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="<?php echo esc_attr( $post_type ); ?>"<?php echo esc_attr( $checked ); ?> />
+			<label for="<?php echo esc_attr( $setting['option_name'] ); ?>-<?php echo esc_attr( $post_type ); ?>">
+				<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>[]" id="<?php echo esc_attr( $setting['option_name'] ); ?>-<?php echo esc_attr( $post_type ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="<?php echo esc_attr( $post_type ); ?>"<?php echo esc_attr( $checked ); ?> />
 				<span style="line-height: 1.8;"><?php echo esc_html( $label ); ?></span>
 			</label>
 
@@ -499,14 +497,14 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 			);
 
 			?>
-			<span class="dashicons dashicons-no hd-ssi-image--remove" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>-input"></span>
+			<span class="dashicons dashicons-no hd-ssi-image--remove" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>"></span>
 			<?php
 
 		}
 
 		?>
 
-		<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
+		<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
 
 		<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
 
