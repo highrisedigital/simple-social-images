@@ -323,7 +323,7 @@ function hd_ssi_output_template_wrapper_classes() {
 	if ( 1 === hd_ssi_is_template_reversed() ) {
 
 		// add a reversed class.
-		$classes[] = 'ssi-template--reversed';
+		$classes[] = 'ssi-template--reverse';
 
 	}
 
