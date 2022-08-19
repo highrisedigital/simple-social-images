@@ -13,6 +13,9 @@ img.ssi-image {
 [for*="hd_ssi_post_types-"] {
 	margin-right: 1em;
 }
+.ssi-template--template-change-notice {
+	margin-left: 1em;
+}
 .hd-ssi-input--image,
 .hd-ssi-input--gallery {
 	display: none !important;
@@ -36,6 +39,8 @@ img.ssi-image {
 .hd-ssi-image--remove,
 .hd-ssi-gallery--remove {
 	position: absolute;
+	top: -.25em;
+	right: -.5em;
     font-size: 28px;
     cursor: pointer;
 }
