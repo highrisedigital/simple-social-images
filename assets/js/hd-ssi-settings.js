@@ -44,6 +44,10 @@
             multiple: false
         }).on('select', function() {
 
+			// remove current logo
+			$( '.hd-ssi-image' ).remove();
+			$( '.hd-ssi-image--remove' ).remove();
+
 			var attachment = hd_ssi_image_uploader.state().get('selection').first().toJSON();
 			$( inputID ).val(attachment.id);
 
