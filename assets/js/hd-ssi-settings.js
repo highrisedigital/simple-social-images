@@ -34,7 +34,7 @@
 		
 		// get the previous input.
 		var inputID = $( this ).prev();
-		var parentWrapper = $( this ).parent();
+		var parentWrapper = inputID.prev();
 
         hd_ssi_image_uploader = wp.media({
             title: 'Image',

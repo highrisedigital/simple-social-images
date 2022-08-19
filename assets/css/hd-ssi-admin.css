@@ -29,7 +29,7 @@ img.ssi-image {
 }
 .hd-ssi-image-wrapper {
 	position: relative;
-	width: 25em;
+	max-width: 25em;
 }
 .hd-ssi-image-wrapper img {
 	max-width: 100%;
