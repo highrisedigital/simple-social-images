@@ -13,10 +13,10 @@ body {
 	--ssi--background-color: blue;
 	--ssi--font-family: sans-serif;
 	--ssi--font-size: 6;
-	--ssi--title--font-size: 6;
+	--ssi--font-size: 6;
   	--ssi--line-height: 1.25;
-	--ssi--title--font-weight: inherit;
-	--ssi--title--text-transform: inherit;
+	--ssi--font-weight: inherit;
+	--ssi--text-transform: inherit;
 	--ssi--image--background-blend-mode: none;
 	--ssi--logo--height: 4;
 	--ssi--logo--width: auto;
@@ -60,9 +60,9 @@ body {
 }
 .ssi-template__title {
 	color: var(--ssi--title--color,var(--ssi--text--color));
-	font-size: calc(var(--ssi--title--font-size, var(--ssi--font-size)) * var(--ssi-template--unit));
-	font-weight: var(--ssi--title--font-weight);
-	text-transform: var(--ssi--title--text-transform)
+	font-size: calc(var(--ssi--font-size, var(--ssi--font-size)) * var(--ssi-template--unit));
+	font-weight: var(--ssi--font-weight);
+	text-transform: var(--ssi--text-transform)
 }
 .ssi-template__image {
 	display: block;

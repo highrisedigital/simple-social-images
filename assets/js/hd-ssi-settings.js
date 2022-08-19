@@ -277,12 +277,12 @@
 		}
 	});
 
-	/* Title font size */
-	var titleFontSize = document.querySelector("#hd_ssi_title_size");
+	/* Font size */
+	var fontSize = document.querySelector("#hd_ssi_font_size");
 
-	if ( titleFontSize ) {
-		titleFontSize.addEventListener("change", function() {
-			document.querySelector(".ssi-template").style.setProperty("--ssi--title--font-size", this.value);
+	if ( fontSize ) {
+		fontSize.addEventListener("change", function() {
+			document.querySelector(".ssi-template").style.setProperty("--ssi--font-size", this.value);
 		});
 	}
 
