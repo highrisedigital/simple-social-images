@@ -12,19 +12,18 @@
 	top: 50%;
 	left: calc(50% - calc(10 * var(--ssi-template--unit)));
 	transform: translateY(-50%);
-	padding-top: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
+	padding: calc(var(--ssi--logo--height) * var(--ssi-template--unit)) 0;
 }
 
 .ssi-template--5 .ssi-template__text > * {
 	display: block;
-	margin: .5em 0;
+	margin: 0;
 }
 
 .ssi-template--5 .ssi-template__text > * > [class*="__inner"] {
 	display: inline;
 	line-height: var(--ssi--line-height);
 	padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
-	
 	background-color: var(--ssi--text--background-color);
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone

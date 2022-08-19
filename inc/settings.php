@@ -486,7 +486,7 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 	// handle output for a text input.
 	?>
 	
-	<div class="hd-ssi-image-wrapper" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>">
+	<div id="hd-ssi-image-wrapper" class="hd-ssi-image-wrapper" data-input-id="<?php echo esc_attr( $setting['option_name'] ); ?>">
 		
 		<?php
 
@@ -535,7 +535,7 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 	// handle output for a gallery input.
 	?>
 	
-	<div class="hd-ssi-gallery-wrapper" data-placeholder="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>">
+	<div id="hd-ssi-gallery-wrapper" class="hd-ssi-gallery-wrapper" data-placeholder="<?php echo esc_url( HD_SSI_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>">
 		
 		<?php
 

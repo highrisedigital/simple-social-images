@@ -39,6 +39,8 @@ img.ssi-image {
 .hd-ssi-image--remove,
 .hd-ssi-gallery--remove {
 	position: absolute;
+	top: -.25em;
+	right: -.5em;
     font-size: 28px;
     cursor: pointer;
 }

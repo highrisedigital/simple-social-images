@@ -1,5 +1,29 @@
 (function( $ ) {
 
+	// add mutation observer function
+	var observeDOM = (function(){
+		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+		
+		return function( obj, callback ){
+			if( !obj || obj.nodeType !== 1 ) return; 
+		
+			if( MutationObserver ){
+			// define a new observer
+			var mutationObserver = new MutationObserver(callback)
+		
+			// have the observer observe foo for changes in children
+			mutationObserver.observe( obj, { childList:true, subtree:true })
+			return mutationObserver
+			}
+			
+			// browser support fallback
+			else if( window.addEventListener ){
+			obj.addEventListener('DOMNodeInserted', callback, false)
+			obj.addEventListener('DOMNodeRemoved', callback, false)
+			}
+		}
+	})();
+
 	// Add Color Picker to all inputs that have .hd-ssi-input--color-picker
 	$( function() {
 		$( '.hd-ssi-input--color-picker' ).wpColorPicker();
@@ -169,7 +193,6 @@
 			templateChangeNotice = document.getElementById('ssi-template--template-change-notice');
 
 			if( templateChangeNotice ) {
-
 			 	
 				templateChangeNotice.remove(); // Removes the div with the 'ssi-template--tmeplate-change-notice' id
 
@@ -336,14 +359,32 @@
 	}
 
 	/* Logo file */
-	$('img.hd-ssi-image').on('load', function () {
-		$('.ssi-template__logo').attr('src', $('img.hd-ssi-image').attr('src'));
+
+	var imageWrapper = document.querySelector("#hd-ssi-image-wrapper");
+
+	// Observe a specific DOM element:
+	observeDOM( imageWrapper, function(m){ 
+
+		// get the first image in the list.
+		var firstImage = imageWrapper.querySelector('.hd-ssi-image');
+
+		imgSrc = $(firstImage).attr('src');
+		fullImgSrc = imgSrc.replace("-150x150", "");
+		$('.ssi-template__logo').attr('src', fullImgSrc);
+
 	});
 
 	/* Background images */
-	$('img.hd-ssi-gallery-image').on('load', function () {
 
-		imgSrc = $(this).attr('src');
+	var galleryWrapper = document.querySelector("#hd-ssi-gallery-wrapper");
+
+	// Observe a specific DOM element:
+	observeDOM( galleryWrapper, function(m){ 
+
+		// get the first image in the list.
+		var firstImage = galleryWrapper.querySelector('.hd-ssi-gallery-image');
+
+		imgSrc = $(firstImage).attr('src');
 		fullImgSrc = imgSrc.replace("-150x150", "");
 		$('.ssi-template__image').attr('src', fullImgSrc);
 
