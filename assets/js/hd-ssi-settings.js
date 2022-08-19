@@ -21,7 +21,7 @@
         }).on('select', function() {
 
 			var attachment = hd_ssi_image_uploader.state().get('selection').first().toJSON();
-            $( inputID ).val(attachment.id);
+			$( inputID ).val(attachment.id);
 
 			var logo = $('<img class="hd-ssi-image">');
 			logo.attr( 'src', attachment.sizes.full.url );

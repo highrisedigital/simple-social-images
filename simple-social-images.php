@@ -31,3 +31,58 @@ add_action( 'plugins_loaded', 'hd_ssi_wpjm_plugins_loaded' );
 
 // load in the loader file which loads everything up.
 require_once( dirname( __FILE__ ) . '/inc/loader.php' );
+
+/**
+ * Function to run when the plugin is activated.
+ */
+function hd_ssi_on_activation() {
+
+	// store the plugin version number on activation.
+	update_option( 'hd_ssi_version', HD_SSI_VERSION );
+
+	// if we have no template saved already.
+	if ( empty( hd_ssi_get_template() ) ) {
+
+		// set the template.
+		update_option( 'hd_ssi_template', HD_SSI_LOCATION . '/templates/1.html' );
+
+	}
+
+	// if we have no text color.
+	if ( empty( hd_ssi_get_text_color() ) ) {
+
+		// set the default text color.
+		update_option( 'hd_ssi_text_color', '#FFFFFF' );
+
+	}
+
+	// if we have no text bg color.
+	if ( empty( hd_ssi_get_text_bg_color() ) ) {
+
+		// set the default text bg color.
+		update_option( 'hd_ssi_text_bg_color', '#B108AD' );
+
+	}
+
+	// if we have no bg color.
+	if ( empty( hd_ssi_get_bg_color() ) ) {
+
+		// set the default bg color.
+		update_option( 'hd_ssi_bg_color', '#FB2767' );
+
+	}
+
+	// if we have no font weight.
+	if ( empty( hd_ssi_get_font_weight() ) ) {
+
+		// set the default bg color.
+		update_option( 'hd_ssi_font_weight', '400' );
+
+	}
+
+	// flush the rewrite rules.
+	flush_rewrite_rules();
+
+}
+
+register_activation_hook( __FILE__, 'hd_ssi_on_activation' );
