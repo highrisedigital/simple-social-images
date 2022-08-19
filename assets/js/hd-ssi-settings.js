@@ -61,8 +61,11 @@
 			parentWrapper.prepend( logo );
 			logo.after( removeSpan );
 
+			
+
         })
         .open();
+
     });
 
 	$('body').on('click', '.hd-ssi-image--remove', function(e) {
@@ -77,6 +80,13 @@
 
 		// remove this button.
 		$( this ).remove();
+
+		// if there are no images left, remove the logo from template.
+		if ( 1 > document.getElementsByClassName('hd-ssi-image').length ) {
+
+			$('.ssi-template__logo').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+
+		}
 
 	});
 
@@ -179,7 +189,14 @@
 		currentImagesArray.splice( key, 1 );
 
 		// NEED TO FIND THIS DYNAMICALLY BASED ON WHERE WE ARE ON CLICK!
-		$( '.hd-ssi-input--gallery' ).val( currentImagesArray );		
+		$( '.hd-ssi-input--gallery' ).val( currentImagesArray );	
+		
+		// if there are no images left, remove the image from template.
+		if ( 1 > document.getElementsByClassName('hd-ssi-gallery-item').length ) {
+
+			$('.ssi-template__image').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+
+		}
 
 	});
 
