@@ -23,7 +23,7 @@ body {
 
 	width: var(--ssi-template--width);
 	height: calc( 63 / var(--ssi-template--width) * 100);
-	/* aspect-ratio: 120/63; */
+	overflow: hidden;
 	display: grid;
 	place-items: center;
 	background-color: var(--ssi--background-color);
