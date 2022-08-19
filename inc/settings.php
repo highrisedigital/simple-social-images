@@ -278,6 +278,13 @@ function hd_ssi_register_default_settings( $settings ) {
 			'order'       => 200,
 		);
 
+		$settings['placeholder_title'] = array(
+			'option_name' => 'hd_ssi_placeholder_title',
+			'label'       => __( 'Placeholder Title', 'simple-social-images' ),
+			'input_type'  => 'hidden',
+			'order'       => 900,
+		);
+
 	}
 
 	// return the registered settings array.
