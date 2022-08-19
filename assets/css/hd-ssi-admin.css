@@ -10,6 +10,9 @@ img.ssi-image {
 .wp-core-ui .ssi-hidden {
 	display: none;
 }
+[for*="hd_ssi_post_types-"] {
+	margin-right: 1em;
+}
 .hd-ssi-input--image,
 .hd-ssi-input--gallery {
 	display: none !important;
