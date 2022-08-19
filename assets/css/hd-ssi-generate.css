@@ -14,7 +14,7 @@ body {
 	--ssi--font-family: sans-serif;
 	--ssi--font-size: 6;
 	--ssi--title--font-size: 6;
-  --ssi--line-height: 1.25;
+  	--ssi--line-height: 1.25;
 	--ssi--title--font-weight: inherit;
 	--ssi--title--text-transform: inherit;
 	--ssi--image--background-blend-mode: none;
@@ -26,6 +26,8 @@ body {
 	display: grid;
 	place-items: center;
 	background-color: var(--ssi--background-color);
+	font-weight: var(--ssi--font-weight);
+	font-style: var(--ssi--font-style);
     text-align: var(--ssi--text-align);
 }
 

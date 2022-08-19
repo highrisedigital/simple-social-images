@@ -157,6 +157,44 @@
 
 	/* Live preview settings */
 
+	/* Template choice */
+	var templateChoice = document.querySelector("#hd_ssi_template");
+
+	if ( templateChoice ) {
+
+		templateChoiceInitialValue = templateChoice.value;
+
+		templateChoice.addEventListener("change", function() {
+
+			if ( templateChoiceInitialValue !=  templateChoice.value ) {
+
+				templateChoice.insertAdjacentHTML('afterend', '<strong><input type="submit" value="Save changes" /> to update the template.</strong>');
+
+			}	
+			
+		});
+
+	}
+
+	/* Template reverse */
+	var templateReverse = document.querySelector("#hd_ssi_template_reversed");
+
+	if ( templateReverse ) {
+
+		templateReverse.addEventListener("change", function() {
+		
+			var template = document.querySelector(".ssi-template");
+
+			if ( templateReverse.checked ) {
+				template.classList.add('ssi-template--reverse');
+			} else {
+				template.classList.remove('ssi-template--reverse');
+			}		
+			
+		});
+
+	}
+
 	/* Logo size */
 	var logoSize = document.querySelector("#hd_ssi_logo_size");
 
@@ -246,6 +284,46 @@
 		titleFontSize.addEventListener("change", function() {
 			document.querySelector(".ssi-template").style.setProperty("--ssi--title--font-size", this.value);
 		});
+	}
+
+	/* Font weight */
+	var fontWeight = document.querySelector("#hd_ssi_font_weight");
+
+	if ( fontWeight ) {
+		fontWeight.addEventListener("change", function() {
+			document.querySelector(".ssi-template").style.setProperty("--ssi--font-weight", this.value);
+		});
+	}
+
+	/* Font style */
+	var fontStyle = document.querySelector("#hd_ssi_font_style");
+
+	if ( fontStyle ) {
+		fontStyle.addEventListener("change", function() {
+			document.querySelector(".ssi-template").style.setProperty("--ssi--font-style", this.value);
+		});
+	}
+
+
+	/* Text align */
+	var textAlign = document.querySelector("#hd_ssi_text_align");
+
+	if ( textAlign ) {
+
+		textAlign.addEventListener("change", function() {
+
+			textAlign.addEventListener("change", function() {
+				document.querySelector(".ssi-template").style.setProperty("--ssi--text-align", this.value);
+			});
+		
+			var template = document.querySelector(".ssi-template");
+			
+			template.classList.remove('ssi-template--text-align--left', 'ssi-template--text-align--center', 'ssi-template--text-align--right');
+			
+			template.classList.add('ssi-template--text-align--' + this.value);
+			
+		});
+
 	}
 
 	/* Logo file */

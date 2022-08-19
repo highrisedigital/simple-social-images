@@ -36,7 +36,7 @@ function hd_ssi_settings_page_output() {
 
 		?>
 
-		<form method="post" action="options.php" class="hd-ssi-settings-form">
+		<form method="post" action="options.php" id="ssi-settings-form" class="hd-ssi-settings-form">
 
 			<?php
 

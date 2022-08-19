@@ -118,31 +118,31 @@ function hd_ssi_register_default_settings( $settings ) {
 
 		$settings['colors_section'] = array(
 			'option_name'    => 'hd_ssi_colors_section',
-			'label'          => __( 'Colour Settings', 'simple-social-images' ),
+			'label'          => __( 'Color Settings', 'simple-social-images' ),
 			'input_type'     => 'section',
 			'order'          => 50,
 		);
 	
 		$settings['text_color'] = array(
 			'option_name'    => 'hd_ssi_text_color',
-			'label'          => __( 'Text Colour', 'simple-social-images' ),
-			'description'    => __( 'Enter or choose the text colour.', 'simple-social-images' ),
+			'label'          => __( 'Text Color', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the text color.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
 			'order'          => 60,
 		);
 	
 		$settings['text_bg_color'] = array(
 			'option_name'    => 'hd_ssi_text_bg_color',
-			'label'          => __( 'Text Background Colour', 'simple-social-images' ),
-			'description'    => __( 'Enter or choose the text background colour.', 'simple-social-images' ),
+			'label'          => __( 'Text Background Color', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the text background color.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
 			'order'          => 70,
 		);
 	
 		$settings['bg_color'] = array(
 			'option_name'    => 'hd_ssi_bg_color',
-			'label'          => __( 'Background Colour', 'simple-social-images' ),
-			'description'    => __( 'Enter or choose the background colour.', 'simple-social-images' ),
+			'label'          => __( 'Background Color', 'simple-social-images' ),
+			'description'    => __( 'Enter or choose the background color.', 'simple-social-images' ),
 			'input_type'     => 'color_picker',
 			'order'          => 80,
 		);
