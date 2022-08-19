@@ -168,7 +168,7 @@
 
 			if ( templateChoiceInitialValue !=  templateChoice.value ) {
 
-				templateChoice.insertAdjacentHTML('afterend', '<strong><input type="submit" value="Save changes" /> to update the template.</strong>');
+				templateChoice.insertAdjacentHTML('afterend', '<strong><input type="submit" value="Save changes" class="button-secondary" /> to update the template.</strong>');
 
 			}	
 			
