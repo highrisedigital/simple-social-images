@@ -554,13 +554,13 @@ function hd_ssi_render_template( $post_id = 0 ) {
 			}
 			
 			// replace the logo string.
-			$template_markup = str_replace( '[logo]', $logo_url, $template_markup );
+			$template_markup = str_replace( '[ssi:logo]', $logo_url, $template_markup );
 
 			// replace the template string.
-			$template_markup = str_replace( '[template]', str_replace( '.html', '', basename( $template ) ), $template_markup );
+			$template_markup = str_replace( '[ssi:template]', str_replace( '.html', '', basename( $template ) ), $template_markup );
 
 			// replace the image string.
-			$template_markup = str_replace( '[image]', $image_url, $template_markup );
+			$template_markup = str_replace( '[ssi:image]', $image_url, $template_markup );
 
 		}
 
