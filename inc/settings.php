@@ -512,11 +512,11 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 
 		?>
 
-		<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
-
-		<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
-
 	</div>
+
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
+
+	<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
 
 	<?php
 
