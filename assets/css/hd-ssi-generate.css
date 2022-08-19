@@ -22,7 +22,8 @@ body {
 	--ssi--logo--width: auto;
 
 	width: var(--ssi-template--width);
-	aspect-ratio: 120/63;
+	height: calc( 63 / var(--ssi-template--width) * 100);
+	/* aspect-ratio: 120/63; */
 	display: grid;
 	place-items: center;
 	background-color: var(--ssi--background-color);
