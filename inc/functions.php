@@ -482,8 +482,18 @@ function hd_ssi_render_template( $post_id = 0 ) {
 				// if we have no job post id.
 				if ( empty( $post_id ) ) {
 
-					// set the match value to the site title.
-					$match_value = get_bloginfo( 'title' );
+					// if we have a placeholder text.
+					if ( ! empty( hd_ssi_get_placeholder_title() ) ) {
+
+						// set match value to the placeholder.
+						$match_value = hd_ssi_get_placeholder_title();
+						
+					} else {
+
+						// set the match value to the site title.
+						$match_value = get_bloginfo( 'title' );
+
+					}
 
 				}
 

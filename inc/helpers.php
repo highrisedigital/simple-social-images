@@ -383,6 +383,18 @@ function hd_ssi_get_text_alignment() {
 /**
  * Gets the current title text alignment.
  */
+function hd_ssi_get_placeholder_title() {
+
+	return apply_filters(
+		'hd_ssi_placeholder_title',
+		get_option( 'hd_ssi_placeholder_title' )
+	);
+
+}
+
+/**
+ * Gets the current title text alignment.
+ */
 function hd_ssi_is_template_reversed() {
 
 	return apply_filters(
