@@ -22,7 +22,7 @@ body {
 	--ssi--logo--width: auto;
 
 	width: var(--ssi-template--width);
-	height: calc( 63 / var(--ssi-template--width) * 100);
+	height: calc(var(--ssi-template--width) * .525);
 	overflow: hidden;
 	display: grid;
 	place-items: center;
