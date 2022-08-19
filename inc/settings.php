@@ -256,7 +256,7 @@ function hd_ssi_register_default_settings( $settings ) {
 				'default' => __( 'Default', 'simple-social-images' ),
 				'left'    => __( 'Left', 'simple-social-images' ),
 				'right'   => __( 'Right', 'simple-social-images' ),
-				'center'  => __( 'Centre', 'simple-social-images' ),
+				'center'  => __( 'Center', 'simple-social-images' ),
 			),
 			'order'             => 180,
 		);
@@ -276,6 +276,13 @@ function hd_ssi_register_default_settings( $settings ) {
 			'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
 			'input_type'  => 'text',
 			'order'       => 200,
+		);
+
+		$settings['placeholder_title'] = array(
+			'option_name' => 'hd_ssi_placeholder_title',
+			'label'       => __( 'Placeholder Title', 'simple-social-images' ),
+			'input_type'  => 'hidden',
+			'order'       => 900,
 		);
 
 	}
