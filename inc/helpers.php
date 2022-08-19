@@ -335,11 +335,11 @@ function hd_ssi_get_template() {
 /**
  * Gets the current title font size.
  */
-function hd_ssi_get_title_font_size() {
+function hd_ssi_get_font_size() {
 
 	return apply_filters(
-		'hd_ssi_title_font_size',
-		get_option( 'hd_ssi_title_size' )
+		'hd_ssi_font_size',
+		get_option( 'hd_ssi_font_size' )
 	);
 
 }

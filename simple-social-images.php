@@ -80,6 +80,30 @@ function hd_ssi_on_activation() {
 
 	}
 
+	// if we have no font size.
+	if ( empty( hd_ssi_get_font_size() ) ) {
+
+		// set the default bg color.
+		update_option( 'hd_ssi_font_size', '4' );
+
+	}
+	
+	// if we have no font style.
+	if ( empty( hd_ssi_get_font_style() ) ) {
+
+		// set the default bg color.
+		update_option( 'hd_ssi_font_style', 'normal' );
+
+	}
+
+	// if we have no font style.
+	if ( empty( hd_ssi_get_text_alignment() ) ) {
+
+		// set the default bg color.
+		update_option( 'hd_ssi_text_align', 'default' );
+
+	}
+
 	// flush the rewrite rules.
 	flush_rewrite_rules();
 
