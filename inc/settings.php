@@ -205,10 +205,10 @@ function hd_ssi_register_default_settings( $settings ) {
 			'order'       => 140,
 		);
 
-		$settings['title_size'] = array(
-			'option_name' => 'hd_ssi_title_size',
-			'label'       => __( 'Title Size', 'simple-social-images' ),
-			'description' => __( 'Select a size for the title.', 'simple-social-images' ),
+		$settings['font_size'] = array(
+			'option_name' => 'hd_ssi_font_size',
+			'label'       => __( 'Font Size', 'simple-social-images' ),
+			'description' => __( 'Select a size for the font.', 'simple-social-images' ),
 			'input_type'  => 'range',
 			'min'         => '2',
 			'max'         => '8',

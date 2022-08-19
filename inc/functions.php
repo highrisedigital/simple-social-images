@@ -47,8 +47,8 @@ function hd_ssi_output_template_custom_properties() {
 					echo "--ssi--background-color:" . esc_attr( hd_ssi_get_bg_color() ) . ";";
 				}
 
-				if ( ! empty( hd_ssi_get_title_font_size() ) ) {
-					echo "--ssi--title--font-size:" . esc_attr( hd_ssi_get_title_font_size() ) . ";";
+				if ( ! empty( hd_ssi_get_font_size() ) ) {
+					echo "--ssi--font-size:" . esc_attr( hd_ssi_get_font_size() ) . ";";
 				}
 
 				if ( ! empty( hd_ssi_get_logo_size() ) ) {
