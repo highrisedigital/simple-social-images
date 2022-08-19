@@ -47,6 +47,7 @@ img.ssi-image {
 }
 .hd-ssi-input-description {
 	font-style: italic;
+	max-width: 35em;
 }
 .form-table .hd-ssi-gallery-button,
 .form-table .hd-ssi-image-button {
@@ -75,11 +76,12 @@ img.ssi-image {
 	column-gap: 2em;
 }
 .hd-ssi-settings-form th {
-	padding: 20px 0 0;
+	padding: 15px 0 0;
 	flex-basis: 25%;
 }
 .hd-ssi-settings-form td {
 	padding: 15px 0;
+	margin: 0;
 }
 .hd-ssi-settings-form .form-table {
 	width: 100%;
