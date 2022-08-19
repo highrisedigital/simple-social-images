@@ -256,7 +256,7 @@ function hd_ssi_register_default_settings( $settings ) {
 				'default' => __( 'Default', 'simple-social-images' ),
 				'left'    => __( 'Left', 'simple-social-images' ),
 				'right'   => __( 'Right', 'simple-social-images' ),
-				'center'  => __( 'Centre', 'simple-social-images' ),
+				'center'  => __( 'Center', 'simple-social-images' ),
 			),
 			'order'             => 180,
 		);
