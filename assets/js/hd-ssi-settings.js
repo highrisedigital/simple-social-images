@@ -166,11 +166,20 @@
 
 		templateChoice.addEventListener("change", function() {
 
+			templateChangeNotice = document.getElementById('ssi-template--template-change-notice');
+
+			if( templateChangeNotice ) {
+
+			 	
+				templateChangeNotice.remove(); // Removes the div with the 'ssi-template--tmeplate-change-notice' id
+
+			}
+
 			if ( templateChoiceInitialValue !=  templateChoice.value ) {
 
-				templateChoice.insertAdjacentHTML('afterend', '<strong><input type="submit" value="Save changes" class="button-secondary" /> to update the template.</strong>');
+				templateChoice.insertAdjacentHTML('afterend', '<span id="ssi-template--template-change-notice" class="ssi-template--template-change-notice"><strong><input type="submit" value="Save changes" class="button-secondary" /> to update the template.</strong></span>');
 
-			}	
+			}
 			
 		});
 
