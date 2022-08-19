@@ -351,4 +351,14 @@
 
 	});
 
+	/* Title placeholder */
+	$('.ssi-template__title__inner ').on('focusout', function () {
+
+		console.log($(this).text());
+
+		// set the input value.
+		$('#hd_ssi_placeholder_title').val($(this).text());
+
+	});
+
 })( jQuery );
