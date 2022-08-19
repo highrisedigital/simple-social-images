@@ -112,6 +112,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'option_name'    => 'hd_ssi_template_reversed',
 			'label'          => __( 'Reverse this template', 'simple-social-images' ),
 			//'description'    => __( 'This will reverse the layout of the selected template, should the template support reversal.', 'simple-social-images' ),
+			'description'    => __( 'Reverse template', 'simple-social-images' ),
 			'input_type'     => 'checkbox',
 			'order'          => 45,
 		);
