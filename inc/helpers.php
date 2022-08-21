@@ -341,7 +341,8 @@ function hd_ssi_get_template( $return = 'location' ) {
 
 	return apply_filters(
 		'hd_ssi_template',
-		$template
+		$template,
+		$return
 	);
 
 }
