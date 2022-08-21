@@ -89,6 +89,15 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'          => 20,
 	);
 
+	$settings['ignore_featured_image'] = array(
+		'option_name'    => 'hd_ssi_ignore_featured_image',
+		'label'          => __( 'Ignore featured images', 'simple-social-images' ),
+		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
+		'description'    => __( 'Ignore featured images.', 'simple-social-images' ),
+		'input_type'     => 'checkbox',
+		'order'          => 25,
+	);
+
 	$settings['template_section'] = array(
 		'option_name'    => 'hd_ssi_template_section',
 		'label'          => __( 'Template Settings', 'simple-social-images' ),

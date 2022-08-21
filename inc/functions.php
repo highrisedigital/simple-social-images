@@ -343,7 +343,7 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 	$image_url = '';
 
 	// if the current post has a featured image.
-	if ( has_post_thumbnail( $post_id ) ) {
+	if ( has_post_thumbnail( $post_id ) && 0 === hd_ssi_ignore_featured_images() ) {
 
 		// set the image URL to the featured image URL.
 		$image_url = get_the_post_thumbnail_url( $post_id, 'hd_ssi_image' );

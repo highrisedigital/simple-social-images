@@ -478,3 +478,15 @@ function hd_ssi_get_logo_size() {
 	);
 
 }
+
+/**
+ * Gets the ignore featured images setting.
+ */
+function hd_ssi_ignore_featured_images() {
+
+	return apply_filters(
+		'hd_ssi_ignore_featured_image',
+		absint( get_option( 'hd_ssi_ignore_featured_image' ) )
+	);
+
+}
