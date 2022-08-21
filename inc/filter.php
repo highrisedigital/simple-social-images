@@ -3,6 +3,27 @@
  * Modifies/adds various things in the plugin via filters.
  */
 
+function hd_ssi_add_settings_page_intro_text() {
+
+	?>
+	<p>
+		<?php
+			printf(
+				esc_html(
+					'To learn about each of the settings on this page, please visit our %1$sgetting started guide%2$s.',
+					'simple-social-images'
+				),
+				'<a target="_blank" href="https://simplesocialimages.com/documentation/getting-started">',
+				'</a>'
+			);
+		?>
+	</p>
+	<?php
+
+}
+
+add_action( 'hd_ssi_before_settings_form_output', 'hd_ssi_add_settings_page_intro_text' );
+
 /**
  * Adds markup to the end of the settings page for the template preview.
  */
