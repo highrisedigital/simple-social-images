@@ -562,7 +562,7 @@ function hd_ssi_render_template( $post_id = 0 ) {
 				$template = HD_SSI_LOCATION . '/templates/1.html';
 
 			}
-			
+	
 			// replace the logo string.
 			$template_markup = str_replace( '[ssi:logo]', $logo_url, $template_markup );
 
