@@ -389,9 +389,13 @@
 		// get the first image in the list.
 		var firstImage = imageWrapper.querySelector('.hd-ssi-image');
 
-		imgSrc = $(firstImage).attr('src');
-		fullImgSrc = imgSrc.replace("-150x150", "");
-		$('.ssi-template__logo').attr('src', fullImgSrc);
+		if ( firstImage ) {
+
+			imgSrc = $(firstImage).attr('src');
+			fullImgSrc = imgSrc.replace("-150x150", "");
+			$('.ssi-template__logo').attr('src', fullImgSrc);
+
+		}
 
 	});
 
@@ -405,9 +409,13 @@
 		// get the first image in the list.
 		var firstImage = galleryWrapper.querySelector('.hd-ssi-gallery-image');
 
-		imgSrc = $(firstImage).attr('src');
-		fullImgSrc = imgSrc.replace("-150x150", "");
-		$('.ssi-template__image').attr('src', fullImgSrc);
+		if ( firstImage ) {
+
+			imgSrc = $(firstImage).attr('src');
+			fullImgSrc = imgSrc.replace("-150x150", "");
+			$('.ssi-template__image').attr('src', fullImgSrc);
+
+		}
 
 	});
 
