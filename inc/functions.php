@@ -484,7 +484,7 @@ function hd_ssi_render_template( $post_id = 0 ) {
 				$match_value = get_post_field( $match_key, $post_id );
 				
 				// if we have no job post id.
-				if ( empty( $post_id ) && 'post_title' === $match_value ) {
+				if ( empty( $match_value ) && 0 === $post_id ) {
 
 					// if we have a placeholder text.
 					if ( ! empty( hd_ssi_get_placeholder_title() ) ) {
