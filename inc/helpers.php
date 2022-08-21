@@ -323,11 +323,25 @@ function hd_ssi_get_random_image_id() {
  *
  * @return string The template name.
  */
-function hd_ssi_get_template() {
+function hd_ssi_get_template( $return = 'location' ) {
+
+	// get the template.
+	$template = get_option( 'hd_ssi_template' );
+
+	// if we are returning the name only.
+	if ( 'name' === $return ) {
+
+		// get the template file name.
+		$template = basename( $template );
+
+		// remove the file type.
+		$template = str_replace( '.html', '', $template );
+
+	}
 
 	return apply_filters(
 		'hd_ssi_template',
-		get_option( 'hd_ssi_template' )
+		$template
 	);
 
 }

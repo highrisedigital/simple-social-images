@@ -307,16 +307,10 @@ add_action( 'wp_head', 'hd_ssi_render_tags' );
  */
 function hd_ssi_output_template_wrapper_classes() {
 
-	// get the template file name.
-	$template = basename( hd_ssi_get_template() );
-
-	// remove the file type.
-	$template = str_replace( '.html', '', $template );
-
 	// create an array of wrapper classes.
 	$classes = array(
 		'ssi-template',
-		'ssi-template--' . $template,
+		'ssi-template--' . hd_ssi_get_template( 'name' ),
 	);
 
 	// if the template is reversed.
@@ -575,6 +569,6 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 	}
 
-	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $template_markup . '</div>';
+	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '" id="ssi-template--' . esc_attr( hd_ssi_get_template( 'name' ) ) . '">' . $template_markup . '</div>';
 
 }
