@@ -297,7 +297,7 @@ function hd_ssi_render_tags() {
 
 }
 
-add_action( 'wp_head', 'hd_ssi_render_tags' );
+add_action( 'wp_head', 'hd_ssi_render_tags', 99 );
 
 /**
  * Builds an array of classes for the template wrapper and returns them as a string.
@@ -307,16 +307,10 @@ add_action( 'wp_head', 'hd_ssi_render_tags' );
  */
 function hd_ssi_output_template_wrapper_classes() {
 
-	// get the template file name.
-	$template = basename( hd_ssi_get_template() );
-
-	// remove the file type.
-	$template = str_replace( '.html', '', $template );
-
 	// create an array of wrapper classes.
 	$classes = array(
 		'ssi-template',
-		'ssi-template--' . $template,
+		'ssi-template--' . hd_ssi_get_template( 'name' ),
 	);
 
 	// if the template is reversed.
@@ -349,7 +343,7 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 	$image_url = '';
 
 	// if the current post has a featured image.
-	if ( has_post_thumbnail( $post_id ) ) {
+	if ( has_post_thumbnail( $post_id ) && 0 === hd_ssi_ignore_featured_images() ) {
 
 		// set the image URL to the featured image URL.
 		$image_url = get_the_post_thumbnail_url( $post_id, 'hd_ssi_image' );
@@ -393,6 +387,22 @@ function hd_ssi_render_template( $post_id = 0 ) {
 	// get the template.
 	$template = hd_ssi_get_template();
 
+	// if we have a logo.
+	if ( empty( $logo_url ) ) {
+
+		// set the logo to a transparent image.
+		$logo_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+	}
+
+	// if we have a image.
+	if ( empty( $image_url ) ) {
+
+		// set the image to a transparent image.
+		$image_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+	}
+
 	ob_start();
 
 	// if our template exists.
@@ -427,12 +437,6 @@ function hd_ssi_render_template( $post_id = 0 ) {
 				// get the value of this meta.
 				$match_value = get_post_meta( $post_id, $match_key, true );
 
-				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
-
-				// replace the original template_markup string with the new 
-				$template_markup = str_replace( $match, $match_value, $template_markup );
-
 			}
 
 			// if this is a tax replace.
@@ -462,12 +466,6 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 				}
 
-				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key );
-
-				// replace the original template_markup string with the new 
-				$template_markup = str_replace( $match, $match_value, $template_markup );
-
 			}
 
 			// if this is a post field replace.
@@ -478,9 +476,9 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 				// get the value of this meta.
 				$match_value = get_post_field( $match_key, $post_id );
-
+				
 				// if we have no job post id.
-				if ( empty( $post_id ) ) {
+				if ( empty( $match_value ) && 0 === $post_id ) {
 
 					// if we have a placeholder text.
 					if ( ! empty( hd_ssi_get_placeholder_title() ) ) {
@@ -497,18 +495,12 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 				}
 
-				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
-
-				// replace the original template_markup string with the new 
-				$template_markup = str_replace( $match, $match_value, $template_markup );
-
 			}
 
 			// if this is a post field replace.
 			if ( strpos( $match_value, 'siteinfo' ) !== false ) {
 
-				// remove the tax: string
+				// remove the siteinfo: string
 				$match_key = str_replace( 'siteinfo:', '', $match_value );
 
 				// allowed list of keys.
@@ -531,51 +523,52 @@ function hd_ssi_render_template( $post_id = 0 ) {
 					
 				}
 
-				// filter the match post value.
-				$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
-
-				// replace the original template_markup string with the new 
-				$template_markup = str_replace( $match, $match_value, $template_markup );
-
-			}
-			
-			// if we have a logo.
-			if ( empty( $logo_url ) ) {
-
-				// set the logo to a transparent image.
-				$logo_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-
 			}
 
-			// if we have a image.
-			if ( empty( $image_url ) ) {
+			// if this is a post field replace.
+			if ( strpos( $match_value, 'ssi' ) !== false ) {
 
-				// set the image to a transparent image.
-				$image_url = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				// remove the ssi: string
+				$match_key = str_replace( 'ssi:', '', $match_value );
+
+				// if the match key is the logo.
+				if ( 'logo' === $match_key ) {
+
+					// get the logo url.
+					$match_value = $logo_url;
+
+					// replace the logo string.
+					$template_markup = str_replace( '[ssi:logo]', $logo_url, $template_markup );
+
+				}
+
+				// if the match key is the image.
+				if ( 'image' === $match_key ) {
+
+					// get the image url.
+					$match_value = $image_url;
+
+					// replace the logo string.
+					$template_markup = str_replace( '[ssi:image]', $image_url, $template_markup );
+
+				}
+
+				/**
+				 * Note: author avatar handled through the filter below.
+				 */
 
 			}
 
-			// if we have no template.
-			if ( empty( $template ) ) {
+			// filter the match post value.
+			$match_value = apply_filters( 'hd_ssi_template_output_' . $match_key, $match_value, $match_key, $post_id );
 
-				// default the template.
-				$template = HD_SSI_LOCATION . '/templates/1.html';
-
-			}
-			
-			// replace the logo string.
-			$template_markup = str_replace( '[ssi:logo]', $logo_url, $template_markup );
-
-			// replace the template string.
-			$template_markup = str_replace( '[ssi:template]', str_replace( '.html', '', basename( $template ) ), $template_markup );
-
-			// replace the image string.
-			$template_markup = str_replace( '[ssi:image]', $image_url, $template_markup );
+			// replace the original template_markup string with the new 
+			$template_markup = str_replace( $match, $match_value, $template_markup );
 
 		}
 
 	}
 
-	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $template_markup . '</div>';
+	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '" id="ssi-template--' . esc_attr( hd_ssi_get_template( 'name' ) ) . '">' . $template_markup . '</div>';
 
 }

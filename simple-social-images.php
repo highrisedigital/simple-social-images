@@ -34,6 +34,7 @@ require_once( dirname( __FILE__ ) . '/inc/loader.php' );
 
 /**
  * Function to run when the plugin is activated.
+ * Sets up some options and flushes rewtire rules for the generate endpoint.
  */
 function hd_ssi_on_activation() {
 
@@ -104,9 +105,32 @@ function hd_ssi_on_activation() {
 
 	}
 
+	// add the option to redirect the user to settings.
+	update_option( 'hd_ssi_activation_redirection', true );
+
 	// flush the rewrite rules.
 	flush_rewrite_rules();
 
 }
 
 register_activation_hook( __FILE__, 'hd_ssi_on_activation' );
+
+/**
+ * Redirects the users to the settings screen, when the plugin is activated.
+ */
+function hd_ssi_redirect_to_settings_on_activation() {
+
+	// if the plugin has just be activated.
+	if ( get_option( 'hd_ssi_activation_redirection', false ) ) {
+
+		// remove the activation option.
+		delete_option( 'hd_ssi_activation_redirection' );
+
+		// redirect the user to the settings page.
+		wp_redirect( admin_url( 'options-general.php?page=hd-ssi-settings' ) );
+		exit;
+	}
+
+}
+
+add_action( 'admin_init', 'hd_ssi_redirect_to_settings_on_activation' );

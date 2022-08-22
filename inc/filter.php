@@ -3,6 +3,27 @@
  * Modifies/adds various things in the plugin via filters.
  */
 
+function hd_ssi_add_settings_page_intro_text() {
+
+	?>
+	<p>
+		<?php
+			printf(
+				esc_html(
+					'To learn about each of the settings on this page, please visit our %1$sgetting started guide%2$s.',
+					'simple-social-images'
+				),
+				'<a target="_blank" href="https://simplesocialimages.com/documentation/getting-started">',
+				'</a>'
+			);
+		?>
+	</p>
+	<?php
+
+}
+
+add_action( 'hd_ssi_before_settings_form_output', 'hd_ssi_add_settings_page_intro_text' );
+
 /**
  * Adds markup to the end of the settings page for the template preview.
  */
@@ -78,6 +99,38 @@ function hd_ssi_output_template_post_date( $post_date, $match_key, $post_id ) {
 }
 
 add_filter( 'hd_ssi_template_output_post_date', 'hd_ssi_output_template_post_date', 10, 3 );
+
+/**
+ * Filters the output of the data information to display the posted post date.
+ *
+ * @param integer $post_date The post date from the posts table.
+ * @param string  $match_key The matches key string to replace in the template (post_date)
+ * @param integer $post_id   The ID of the current post.
+ *
+ * @return string            The posted date in the correct date format.
+ */
+function hd_ssi_output_template_author_avatar( $match_value, $match_key, $post_id ) {
+
+	// get the author ID of the post.
+	$author_id = get_post_field( 'post_author', $post_id );
+	
+	// get the avatar image tag for this author.
+	$author_avatar = get_avatar( $author_id, '200', '' );
+	
+	// if we have an author avatar.
+	if ( ! empty( $author_avatar ) ) {
+
+		// set the avatar image to the match value.
+		$match_value = $author_avatar;
+
+	}
+
+	// return the matched value.
+	return $match_value;
+
+}
+
+add_filter( 'hd_ssi_template_output_author_avatar', 'hd_ssi_output_template_author_avatar', 10, 3 );
 
 /**
  * Outputs the necessary stylesheet link on the generate HTML endpoint.
