@@ -3,7 +3,7 @@
  * Plugin Name: Simple Social Images
  * Plugin URI: https://simplesocialimages.com
  * Description: Create automated, beautiful and branded images for posts in WordPress shared on social media channels. This plugin requires a license for <a href="https://simplesocialimages.com">Simple Social Images</a>.
- * Version: 1.0
+ * Version: 0.1
  * Author: Highrise Digital
  * Author URI: https://highrise.digital/
  * Text Domain: simple-social-images
@@ -14,7 +14,7 @@
 // define variable for path to this plugin file.
 define( 'HD_SSI_LOCATION', dirname( __FILE__ ) );
 define( 'HD_SSI_LOCATION_URL', plugins_url( '', __FILE__ ) );
-define( 'HD_SSI_VERSION', '1.0' );
+define( 'HD_SSI_VERSION', '0.1' );
 
 /**
  * Function to run on plugins load.
