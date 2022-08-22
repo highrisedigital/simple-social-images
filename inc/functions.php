@@ -345,6 +345,17 @@ function hd_ssi_output_template_wrapper_classes() {
 
 	}
 
+	// get the selected template.
+	$template = hd_ssi_get_template();
+
+	// if the current template is from the plugin folder.
+	if ( ! str_contains( $template, HD_SSI_LOCATION ) ) {
+
+		// add a class indicating this is a custom template.
+		$classes[] = 'ssi-template--is-custom';
+
+	}
+
 	// add the text align class.
 	$classes[] = 'ssi-template--text-align--' . hd_ssi_get_text_alignment();
 
