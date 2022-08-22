@@ -569,6 +569,6 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 	}
 
-	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '" id="ssi-template--' . esc_attr( hd_ssi_get_template( 'name' ) ) . '">' . $template_markup . '</div>';
+	return '<div class="' . esc_attr( hd_ssi_output_template_wrapper_classes() ) . '">' . $template_markup . '</div>';
 
 }
