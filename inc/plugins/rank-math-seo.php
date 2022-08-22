@@ -47,8 +47,8 @@ function hd_ssi_has_rankmath_custom_twitter_image( $post_id = 0 ) {
 function hd_ssi_rankmath_maybe_change_open_graph_image_url( $url ) {
 
 	// if this is not a single job or we have a custom rank math open graph image.
-	if ( ! is_singular( hd_ssi_get_supported_post_types() ) || hd_ssi_has_rankmath_custom_og_image() ) {
-
+	if ( is_singular( hd_ssi_get_supported_post_types() ) || hd_ssi_has_rankmath_custom_og_image() ) {
+		
 		// prevent this plugin outputting an og image.
 		add_filter( 'hd_ssi_render_og_image_tags', '__return_false' );
 
@@ -73,7 +73,7 @@ add_filter( 'rank_math/opengraph/facebook/og_image_secure_url', 'hd_ssi_rankmath
 function hd_ssi_rankmath_maybe_change_twitter_image_url( $url ) {
 
 	// if this is not a singular supported post or we have a custom rank math twitter image.
-	if ( ! is_singular( hd_ssi_get_supported_post_types() ) || hd_ssi_has_rankmath_custom_twitter_image() ) {
+	if ( is_singular( hd_ssi_get_supported_post_types() ) || hd_ssi_has_rankmath_custom_twitter_image() ) {
 
 		// prevent this plugin outputting a twitter image.
 		add_filter( 'hd_ssi_render_twitter_image_tags', '__return_false' );
@@ -86,4 +86,4 @@ function hd_ssi_rankmath_maybe_change_twitter_image_url( $url ) {
 	return hd_ssi_get_image_url();
 }
 
-add_filter( 'rank_math/opengraph/twitter/image', 'hd_ssi_rankmath_maybe_change_twitter_image_url' );
+add_filter( 'rank_math/opengraph/twitter/image', 'hd_ssi_rankmath_maybe_change_twitter_image_url', 1 );

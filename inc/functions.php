@@ -297,7 +297,7 @@ function hd_ssi_render_tags() {
 
 }
 
-add_action( 'wp_head', 'hd_ssi_render_tags', 99 );
+add_action( 'wp_head', 'hd_ssi_render_tags' );
 
 /**
  * Builds an array of classes for the template wrapper and returns them as a string.
