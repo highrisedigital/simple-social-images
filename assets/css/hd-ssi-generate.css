@@ -9,8 +9,8 @@ body {
 	--ssi-template--width: 100vw;
 	--ssi-template--unit: calc(var(--ssi-template--width) / 100);
 	--ssi--text--color: white;
-	--ssi--text--background-color: red;
-	--ssi--background-color: blue;
+	--ssi--text--background-color: transparent;
+	--ssi--background-color: transparent;
 	--ssi--font-family: sans-serif;
 	--ssi--font-size: 6;
 	--ssi--font-size: 6;
