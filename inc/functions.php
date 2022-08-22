@@ -321,6 +321,30 @@ function hd_ssi_output_template_wrapper_classes() {
 
 	}
 
+	// if we have a background color set.
+	if ( 1 === hd_ssi_has_background_color() ) {
+
+		// add a background color class.
+		$classes[] = 'ssi-template--has-bg-color';
+
+	}
+
+	// if we have a background color set.
+	if ( 1 === hd_ssi_has_text_background_color() ) {
+
+		// add a background color class.
+		$classes[] = 'ssi-template--has-text-bg-color';
+
+	}
+
+	// if we have a text color set.
+	if ( 1 === hd_ssi_has_text_color() ) {
+
+		// add a text color class.
+		$classes[] = 'ssi-template--has-text-color';
+
+	}
+
 	// add the text align class.
 	$classes[] = 'ssi-template--text-align--' . hd_ssi_get_text_alignment();
 

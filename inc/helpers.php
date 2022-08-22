@@ -432,6 +432,34 @@ function hd_ssi_get_text_color() {
 }
 
 /**
+ * Checks whether a text colour has been set.
+ *
+ * @return integer 1 if a background colour is set and zero otherwise.
+ */
+function hd_ssi_has_text_color() {
+
+	// default to no background.
+	$output = 0;
+
+	// get the text color.
+	$text_color = hd_ssi_get_text_color();
+
+	// if we have a text color set.
+	if ( ! empty( $text_color ) ) {
+		
+		// set the output to true.
+		$output = 1;
+		
+	}
+
+	return apply_filters(
+		'hd_ssi_has_text_color',
+		absint( $output )
+	);
+
+}
+
+/**
  * Gets the current active text background color.
  */
 function hd_ssi_get_text_bg_color() {
@@ -439,6 +467,34 @@ function hd_ssi_get_text_bg_color() {
 	return apply_filters(
 		'hd_ssi_text_bg_color',
 		get_option( 'hd_ssi_text_bg_color' )
+	);
+
+}
+
+/**
+ * Checks whether a background colour has been set.
+ *
+ * @return integer 1 if a background colour is set and zero otherwise.
+ */
+function hd_ssi_has_text_background_color() {
+
+	// default to no text background.
+	$output = 0;
+
+	// get the text background color.
+	$text_bg_color = hd_ssi_get_text_bg_color();
+
+	// if we have a text background color set.
+	if ( ! empty( $text_bg_color ) ) {
+		
+		// set the output to true.
+		$output = 1;
+		
+	}
+
+	return apply_filters(
+		'hd_ssi_has_text_background_color',
+		absint( $output )
 	);
 
 }
@@ -454,6 +510,35 @@ function hd_ssi_get_bg_color() {
 	);
 
 }
+
+/**
+ * Checks whether a background colour has been set.
+ *
+ * @return integer 1 if a background colour is set and zero otherwise.
+ */
+function hd_ssi_has_background_color() {
+
+	// default to no background.
+	$output = 0;
+
+	// get the background color.
+	$bg_color = hd_ssi_get_bg_color();
+
+	// if we have a background color set.
+	if ( ! empty( $bg_color ) ) {
+		
+		// set the output to true.
+		$output = 1;
+		
+	}
+
+	return apply_filters(
+		'hd_ssi_has_background_color',
+		absint( $output )
+	);
+
+}
+
 
 /**
  * Gets the currently uploaded logo attachment ID.
