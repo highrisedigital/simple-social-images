@@ -27,11 +27,11 @@
   
 .ssi-template--7 .ssi-template__text {
   
-  --ssi-template--text--margin: calc(2 * var(--ssi-template--unit));
+  --ssi-template--text--margin: var(--ssi-template__logo-offset);
   
   text-align: var(--ssi-template--text-align);
   width: calc(66.66% - (2 * var(--ssi-template--text--margin)));
-  padding: .25em;
+  padding: 0;
   margin: var(--ssi-template__logo-space) var(--ssi-template--text--margin);
   position: absolute;
   z-index: 1;
@@ -62,6 +62,9 @@
 .ssi-template--7.ssi-template--reverse .ssi-template__inner:after {
   left: 33.33%;
   right: 0;
+}
+.ssi-template--7.ssi-template--has-text-bg-color .ssi-template__text {
+  padding: .25em;
 }
 </style>
 

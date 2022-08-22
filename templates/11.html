@@ -46,10 +46,9 @@
   margin-bottom: var(--ssi-template__logo-space);
 }
 
-.ssi-template--11 .ssi-template__text > * > [class*="__inner"] {
+.ssi-template--11 .ssi-template__title__inner {
 	display: inline;
 	line-height: var(--ssi--line-height);
-	padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
 	
 	background-color: var(--ssi--text--background-color);
 	-webkit-box-decoration-break: clone;
@@ -91,6 +90,9 @@
   right: auto;
   left: calc(50%);
   transform: translateX(-50%);
+}
+.ssi-template--11.ssi-template--has-text-bg-color .ssi-template__title__inner {
+  padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
 }
 </style>
 

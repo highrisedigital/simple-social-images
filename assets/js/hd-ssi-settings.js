@@ -26,7 +26,34 @@
 
 	// Add Color Picker to all inputs that have .hd-ssi-input--color-picker
 	$( function() {
-		$( '.hd-ssi-input--color-picker' ).wpColorPicker();
+		$( '.hd-ssi-input--color-picker' ).wpColorPicker({
+		
+			/**
+			 * @param {Event} event - standard jQuery event, produced by "Clear"
+			 * button.
+			 */
+			clear: function (event) {
+
+				// get the ID of the input element.
+				inputId = $(event.target).prev().find('input').attr('id');
+
+				if ( 'hd_ssi_bg_color' == inputId ) {
+					
+					// update the custom property.
+					document.querySelector(".ssi-template").style.setProperty("--ssi--background-color", '#FFFFFF');
+
+				} else if ( 'hd_ssi_text_bg_color' == inputId ) {
+
+					// update the custom property.
+					document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
+
+					// remove the template class.
+					document.querySelector(".ssi-template").classList.remove('ssi-template--has-text-bg-color');
+
+				}
+
+			}
+		});
 	});
 
 	$('body').on('click', '.hd-ssi-image-button', function(e) {
@@ -278,6 +305,9 @@
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
+			// add the template class.
+			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-color');
+
 		}
 	});
 
@@ -303,8 +333,27 @@
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
+			// add the template class.
+			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-bg-color');
+
 		}
 	});
+
+	$('body').on('propertychange change click keyup input paste', '#hd_ssi_text_bg_color', function(){
+
+		// get the current value.
+		inputValue = $(this).val();
+			
+		if ( inputValue == '' ) {
+			// remove the template class.
+			document.querySelector(".ssi-template").classList.remove('ssi-template--has-text-bg-color');
+		} else {
+			// add the template class.
+			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-bg-color');
+		}
+
+	});
+
 
 	/* Background color */
 	$('#hd_ssi_bg_color').iris({
@@ -312,24 +361,31 @@
 		change: function(event, ui) {
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
-	
-			// update customproperty on 'Clear' button press.
-			$('.wp-picker-clear').on('click', function(){
-				
-				// update the custom property.
-				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
-
-			});
 
 			// update the custom property.
 			document.querySelector(".ssi-template").style.setProperty("--ssi--background-color", ui.color.toString());
 
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
-
 		}
 	});
 
+	$('body').on('propertychange change click keyup input paste', '#hd_ssi_bg_color', function(){
+
+		// get the current value.
+		inputValue = $(this).val();
+			
+		if ( inputValue == '' ) {
+			// remove the template class.
+			document.querySelector(".ssi-template").classList.remove('ssi-template--has-bg-color');
+		} else {
+			// add the template class.
+			document.querySelector(".ssi-template").classList.add('ssi-template--has-bg-color');
+		}
+
+	});
+
+	
 	/* Font size */
 	var fontSize = document.querySelector("#hd_ssi_font_size");
 
@@ -383,7 +439,7 @@
 
 	var imageWrapper = document.querySelector("#hd-ssi-image-wrapper");
 
-	// Observe a specific DOM element:
+	// Observe changes to the logo wrapper:
 	observeDOM( imageWrapper, function(m){ 
 
 		// get the first image in the list.
@@ -403,7 +459,7 @@
 
 	var galleryWrapper = document.querySelector("#hd-ssi-gallery-wrapper");
 
-	// Observe a specific DOM element:
+	// Observe changes to the image gallery:
 	observeDOM( galleryWrapper, function(m){ 
 
 		// get the first image in the list.

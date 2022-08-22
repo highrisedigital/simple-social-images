@@ -20,6 +20,7 @@
 	left: 0;
 	right: 0;
 	object-fit: cover;
+	mix-blend-mode: multiply;
 }
 .ssi-template--4 .ssi-template__text {
 	position: relative;
@@ -31,7 +32,6 @@
 	gap: calc(2 * var(--ssi-template--unit))
 }
 .ssi-template--4 .ssi-template__title {
-  padding: .5em;
   background-color: var(--ssi--text--background-color);
 }
 .ssi-template--4 .ssi-template__logo {
@@ -73,6 +73,9 @@
 
 .ssi-template--4.ssi-template--text-align--right .ssi-template__text {
    margin-right: calc(3 * var(--ssi-template--unit));
+}
+.ssi-template--4.ssi-template--has-text-bg-color .ssi-template__title {
+  padding: .5em;
 }
 </style>
 
