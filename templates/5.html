@@ -4,6 +4,7 @@
 .ssi-template--5 {
 	--ssi--line-height: 1.5;
 	--ssi--line-gap: .1em;
+	--ssi--logo--offset: calc(3 * var(--ssi-template--unit));
 }
 .ssi-template--5 .ssi-template__text {
 	line-height: 1.2;
@@ -13,7 +14,7 @@
 	left: calc(50% - calc(14 * var(--ssi-template--unit)));
 	transform: translateY(-50%);
 	padding: calc(var(--ssi--logo--height) * var(--ssi-template--unit)) 0;
-	margin: 0 calc(2 * var(--ssi-template--unit));
+	margin: 0 var(--ssi--logo--offset);
 }
 
 .ssi-template--5 .ssi-template__text > * {
@@ -43,8 +44,8 @@
 }
 .ssi-template--5 .ssi-template__logo {
 	position: absolute;
-	top: calc(3 * var(--ssi-template--unit));
-	right: calc(3 * var(--ssi-template--unit))
+	top: var(--ssi--logo--offset);
+	right: var(--ssi--logo--offset)
 }
 
 .ssi-template--5.ssi-template--reverse .ssi-template__text {
