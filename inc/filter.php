@@ -62,6 +62,14 @@ add_action( 'hd_ssi_after_settings_form_output', 'hd_ssi_add_preview_markup_to_s
  */
 function hd_ssi_output_template_author_display_name( $author_id, $match_key, $post_id ) {
 
+	// if the author ID is not an integer.
+	if ( 0 === absint( $author_id ) ) {
+
+		// set the author ID to the logged in user.
+		$author_id = get_current_user_id();
+
+	}
+
 	// get the author display name.
 	$author_display_name = get_the_author_meta( 'display_name', $author_id );
 
@@ -88,11 +96,21 @@ add_filter( 'hd_ssi_template_output_post_author', 'hd_ssi_output_template_author
  */
 function hd_ssi_output_template_post_date( $post_date, $match_key, $post_id ) {
 
-	// get the post date in the date format for this site.
-	$post_date = get_the_date(
-		get_option( 'date_format' ),
-		$post_id
-	);
+	// if we have no post id.
+	if ( 0 === $post_id ) {
+
+		//$current_date = new date();
+		$post_date = date( get_option( 'date_format' ) );
+
+	} else {
+
+		// get the post date in the date format for this site.
+		$post_date = get_the_date(
+			get_option( 'date_format' ),
+			$post_id
+		);
+
+	}
 
 	return $post_date;
 
@@ -109,19 +127,19 @@ add_filter( 'hd_ssi_template_output_post_date', 'hd_ssi_output_template_post_dat
  *
  * @return string            The posted date in the correct date format.
  */
-function hd_ssi_output_template_author_avatar( $match_value, $match_key, $post_id ) {
+function hd_ssi_output_template_author_avatar_url( $match_value, $match_key, $post_id ) {
 
 	// get the author ID of the post.
 	$author_id = get_post_field( 'post_author', $post_id );
 	
 	// get the avatar image tag for this author.
-	$author_avatar = get_avatar( $author_id, '200', '' );
+	$author_avatar_url = get_avatar_url( $author_id, '200', '' );
 	
 	// if we have an author avatar.
-	if ( ! empty( $author_avatar ) ) {
+	if ( ! empty( $author_avatar_url ) ) {
 
 		// set the avatar image to the match value.
-		$match_value = $author_avatar;
+		$match_value = $author_avatar_url;
 
 	}
 
@@ -130,7 +148,7 @@ function hd_ssi_output_template_author_avatar( $match_value, $match_key, $post_i
 
 }
 
-add_filter( 'hd_ssi_template_output_author_avatar_url', 'hd_ssi_output_template_author_avatar', 10, 3 );
+add_filter( 'hd_ssi_template_output_author_avatar_url', 'hd_ssi_output_template_author_avatar_url', 10, 3 );
 
 /**
  * Outputs the necessary stylesheet link on the generate HTML endpoint.
