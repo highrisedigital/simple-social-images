@@ -84,8 +84,8 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 
 == Changelog ==
 
-= 1.0 =
-* Initial plugin launch.
+= 0.1 =
+* Beta release
 
 == Upgrade Notice ==
 
