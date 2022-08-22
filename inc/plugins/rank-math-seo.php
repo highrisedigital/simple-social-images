@@ -63,7 +63,7 @@ function hd_ssi_rankmath_maybe_change_open_graph_image_url( $url ) {
 }
 
 add_filter( 'rank_math/opengraph/facebook/og_image', 'hd_ssi_rankmath_maybe_change_open_graph_image_url' );
-add_filter( 'rank_math/opengraph/facebook/og_image_secure_url', 'hd_ssi_wpjm_rankmath_maybe_change_open_graph_image_url' );
+add_filter( 'rank_math/opengraph/facebook/og_image_secure_url', 'hd_ssi_rankmath_maybe_change_open_graph_image_url' );
 
 /**
  * Change Twitter image URL if necessary.
