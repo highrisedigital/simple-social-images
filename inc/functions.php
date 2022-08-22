@@ -345,6 +345,17 @@ function hd_ssi_output_template_wrapper_classes() {
 
 	}
 
+	// get the selected template.
+	$template = hd_ssi_get_template();
+
+	// if the current template is from the plugin folder.
+	if ( ! str_contains( $template, HD_SSI_LOCATION ) ) {
+
+		// add a class indicating this is a custom template.
+		$classes[] = 'ssi-template--is-custom';
+
+	}
+
 	// add the text align class.
 	$classes[] = 'ssi-template--text-align--' . hd_ssi_get_text_alignment();
 
@@ -500,7 +511,7 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 				// get the value of this meta.
 				$match_value = get_post_field( $match_key, $post_id );
-				
+
 				// if we have no job post id.
 				if ( empty( $match_value ) && 0 === $post_id ) {
 
@@ -556,24 +567,24 @@ function hd_ssi_render_template( $post_id = 0 ) {
 				$match_key = str_replace( 'ssi:', '', $match_value );
 
 				// if the match key is the logo.
-				if ( 'logo' === $match_key ) {
+				if ( 'logo_url' === $match_key ) {
 
 					// get the logo url.
 					$match_value = $logo_url;
 
 					// replace the logo string.
-					$template_markup = str_replace( '[ssi:logo]', $logo_url, $template_markup );
+					$template_markup = str_replace( '[ssi:logo_url]', $logo_url, $template_markup );
 
 				}
 
 				// if the match key is the image.
-				if ( 'image' === $match_key ) {
+				if ( 'image_url' === $match_key ) {
 
 					// get the image url.
 					$match_value = $image_url;
 
 					// replace the logo string.
-					$template_markup = str_replace( '[ssi:image]', $image_url, $template_markup );
+					$template_markup = str_replace( '[ssi:image_url]', $image_url, $template_markup );
 
 				}
 
