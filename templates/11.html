@@ -1,0 +1,106 @@
+<style>
+/* Template 11 */
+
+.ssi-template--11 {
+  --ssi-template__logo-height: calc( (var(--ssi--logo--height) * var(--ssi-template--unit) ) );
+  --ssi-template__logo-offset: calc(5 * var(--ssi-template--unit));
+  --ssi-template__logo-space: calc(var(--ssi-template__logo-height) + (2 * var(--ssi-template__logo-offset)));
+  --ssi-template--text-align: left;
+  --ssi--line-height: 1.25;
+	--ssi--line-gap: .1em;
+  
+  overflow: hidden;
+  position: relative;
+}
+
+.ssi-template--11 .ssi-template__inner {
+  display: flex;
+}
+
+.ssi-template--11 .ssi-template__image {
+  mix-blend-mode: multiply;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ssi-template--11 .ssi-template__logo {
+  position: absolute;
+  z-index: 1;
+  bottom: var(--ssi-template__logo-offset);
+  right: var(--ssi-template__logo-offset);
+}
+  
+.ssi-template--11 .ssi-template__text {
+  --ssi-template--text--margin: calc(2 * var(--ssi-template--unit));
+  position: relative;
+  z-index: 1;
+  width: 75%;
+  margin: var(--ssi-template__logo-offset);
+  margin-bottom: var(--ssi-template__logo-space);
+}
+
+.ssi-template--11 .ssi-template__title__inner {
+	display: inline;
+	line-height: var(--ssi--line-height);
+	
+	background-color: var(--ssi--text--background-color);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone
+}
+.ssi-template--11 .ssi-template__text > :after {
+	content: "\A";
+	white-space: pre-line
+}
+
+.ssi-template--11.ssi-template--reverse .ssi-template__text {
+  position: absolute;
+  bottom: 0;
+  width: 75%;
+  margin: var(--ssi-template__logo-offset);
+  margin-top: var(--ssi-template__logo-space);
+}
+
+.ssi-template--11.ssi-template--reverse .ssi-template__logo {
+  top: var(--ssi-template__logo-offset);
+  bottom: auto;
+}
+  
+.ssi-template--11.ssi-template--text-align--right .ssi-template__inner {
+  justify-content: flex-end;
+}
+  
+.ssi-template--11.ssi-template--text-align--right .ssi-template__text {
+  right: 0;
+}
+
+.ssi-template--11.ssi-template--text-align--center .ssi-template__text {
+  right: auto;
+  left: calc(50% - var(--ssi-template__logo-offset));
+  transform: translateX(-50%);
+}
+
+.ssi-template--11.ssi-template--text-align--center .ssi-template__logo {
+  right: auto;
+  left: calc(50%);
+  transform: translateX(-50%);
+}
+.ssi-template--11.ssi-template--has-text-bg-color .ssi-template__title__inner {
+  padding: calc( ( ( (1em * var(--ssi--line-height)) - 1em) / 2) - (var(--ssi--line-gap) / 2) ) calc(2 * var(--ssi-template--unit));
+}
+</style>
+
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<div class="ssi-template__title"><span class="ssi-template__title__inner" contenteditable="true">[post:post_title]</span></div>
+	</div>
+	<img class="ssi-template__image" src="[ssi:image_url]" />
+	<img class="ssi-template__logo" src="[ssi:logo_url]" />
+</div>

@@ -1,0 +1,79 @@
+<style>
+/* Template 6 */
+
+.ssi-template--6 {
+  --ssi-template__logo-height: calc( (var(--ssi--logo--height) * var(--ssi-template--unit) ) );
+  --ssi-template__logo-offset: calc(3 * var(--ssi-template--unit));
+  --ssi-template__logo-space: calc(var(--ssi-template__logo-height) + (2 * var(--ssi-template__logo-offset)));
+  --ssi--text-align: center;
+}
+
+.ssi-template--6 .ssi-template__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.ssi-template--6 .ssi-template__logo {
+  position: absolute;
+  z-index: 1;
+  top: var(--ssi-template__logo-offset);
+  left: 50%;
+  transform: translateX(-50%);
+}
+  
+.ssi-template--6 .ssi-template__text {
+  width: 66.66%;
+  padding: .5em;
+  margin: var(--ssi-template__logo-space) 0;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: calc(50% - var(--ssi-template__logo-space));
+  transform: translateX(-50%) translateY(-50%);
+  background-color: var(--ssi--text--background-color);
+}
+.ssi-template--6 .ssi-template__inner:after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--ssi--background-color);
+  opacity: .5;
+  mix-blend-mode: multiply;
+}
+
+.ssi-template--6.ssi-template--reverse .ssi-template__logo {
+  top: auto;
+  bottom: var(--ssi-template__logo-offset);
+}
+
+.ssi-template--6.ssi-template--text-align--left .ssi-template__logo {
+  left: var(--ssi-template__logo-offset);
+  transform: translateX(0);
+}
+
+.ssi-template--6.ssi-template--text-align--right .ssi-template__logo {
+  left: auto;
+  transform: translateX(0);
+  right: var(--ssi-template__logo-offset);
+}
+</style>
+
+
+<div class="ssi-template__inner">
+	<div class="ssi-template__text">
+		<div class="ssi-template__title"><span class="ssi-template__title__inner" contenteditable="true">[post:post_title]</span></div>
+	</div>
+	<img class="ssi-template__image" src="[ssi:image_url]" />
+	<img class="ssi-template__logo" src="[ssi:logo_url]" />
+</div>

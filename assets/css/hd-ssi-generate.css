@@ -1,0 +1,79 @@
+/**
+ * CSS rules that apply to all templates.
+ */
+body {
+	margin: 0;
+	padding: 0
+}
+.ssi-template {
+	--ssi-template--width: 100vw;
+	--ssi-template--unit: calc(var(--ssi-template--width) / 100);
+	--ssi--text--color: white;
+	--ssi--text--background-color: transparent;
+	--ssi--background-color: transparent;
+	--ssi--font-family: sans-serif;
+	--ssi--font-size: 6;
+	--ssi--font-size: 6;
+  	--ssi--line-height: 1.25;
+	--ssi--font-weight: inherit;
+	--ssi--text-transform: inherit;
+	--ssi--image--background-blend-mode: none;
+	--ssi--logo--height: 4;
+	--ssi--logo--width: auto;
+
+	position: relative;
+	width: var(--ssi-template--width);
+	height: calc(var(--ssi-template--width) * .525);
+	overflow: hidden;
+}
+
+/* Styles for default templates only */
+.ssi-template:not(.ssi-template--is-custom) {
+	display: grid;
+	place-items: center;
+	background-color: var(--ssi--background-color);
+	font-weight: var(--ssi--font-weight);
+	font-style: var(--ssi--font-style);
+    text-align: var(--ssi--text-align);
+}
+
+.ssi-template--text-align--left {
+	--ssi--text-align: left !important;
+}
+
+.ssi-template--text-align--right {
+	--ssi--text-align: right !important;
+}
+
+.ssi-template--text-align--center {
+	--ssi--text-align: center !important;
+}
+
+.ssi-template * {
+	box-sizing: border-box;
+}
+
+.ssi-template__inner {
+	position: relative;
+	aspect-ratio: 120/63;
+	width: 100%
+}
+.ssi-template__text {
+	font-size: calc(var(--ssi--font-size) * var(--ssi-template--unit));
+	line-height: var(--ssi--line-height);
+	font-family: var(--ssi--font-family);
+	color: var(--ssi--text--color)
+}
+.ssi-template__title {
+	color: var(--ssi--title--color,var(--ssi--text--color));
+	font-size: calc(var(--ssi--font-size, var(--ssi--font-size)) * var(--ssi-template--unit));
+	font-weight: var(--ssi--font-weight);
+	text-transform: var(--ssi--text-transform)
+}
+.ssi-template__image {
+	display: block;
+}
+.ssi-template__logo {
+	height: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
+	width: var(--ssi--logo--width)
+}
