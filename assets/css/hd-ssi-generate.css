@@ -21,9 +21,14 @@ body {
 	--ssi--logo--height: 4;
 	--ssi--logo--width: auto;
 
+	position: relative;
 	width: var(--ssi-template--width);
 	height: calc(var(--ssi-template--width) * .525);
 	overflow: hidden;
+}
+
+/* Styles for default templates only */
+.ssi-template:not(.ssi-template--is-custom) {
 	display: grid;
 	place-items: center;
 	background-color: var(--ssi--background-color);
