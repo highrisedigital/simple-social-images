@@ -130,7 +130,7 @@ function hd_ssi_output_template_author_avatar( $match_value, $match_key, $post_i
 
 }
 
-add_filter( 'hd_ssi_template_output_author_avatar', 'hd_ssi_output_template_author_avatar', 10, 3 );
+add_filter( 'hd_ssi_template_output_author_avatar_url', 'hd_ssi_output_template_author_avatar', 10, 3 );
 
 /**
  * Outputs the necessary stylesheet link on the generate HTML endpoint.
