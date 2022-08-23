@@ -117,7 +117,7 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['template'] = array(
 		'option_name'    => 'hd_ssi_template',
 		'label'          => __( 'Select a Template', 'simple-social-images' ),
-		//'description'    => __( 'Choose which template to use. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
+		'description'    => __( 'Choose which template to use. The template controls how your social sharing images will look. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
 		'input_type'     => 'select',
 		'options'        => hd_ssi_get_templates(),
 		'order'          => 40,

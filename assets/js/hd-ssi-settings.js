@@ -496,4 +496,23 @@
 
 	});
 
+	// tool tip work.
+	$( '.hd-ssi-tooltip' ).each( function( i, obj ) {
+
+		// if this tool tip has the checkbox class.
+		//if ( ! $( this ).hasClass( 'hd-ssi-tooltip--checkbox' ) ) {
+			
+			// when the tooltip is clicked.
+			$( this ).click( function() {
+
+				// get the parent element.
+				parent = $( this ).parent().next();
+				parent.children( '.hd-ssi-input-description' ).toggle();
+
+			});
+
+		//}
+
+	});
+
 })( jQuery );
