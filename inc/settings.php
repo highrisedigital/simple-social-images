@@ -76,7 +76,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name'    => 'hd_ssi_license_key',
 		'label'          => __( 'License Key', 'simple-social-images' ),
 		'description'    => sprintf( __( 'Enter your %1$sSimple Social Images%2$s license key.  This is required in order to generate your social sharing images.', 'simple-social-images' ), '<a href="https://simplesocialimages.com">', '</a>' ),
-		'input_type'     => 'text',
+		'input_type'     => 'license',
 		'order'          => 10,
 	);
 
@@ -645,7 +645,7 @@ function hd_ssi_setting_input_type_range( $setting, $value ) {
 add_action( 'hd_ssi_setting_type_range', 'hd_ssi_setting_input_type_range', 10, 2 );
 
 /**
- * Controls the output of license input setting.
+ * Controls the output of section input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
@@ -664,7 +664,60 @@ function hd_ssi_setting_input_type_section( $setting, $value ) {
 
 }
 
-add_action( 'wpbb_setting_type_section', 'hd_ssi_setting_input_type_section', 10, 2 );
+add_action( 'hd_ssi_setting_type_section', 'hd_ssi_setting_input_type_section', 10, 2 );
+
+/**
+ * Controls the output of license input setting.
+ *
+ * @param  array $setting an array of the current setting.
+ * @param  mixed $value   the current value of this setting saved in the database.
+ */
+function hd_ssi_setting_input_type_license( $setting, $value ) {
+
+	// set a classes array for this field.
+	$classes = array(
+		'regular-text',
+		'hd-ssi-input',
+		'hd-ssi-input--license',
+		'hd-ssi-input--license-' . hd_ssi_get_license_key_status()
+	);
+
+	?>
+
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+
+	<?php
+
+	// add a nonce field to check for on activation of the license.
+	wp_nonce_field( 'hd_ssi_license_nonce', 'hd_ssi_license_nonce' );
+
+	// get the license key and status.
+	$license		= hd_ssi_get_license_key();
+	$license_status = hd_ssi_get_license_key_status();
+
+	// if we have a license key and the status in no valid.
+	if( $license != false && $license_status != 'valid' ) {
+		
+		// output the activate license button.
+		?>
+		<input type="submit" class="button-secondary" name="hd_ssi_license_activate" value="<?php _e( 'Activate License' ); ?>"/>
+		<?php
+		
+	}
+	
+	// we have an active valid license.
+	elseif( $license != false && $license_status != 'invalid' ) {
+		
+		// output the deactivate license button.
+		?>
+		<input type="submit" class="button-secondary" name="hd_ssi_license_deactivate" value="<?php _e( 'Deactivate License' ); ?>"/>
+		<?php
+		
+	}
+
+}
+
+add_action( 'hd_ssi_setting_type_license', 'hd_ssi_setting_input_type_license', 10, 2 );
 
 /**
  * Adds the description beneath each input.

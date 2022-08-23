@@ -55,6 +55,13 @@ img.ssi-image {
 	font-style: italic;
 	max-width: 35em;
 }
+input[type=text].hd-ssi-input--license-valid {
+	border: 2px solid green;
+}
+input[type=text].hd-ssi-input--license-deactivated,
+input[type=text].hd-ssi-input--license-invalid {
+	border: 2px solid red;
+}
 .form-table .hd-ssi-gallery-button,
 .form-table .hd-ssi-image-button {
 	margin-bottom: 8px;
