@@ -108,8 +108,8 @@ function hd_ssi_on_activation() {
 	// add the option to redirect the user to settings.
 	update_option( 'hd_ssi_activation_redirection', true );
 
-	// flush the rewrite rules.
-	flush_rewrite_rules();
+	// add the option to force a permalink refresh.
+	update_option( 'hd_ssi_plugin_permalinks_flushed', 0 );
 
 }
 
@@ -129,8 +129,29 @@ function hd_ssi_redirect_to_settings_on_activation() {
 		// redirect the user to the settings page.
 		wp_redirect( admin_url( 'options-general.php?page=hd-ssi-settings' ) );
 		exit;
+
 	}
 
 }
 
 add_action( 'admin_init', 'hd_ssi_redirect_to_settings_on_activation' );
+
+/**
+ * Flushes the redirect rules if the plugin is just activated.
+ */
+function hd_ssi_maybe_flush_rewrite_rules() {
+
+	// if the rewrite rules have not been flushed.
+	if ( 0 === absint( get_option( 'hd_ssi_plugin_permalinks_flushed', 1 ) ) ) {
+
+		// flush the sites redirect rules.
+		flush_rewrite_rules();
+
+		// set the marker indicating that rewrite rules have been flushed.
+        update_option( 'hd_ssi_plugin_permalinks_flushed', 1 );
+
+	}
+
+}
+
+add_action( 'init', 'hd_ssi_maybe_flush_rewrite_rules', 99 );
