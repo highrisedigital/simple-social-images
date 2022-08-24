@@ -48,7 +48,7 @@ function hd_ssi_rankmath_maybe_change_open_graph_image_url( $url ) {
 
 	// if this is not a single supported post type or we have a custom rank math open graph image.
 	if ( ! is_singular( hd_ssi_get_supported_post_types() ) || hd_ssi_has_rankmath_custom_og_image() ) {
-wp_var_dump( 'bob' );
+
 		// prevent this plugin outputting an og image.
 		add_filter( 'hd_ssi_render_og_image_tags', '__return_false' );
 
