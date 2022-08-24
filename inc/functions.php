@@ -96,7 +96,7 @@ function hd_ssi_generate_social_image( $post_id = 0 ) {
 	}
 
 	// get the license key.
-	$license_key = get_option( 'hd_ssi_license_key' );
+	$license_key = hd_ssi_get_license_key();
 
 	// if we have no license key.
 	if ( empty( $license_key ) ) {

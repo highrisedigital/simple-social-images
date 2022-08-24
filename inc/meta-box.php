@@ -36,7 +36,7 @@ function hd_ssi_jobs_meta_box_output( $post ) {
 	if ( $post->post_status !== 'publish' ) {
 		
 		?>
-		<p><?php esc_html_e( 'This job has not been published yet. Before you generate an image for social sharing for this job, please enter the job data and publish the job. Once you have done this, refresh this page to generate your image.', 'simple-social-images-wpjm' ); ?></p>
+		<p><?php esc_html_e( 'This post has not been published yet. Before you generate an image for social sharing for this post, please enter the post title and publish the post. Once you have done this, refresh this page to generate your image.', 'simple-social-images' ); ?></p>
 		<?php
 
 	} else {
@@ -69,7 +69,7 @@ function hd_ssi_jobs_meta_box_output( $post ) {
 		);
 
 		?>
-		<p><?php _e( 'Use the button below to generate or delete the social sharing image for this job. You can <a target="_blank" href="' . esc_url( home_url( '/ssi/v1/generate-html/?post_id=' . $post->ID ) ) . '">preview it</a> first if you like.', 'simpe-social-images-wpjm' ); ?></p>
+		<p><?php _e( 'Use the button below to generate or delete the social sharing image for this post. You can <a target="_blank" href="' . esc_url( home_url( '/ssi/v1/generate-html/?post_id=' . $post->ID ) ) . '">preview it</a> first if you like.', 'simpe-social-images' ); ?></p>
 
 		<?php
 

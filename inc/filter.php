@@ -203,3 +203,112 @@ function hd_ssi_output_generate_google_font_data( $post_id ) {
 }
 
 add_action( 'hd_ssi_generate_html_head', 'hd_ssi_output_generate_google_font_data', 30, 1 );
+
+/**
+ * Activates a users license once enter into the settings screen
+ * the user must click the activate button to make this work
+ */
+function hd_ssi_activate_license() {
+	
+	// listen for our activate button to be clicked
+	if( isset( $_POST[ 'hd_ssi_license_activate' ] ) ) {
+		
+		// run a quick security check 
+	 	if( ! check_admin_referer( 'hd_ssi_license_nonce', 'hd_ssi_license_nonce' ) )  {
+		 	return; // get out if we didn't click the Activate button
+	 	}	
+
+		// retrieve the license from the database
+		$license = hd_ssi_get_license_key();
+		
+		// data to send in our API request
+		$api_params = array( 
+			'edd_action' => 'activate_license', 
+			'license' 	 => $license, 
+			'item_id'    => hd_ssi_get_store_product_id(),
+			'url'        => home_url()
+		);
+		
+		// Call the API.
+		$response = wp_remote_post(
+			hd_ssi_get_store_url(),
+			array(
+				'timeout'   => 15,
+				'sslverify' => false,
+				'body'      => $api_params
+			)
+		);
+		
+		// make sure the response came back okay
+		if ( is_wp_error( $response ) ) {
+			return;
+		}
+		
+		// decode the license data
+		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+		// update the database option with the license key status.
+		update_option( 'hd_ssi_license_status', $license_data->license );
+	
+	}
+	
+}
+
+add_action( 'admin_init', 'hd_ssi_activate_license' );
+
+/**
+ * Activates a users license once enter into the settings screen
+ * the user must click the activate button to make this work
+ */
+function hd_ssi_deactivate_license() {
+	
+	// listen for our activate button to be clicked
+	if( isset( $_POST[ 'hd_ssi_license_deactivate' ] ) ) {
+		
+		// run a quick security check 
+	 	if( ! check_admin_referer( 'hd_ssi_license_nonce', 'hd_ssi_license_nonce' ) )  {
+		 	return; // get out if we didn't click the Activate button
+	 	}	
+
+		// retrieve the license from the database
+		$license = hd_ssi_get_license_key();
+		
+		// data to send in our API request
+		$api_params = array( 
+			'edd_action' => 'deactivate_license', 
+			'license' 	 => $license, 
+			'item_id'    => hd_ssi_get_store_product_id(),
+			'url'        => home_url()
+		);
+		
+		// Call the API.
+		$response = wp_remote_post(
+			hd_ssi_get_store_url(),
+			array(
+				'timeout'   => 15,
+				'sslverify' => false,
+				'body'      => $api_params
+			)
+		);
+		
+		// make sure the response came back okay
+		if ( is_wp_error( $response ) ) {
+			return;
+		}
+		
+		// decode the license data
+		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+		// $license_data->license will be either "deactivated" or "failed"
+		if ( $license_data->license == 'deactivated' ) {
+
+			// update the database option with the license key status.
+			update_option( 'hd_ssi_license_status', $license_data->license );
+
+		}
+	
+	}
+	
+}
+
+add_action( 'admin_init', 'hd_ssi_deactivate_license' );

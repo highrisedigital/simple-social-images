@@ -3,7 +3,7 @@
  * Plugin Name: Simple Social Images
  * Plugin URI: https://simplesocialimages.com
  * Description: Create automated, beautiful and branded images for posts in WordPress shared on social media channels. This plugin requires a license for <a href="https://simplesocialimages.com">Simple Social Images</a>.
- * Version: 0.1
+ * Version: 0.2
  * Author: Highrise Digital
  * Author URI: https://highrise.digital/
  * Text Domain: simple-social-images
@@ -14,7 +14,7 @@
 // define variable for path to this plugin file.
 define( 'HD_SSI_LOCATION', dirname( __FILE__ ) );
 define( 'HD_SSI_LOCATION_URL', plugins_url( '', __FILE__ ) );
-define( 'HD_SSI_VERSION', '0.1' );
+define( 'HD_SSI_VERSION', '0.2' );
 
 /**
  * Function to run on plugins load.
@@ -108,8 +108,8 @@ function hd_ssi_on_activation() {
 	// add the option to redirect the user to settings.
 	update_option( 'hd_ssi_activation_redirection', true );
 
-	// flush the rewrite rules.
-	flush_rewrite_rules();
+	// add the option to force a permalink refresh.
+	update_option( 'hd_ssi_plugin_permalinks_flushed', 0 );
 
 }
 
@@ -129,8 +129,29 @@ function hd_ssi_redirect_to_settings_on_activation() {
 		// redirect the user to the settings page.
 		wp_redirect( admin_url( 'options-general.php?page=hd-ssi-settings' ) );
 		exit;
+
 	}
 
 }
 
 add_action( 'admin_init', 'hd_ssi_redirect_to_settings_on_activation' );
+
+/**
+ * Flushes the redirect rules if the plugin is just activated.
+ */
+function hd_ssi_maybe_flush_rewrite_rules() {
+
+	// if the rewrite rules have not been flushed.
+	if ( 0 === absint( get_option( 'hd_ssi_plugin_permalinks_flushed', 1 ) ) ) {
+
+		// flush the sites redirect rules.
+		flush_rewrite_rules();
+
+		// set the marker indicating that rewrite rules have been flushed.
+        update_option( 'hd_ssi_plugin_permalinks_flushed', 1 );
+
+	}
+
+}
+
+add_action( 'init', 'hd_ssi_maybe_flush_rewrite_rules', 99 );

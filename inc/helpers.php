@@ -575,3 +575,95 @@ function hd_ssi_ignore_featured_images() {
 	);
 
 }
+
+/**
+ * Returns the URL of the simple social images store.
+ */
+function hd_ssi_get_store_url() {
+	return apply_filters(
+		'hd_ssi_store_url',
+		'https://simplesocialimages.com'
+	);
+}
+
+/**
+ * Returns the ID of the simple social images product in the store.
+ */
+function hd_ssi_get_store_product_id() {
+	return apply_filters(
+		'hd_ssi_get_store_product_id',
+		361
+	);
+}
+
+/**
+ * Checks the status of the license key entered into the settings page.
+ */
+function hd_ssi_check_license_key() {
+
+	// default the license status to invalid.
+	$license_status = 'invalid';
+
+	// setup some parameters to pass to the remote post request.
+	$api_params = array(
+		'edd_action' => 'check_license',
+		'license'    => hd_ssi_get_license_key(),
+		'item_id'    => hd_ssi_get_store_product_id(),
+		'url'        => home_url()
+	);
+
+	// run the remote post to get license info.
+	$response = wp_remote_post(
+		hd_ssi_get_store_url(),
+		array(
+			'body'      => $api_params,
+			'timeout'   => 15,
+			'sslverify' => false
+		)
+	);
+
+	// if the remote post did not error.
+	if ( ! is_wp_error( $response ) ) {
+		
+		// convert the license data in the response from json to a php array.
+		$license_data = json_decode(
+			wp_remote_retrieve_body( $response )
+		);
+
+		// get the license status.
+		$license_status = $license_data->license;
+		
+	}
+
+	// update the database option with the license key status.
+	update_option( 'hd_ssi_license_status', $license_status );
+
+	// get the license status.
+	return apply_filters(
+		'hd_ssi_license_status',
+		$license_status
+	);
+
+}
+
+/**
+ * Gets the license key added to settings.
+ */
+function hd_ssi_get_license_key() {
+
+	return apply_filters(
+		'hd_ssi_license_key',
+		get_option( 'hd_ssi_license_key' )
+	);
+
+}
+
+/**
+ * Gets the license key status as stored from the last license check.
+ */
+function hd_ssi_get_license_key_status() {
+	return apply_filters(
+		'hd_ssi_license_key_status',
+		get_option( 'hd_ssi_license_status' )
+	);
+}
