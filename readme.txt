@@ -3,7 +3,7 @@ Contributors: highrisedigital, wpmarkuk, keithdevon
 Tags: social sharing, social media, open graph, social images, twitter, facebook, linkedin
 Requires at least: 6.0.1
 Tested up to: 6.0.1
-Stable tag: 0.1
+Stable tag: 0.2
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,13 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 7. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
 
 == Changelog ==
+
+= 0.2 =
+* Improved the settings page with tooltips
+* License activation now included in the plugin settings page
+* Flush the sites rewrite rules on plugin activation
+* Prevent registering of section settings in WordPress - they are not actually settings!
+* Correct typos in meta box
 
 = 0.1 =
 * Beta release
