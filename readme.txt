@@ -12,9 +12,9 @@ Automatically generate beautiful and branded social sharing images for your WP J
 
 == Description ==
 
-Simple Social Imagesautomates the creation of branded, beautiful social images for your WordPress posts. 
+Simple Social Images automates the creation of branded, beautiful social images for your WordPress posts. 
 
-⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_. It also requires you to have the [WP Job Manager](https://wordpress.org/plugins/wp-job-manager/) plugin installed and activated.
+⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_.
 
 When you share a post, page or custom post type URL from your website on social networks, they will look for an image to display. Sometimes no image can be found. Sometimes the image is generic, irrelevant, unprofessional or just embarrasing!
 
