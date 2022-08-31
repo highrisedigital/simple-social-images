@@ -566,6 +566,9 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 			// if value is an array.
 			if ( is_array( $values ) && ! empty( $values ) ) {
 
+				// create an array of gallery image ids.
+				$gallery_images = array();
+
 				// loop through each image.
 				foreach ( $values as $image ) {
 
@@ -575,8 +578,8 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 
 						<?php
 
-						// output the image.
-						echo wp_get_attachment_image(
+						// get the image.
+						$gallery_image = wp_get_attachment_image(
 							absint( $image ),
 							'thumbnail',
 							false,
@@ -586,9 +589,23 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 							)
 						);
 
-						?>
+						// if we have an image.
+						if ( ! empty( $gallery_image ) ) {
 
-						<span class="dashicons dashicons-no hd-ssi-gallery--remove" data-image-id="<?php echo esc_attr( absint( $image ) ); ?>"></span>
+							// add to the gallery image array.
+							$gallery_images[] = absint( $image );
+
+							// output the image.
+							echo wp_kses_post( $gallery_image );
+
+							// output the remove span.
+							?>
+							<span class="dashicons dashicons-no hd-ssi-gallery--remove" data-image-id="<?php echo esc_attr( absint( $image ) ); ?>"></span>
+							<?php
+
+						}
+
+						?>
 
 					</figure>
 
@@ -604,7 +621,7 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 
 	</div>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( implode( ',', $gallery_images ) ); ?>" />
 
 	<a href="#" class="button-secondary hd-ssi-gallery-button"><?php esc_html_e( 'Upload/Choose Images', 'simple-social-images' ); ?></a>
 
