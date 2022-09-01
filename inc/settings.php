@@ -102,7 +102,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'          => __( 'Ignore featured images', 'simple-social-images' ),
 		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
 		'message'        => __( 'Ignore featured images.', 'simple-social-images' ),
-		'description'    => __( 'This will prevent the plugin from using a posts featured image in the generated social sharing image. Instead a random background image from below will be used instead.', 'simple-social-images' ),
+		'description'    => __( 'This will prevent the plugin from using a post\'s featured image in the generated social sharing image. Images will be chosen randomly from your uploaded background images below.', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
 		'order'          => 25,
 	);
@@ -189,7 +189,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		$settings['logo_size'] = array(
 			'option_name' => 'hd_ssi_logo_size',
 			'label'       => __( 'Size', 'simple-social-images' ),
-			'description' => __( 'Use the range slider to change the size of you logo. You should see the change in the preview below.', 'simple-social-images' ),
+			'description' => __( 'Click and drag the range slider to change the size of you logo.', 'simple-social-images' ),
 			'input_type'  => 'range',
 			'min'         => '4',
 			'max'         => '12',
@@ -269,7 +269,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		$settings['text_align'] = array(
 			'option_name'       => 'hd_ssi_text_align',
 			'label'             => __( 'Text Alignment', 'simple-social-images' ),
-			'description'       => __( 'Choose how to align your text in your template. This sometimes has an effect of your logo, depending on the template selected.', 'simple-social-images' ),
+			'description'       => __( 'Choose how to align the text in your template. This can effect the placement of your logo, depending on the selected template.', 'simple-social-images' ),
 			'input_type'        => 'select',
 			'options'           => array(
 				'default' => __( 'Default', 'simple-social-images' ),
