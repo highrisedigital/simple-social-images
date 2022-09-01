@@ -51,28 +51,40 @@ img.ssi-image {
     margin-right: 32px;
 	position: relative;
 }
-.hd-ssi-input-description {
+.form-table td .hd-ssi-input-description {
+	margin-top: 15px;
 	font-style: italic;
 	max-width: 35em;
+	display: none;
+}
+.hd-ssi-input-message {
+	line-height: 1.8;
+}
+input[type=text].hd-ssi-input--license-valid {
+	border: 2px solid green;
+}
+input[type=text].hd-ssi-input--license-deactivated,
+input[type=text].hd-ssi-input--license-invalid {
+	border: 2px solid red;
 }
 .form-table .hd-ssi-gallery-button,
 .form-table .hd-ssi-image-button {
 	margin-bottom: 8px;
 }
 
-.setting-type--section {
+.hd-ssi-setting-type--section {
 	border-top: 1px solid #CCCCCC;
 }
-.hd-ssi-settings-form .setting-type--section th {
+.hd-ssi-settings-form .hd-ssi-setting-type--section th {
 	flex-basis: 100%;
 	font-size: 130%;
 	font-weight: bold;
 }
-.hd-ssi-settings-form .setting-type--section {
+.hd-ssi-settings-form .hd-ssi-setting-type--section {
 	gap: 0;
 }
 
-.hd-ssi-settings-form .setting-type--hidden {
+.hd-ssi-settings-form .hd-ssi-setting-type--hidden {
 	display: none;
 }
 
@@ -91,6 +103,9 @@ img.ssi-image {
 }
 .hd-ssi-settings-form .form-table {
 	width: 100%;
+}
+.hd-ssi-tooltip {
+	cursor: pointer;
 }
 
 @media screen and (min-width: 1000px) {

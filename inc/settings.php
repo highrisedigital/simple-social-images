@@ -42,6 +42,14 @@ function hd_ssi_register_settings() {
 
 		}
 
+		// if the setting type is a section.
+		if ( 'section' === $args['input_type'] ) {
+
+			// don't register the setting as it is not a setting!
+			continue;
+
+		}
+
 		// register this setting.
 		register_setting(
 			'hd_ssi_settings', // setting group name.
@@ -75,8 +83,8 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['license_key'] = array(
 		'option_name'    => 'hd_ssi_license_key',
 		'label'          => __( 'License Key', 'simple-social-images' ),
-		'description'    => sprintf( __( 'Enter your %1$sSimple Social Images%2$s license key.  This is required in order to generate your social sharing images.', 'simple-social-images' ), '<a href="https://simplesocialimages.com">', '</a>' ),
-		'input_type'     => 'text',
+		'description'    => sprintf( __( 'Enter your %1$sSimple Social Images%2$s license key.  This is required in order to generate your social sharing images. Once you have saved this settings page, you will be able to activate you license with a button above this text.', 'simple-social-images' ), '<a href="https://simplesocialimages.com">', '</a>' ),
+		'input_type'     => 'license',
 		'order'          => 10,
 	);
 
@@ -93,7 +101,8 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name'    => 'hd_ssi_ignore_featured_image',
 		'label'          => __( 'Ignore featured images', 'simple-social-images' ),
 		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
-		'description'    => __( 'Ignore featured images.', 'simple-social-images' ),
+		'message'        => __( 'Ignore featured images.', 'simple-social-images' ),
+		'description'    => __( 'This will prevent the plugin from using a posts featured image in the generated social sharing image. Instead a random background image from below will be used instead.', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
 		'order'          => 25,
 	);
@@ -108,7 +117,7 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['template'] = array(
 		'option_name'    => 'hd_ssi_template',
 		'label'          => __( 'Select a Template', 'simple-social-images' ),
-		//'description'    => __( 'Choose which template to use. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
+		'description'    => __( 'Choose which template to use. The template controls how your social sharing images will look. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
 		'input_type'     => 'select',
 		'options'        => hd_ssi_get_templates(),
 		'order'          => 40,
@@ -120,8 +129,8 @@ function hd_ssi_register_default_settings( $settings ) {
 		$settings['template_reversed'] = array(
 			'option_name'    => 'hd_ssi_template_reversed',
 			'label'          => __( 'Reverse this template', 'simple-social-images' ),
-			//'description'    => __( 'This will reverse the layout of the selected template, should the template support reversal.', 'simple-social-images' ),
-			'description'    => __( 'Reverse template', 'simple-social-images' ),
+			'description'    => __( 'This will reverse the layout of the selected template, should the template support reversal.', 'simple-social-images' ),
+			'message'        => __( 'Reverse template', 'simple-social-images' ),
 			'input_type'     => 'checkbox',
 			'order'          => 45,
 		);
@@ -168,8 +177,8 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['logo'] = array(
 		'option_name' => 'hd_ssi_logo',
-		'label'       => __( 'Image', 'simple-social-images' ),
-		//'description' => __( 'Upload your logo to display on your images.', 'simple-social-images' ),
+		'label'       => __( 'Logo', 'simple-social-images' ),
+		'description' => __( 'Upload your logo to display on your template. Each template may place the logo in a slightly different place. The text alignment setting below, sometimes changes the logo position.', 'simple-social-images' ),
 		'input_type'  => 'image',
 		'order'       => 100,
 	);
@@ -180,7 +189,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		$settings['logo_size'] = array(
 			'option_name' => 'hd_ssi_logo_size',
 			'label'       => __( 'Size', 'simple-social-images' ),
-			//'description' => __( 'Select a size for the logo.', 'simple-social-images' ),
+			'description' => __( 'Use the range slider to change the size of you logo. You should see the change in the preview below.', 'simple-social-images' ),
 			'input_type'  => 'range',
 			'min'         => '4',
 			'max'         => '12',
@@ -200,7 +209,7 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['background_images'] = array(
 		'option_name' => 'hd_ssi_background_images',
 		'label'       => __( 'Add Images', 'simple-social-images' ),
-		//'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your post does not have a featured image.', 'simple-social-images' ),
+		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your post does not have a featured image.', 'simple-social-images' ),
 		'input_type'  => 'gallery',
 		'order'       => 130,
 	);
@@ -260,7 +269,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		$settings['text_align'] = array(
 			'option_name'       => 'hd_ssi_text_align',
 			'label'             => __( 'Text Alignment', 'simple-social-images' ),
-			//'description'       => __( 'Choose how to align your text in your template.', 'simple-social-images' ),
+			'description'       => __( 'Choose how to align your text in your template. This sometimes has an effect of your logo, depending on the template selected.', 'simple-social-images' ),
 			'input_type'        => 'select',
 			'options'           => array(
 				'default' => __( 'Default', 'simple-social-images' ),
@@ -414,7 +423,7 @@ function hd_ssi_setting_input_type_checkbox( $setting, $value ) {
 
 	<label for="<?php echo esc_attr( $setting['option_name'] ); ?>">
 		<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="1" <?php checked( $value, 1 ); ?> />
-		<span style="line-height: 1.8;"><?php echo wp_kses_post( $setting['description'] ); ?></span>
+		<span class="hd-ssi-input-message"><?php echo wp_kses_post( $setting['message'] ); ?></span>
 	</label>
 
 	<?php
@@ -557,6 +566,9 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 			// if value is an array.
 			if ( is_array( $values ) && ! empty( $values ) ) {
 
+				// create an array of gallery image ids.
+				$gallery_images = array();
+
 				// loop through each image.
 				foreach ( $values as $image ) {
 
@@ -566,8 +578,8 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 
 						<?php
 
-						// output the image.
-						echo wp_get_attachment_image(
+						// get the image.
+						$gallery_image = wp_get_attachment_image(
 							absint( $image ),
 							'thumbnail',
 							false,
@@ -577,9 +589,23 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 							)
 						);
 
-						?>
+						// if we have an image.
+						if ( ! empty( $gallery_image ) ) {
 
-						<span class="dashicons dashicons-no hd-ssi-gallery--remove" data-image-id="<?php echo esc_attr( absint( $image ) ); ?>"></span>
+							// add to the gallery image array.
+							$gallery_images[] = absint( $image );
+
+							// output the image.
+							echo wp_kses_post( $gallery_image );
+
+							// output the remove span.
+							?>
+							<span class="dashicons dashicons-no hd-ssi-gallery--remove" data-image-id="<?php echo esc_attr( absint( $image ) ); ?>"></span>
+							<?php
+
+						}
+
+						?>
 
 					</figure>
 
@@ -595,7 +621,7 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 
 	</div>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( implode( ',', $gallery_images ) ); ?>" />
 
 	<a href="#" class="button-secondary hd-ssi-gallery-button"><?php esc_html_e( 'Upload/Choose Images', 'simple-social-images' ); ?></a>
 
@@ -645,7 +671,7 @@ function hd_ssi_setting_input_type_range( $setting, $value ) {
 add_action( 'hd_ssi_setting_type_range', 'hd_ssi_setting_input_type_range', 10, 2 );
 
 /**
- * Controls the output of license input setting.
+ * Controls the output of section input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
@@ -664,7 +690,60 @@ function hd_ssi_setting_input_type_section( $setting, $value ) {
 
 }
 
-add_action( 'wpbb_setting_type_section', 'hd_ssi_setting_input_type_section', 10, 2 );
+add_action( 'hd_ssi_setting_type_section', 'hd_ssi_setting_input_type_section', 10, 2 );
+
+/**
+ * Controls the output of license input setting.
+ *
+ * @param  array $setting an array of the current setting.
+ * @param  mixed $value   the current value of this setting saved in the database.
+ */
+function hd_ssi_setting_input_type_license( $setting, $value ) {
+
+	// set a classes array for this field.
+	$classes = array(
+		'regular-text',
+		'hd-ssi-input',
+		'hd-ssi-input--license',
+		'hd-ssi-input--license-' . hd_ssi_get_license_key_status()
+	);
+
+	?>
+
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+
+	<?php
+
+	// add a nonce field to check for on activation of the license.
+	wp_nonce_field( 'hd_ssi_license_nonce', 'hd_ssi_license_nonce' );
+
+	// get the license key and status.
+	$license		= hd_ssi_get_license_key();
+	$license_status = hd_ssi_get_license_key_status();
+
+	// if we have a license key and the status in no valid.
+	if( $license != false && $license_status != 'valid' ) {
+		
+		// output the activate license button.
+		?>
+		<input type="submit" class="button-secondary" name="hd_ssi_license_activate" value="<?php _e( 'Activate License' ); ?>"/>
+		<?php
+		
+	}
+	
+	// we have an active valid license.
+	elseif( $license != false && $license_status != 'invalid' ) {
+		
+		// output the deactivate license button.
+		?>
+		<input type="submit" class="button-secondary" name="hd_ssi_license_deactivate" value="<?php _e( 'Deactivate License' ); ?>"/>
+		<?php
+		
+	}
+
+}
+
+add_action( 'hd_ssi_setting_type_license', 'hd_ssi_setting_input_type_license', 10, 2 );
 
 /**
  * Adds the description beneath each input.
@@ -672,7 +751,7 @@ add_action( 'wpbb_setting_type_section', 'hd_ssi_setting_input_type_section', 10
 function hd_ssi_output_setting_descriptions( $setting, $value ) {
 
 	// if we have a description.
-	if ( empty( $setting['description'] ) || 'checkbox' === $setting['input_type'] ) {
+	if ( empty( $setting['description'] ) ) {
 		return;
 	}
 
@@ -684,3 +763,28 @@ function hd_ssi_output_setting_descriptions( $setting, $value ) {
 }
 
 add_action( 'hd_ssi_after_setting', 'hd_ssi_output_setting_descriptions', 10, 2 );
+
+function hd_ssi_add_top_tip_icon( $setting, $value ) {
+
+	// if the setting has no description.
+	if ( empty( $setting['description'] ) ) {
+		return;
+	}
+
+	// create an array of section to ignore.
+	$ignored_sections = array(
+		'section',
+	);
+
+	// if this setting type is in the ignore list.
+	if ( in_array( $setting['input_type'], $ignored_sections, true ) ) {
+		return; // do nothing.
+	}
+
+	?>
+	<span class="dashicons dashicons-editor-help hd-ssi-tooltip hd-ssi-tooltip--<?php echo esc_attr( $setting['input_type'] ); ?>"></span>
+	<?php
+
+}
+
+add_action( 'hd_si_after_setting_label', 'hd_ssi_add_top_tip_icon', 10, 2 );

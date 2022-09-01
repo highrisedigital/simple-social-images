@@ -68,7 +68,7 @@ function hd_ssi_settings_page_output() {
 
 							?>
 
-							<tr valign="top" class="setting-type--<?php echo esc_attr( $setting['input_type'] ); ?>">
+							<tr valign="top" class="hd-ssi-setting hd-ssi-setting-type--<?php echo esc_attr( $setting['input_type'] ); ?>">
 
 								<th scope="row">
 
@@ -82,6 +82,13 @@ function hd_ssi_settings_page_output() {
 										<span class="label"><?php echo esc_html( $setting['label'] ); ?></span>
 										<?php
 
+									} elseif ( 'section' === $setting['input_type'] ) {
+
+										// output the section heading.
+										?>
+										<h2 class="hd-ssi-section-heading"><?php echo esc_html( $setting['label'] ); ?></h2>
+										<?php
+
 									} else { // setting type is not a checkbox.
 
 										// output the field label.
@@ -90,36 +97,55 @@ function hd_ssi_settings_page_output() {
 										<?php
 
 									}
+									
+									/**
+									 * Fire and action after the setting label.
+									 *
+									 * @hooked hd_ssi_add_top_tip_icon() - 10
+									 */
+									do_action( 'hd_si_after_setting_label', $setting, $value );
 
 									?>
 
 								</th>
 
-								<td>
+								<?php
+
+								// if the setting is not a section.
+								if ( 'section' !== $setting['input_type'] ) {
+
+									?>
+									<td>
+
+										<?php
+
+										/**
+										 * Fire a before setting action.
+										 */
+										do_action( 'hd_ssi_before_setting', $setting, $value );
+
+										/**
+										 * Create an action for this setting type
+										 * functions for output can be hooked to it
+										 */
+										do_action( 'hd_ssi_setting_type_' . $setting['input_type'], $setting, $value );
+
+										/**
+										 * Fire a after setting action.
+										 *
+										 * @hookedhd_ssi_output_setting_descriptions - 10
+										 */
+										do_action( 'hd_ssi_after_setting', $setting, $value );
+
+										?>
+
+										</td>
 
 									<?php
 
-									/**
-									 * Fire a before setting action.
-									 */
-									do_action( 'hd_ssi_before_setting', $setting, $value );
+								}
 
-									/**
-									 * Create an action for this setting type
-									 * functions for output can be hooked to it
-									 */
-									do_action( 'hd_ssi_setting_type_' . $setting['input_type'], $setting, $value );
-
-									/**
-									 * Fire a after setting action.
-									 *
-									 * @hookedhd_ssi_output_setting_descriptions - 10
-									 */
-									do_action( 'hd_ssi_after_setting', $setting, $value );
-
-									?>
-
-								</td>
+								?>
 
 							</tr>
 
