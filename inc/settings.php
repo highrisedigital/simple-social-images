@@ -557,6 +557,9 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 		
 		<?php
 
+		// create an array of gallery image ids that we can populate with known, valid images.
+		$gallery_images = array();
+
 		// if we have an image already.
 		if ( ! empty( $value ) ) {
 
@@ -565,9 +568,6 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 			
 			// if value is an array.
 			if ( is_array( $values ) && ! empty( $values ) ) {
-
-				// create an array of gallery image ids.
-				$gallery_images = array();
 
 				// loop through each image.
 				foreach ( $values as $image ) {
