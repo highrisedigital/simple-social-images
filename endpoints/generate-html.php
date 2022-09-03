@@ -10,9 +10,6 @@ if ( ! empty( $_GET['post_id'] ) ) {
 
 }
 
-// get the template.
-$template = hd_ssi_get_template();
-
 ?>
 <!doctype html>
 <html>

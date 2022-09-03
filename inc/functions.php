@@ -30,52 +30,46 @@ add_action( 'after_setup_theme', 'hd_ssi_add_image_size' );
  */
 function hd_ssi_output_template_custom_properties() {
 
-	?>
+	// get all of the registered settings.
+	$settings = hd_ssi_get_settings();
 
-	<style>
-		.ssi-template{
-			<?php
-				if ( ! empty( hd_ssi_get_text_color() ) ) {
-					echo "--ssi--text--color:" . esc_attr( hd_ssi_get_text_color() ) . ";";
-				}
+	// create an empty output var.
+	$output = '';
 
-				if ( ! empty(  hd_ssi_get_text_bg_color() ) ) {
-					echo "--ssi--text--background-color:" . esc_attr(  hd_ssi_get_text_bg_color() ) . ";";
-				}
+	// if we have settings to output custom variables for.
+	if ( ! empty( $settings ) ) {
 
-				if ( ! empty( hd_ssi_get_bg_color() ) ) {
-					echo "--ssi--background-color:" . esc_attr( hd_ssi_get_bg_color() ) . ";";
-				}
+		// loop through each setting.
+		foreach ( $settings as $setting ) {
 
-				if ( ! empty( hd_ssi_get_font_size() ) ) {
-					echo "--ssi--font-size:" . esc_attr( hd_ssi_get_font_size() ) . ";";
-				}
+			// if this setting does not have a custom property declaration.
+			if ( empty( $setting['custom_property'] ) ) {
+				continue; // move to the next setting.
+			}
 
-				if ( ! empty( hd_ssi_get_logo_size() ) ) {
-					echo "--ssi--logo--height:" . esc_attr( hd_ssi_get_logo_size() ) . ";";
-				}
+			// get the setting value.
+			$value = get_option( $setting['option_name'] );
 
-				if ( ! empty( hd_ssi_get_google_font_family() ) ) {
-					// using wp_kses_post as do not want to escape single quotes in the font family name.
-					echo "--ssi--font-family:" . wp_kses_post( hd_ssi_get_google_font_family() ) . ";";
-				}
-
-				if ( ! empty( hd_ssi_get_font_weight() ) ) {
-					echo "--ssi--font-weight:" . esc_attr( hd_ssi_get_font_weight() ) . ";";
-				}
-				
-				if ( ! empty( hd_ssi_get_font_style() ) ) {
-					echo "--ssi--font-style:" . esc_attr( hd_ssi_get_font_style() ) . ";";
-				}
-
-				if ( ! empty( hd_ssi_get_text_alignment() ) ) {
-					echo "--ssi--text-align:" . esc_attr( hd_ssi_get_text_alignment() ) . ";";
-				}
-			?>
+			// output the custom variable for this settings.
+			$output .= esc_attr( $setting['custom_property'] ) . ':' . esc_attr( $value ) . ';
+			';
+			
 		}
-	</style>
 
-	<?php
+	}
+
+	// if we have output
+	if ( ! empty( $output ) ) {
+
+		?>
+		<style>
+			.ssi-template {
+				<?php echo wp_kses_post( $output ); ?>
+			}
+		</style>
+		<?php
+
+	}
 
 }
 
@@ -302,24 +296,14 @@ add_action( 'wp_head', 'hd_ssi_render_tags' );
 /**
  * Builds an array of classes for the template wrapper and returns them as a string.
  *
- * @param  array $args An array of args for the function to use - see $defaults.
- * @return string      The classes to add to the template wrapper div.
+ * @return string The classes to add to the template wrapper div.
  */
 function hd_ssi_output_template_wrapper_classes() {
 
 	// create an array of wrapper classes.
 	$classes = array(
 		'ssi-template',
-		'ssi-template--' . hd_ssi_get_template( 'name' ),
 	);
-
-	// if the template is reversed.
-	if ( 1 === hd_ssi_is_template_reversed() ) {
-
-		// add a reversed class.
-		$classes[] = 'ssi-template--reverse';
-
-	}
 
 	// if we have a background color set.
 	if ( 1 === hd_ssi_has_background_color() ) {
@@ -329,38 +313,179 @@ function hd_ssi_output_template_wrapper_classes() {
 
 	}
 
-	// if we have a background color set.
-	if ( 1 === hd_ssi_has_text_background_color() ) {
-
-		// add a background color class.
-		$classes[] = 'ssi-template--has-text-bg-color';
-
-	}
-
-	// if we have a text color set.
-	if ( 1 === hd_ssi_has_text_color() ) {
-
-		// add a text color class.
-		$classes[] = 'ssi-template--has-text-color';
-
-	}
-
-	// get the selected template.
-	$template = hd_ssi_get_template();
-
-	// if the current template is from the plugin folder.
-	if ( ! str_contains( $template, HD_SSI_LOCATION ) ) {
-
-		// add a class indicating this is a custom template.
-		$classes[] = 'ssi-template--is-custom';
-
-	}
-
-	// add the text align class.
-	$classes[] = 'ssi-template--text-align--' . hd_ssi_get_text_alignment();
-
 	// allow template classes to be filtered.
 	$classes = apply_filters( 'hd_ssi_template_wrapper_classes', $classes );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
+ * Builds an array of classes for the template image and returns them as a string.
+ *
+ * @return string The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_image_classes() {
+
+	// create an array of classes.
+	$classes = array(
+		'ssi-template__image'
+	);
+
+	// get the image position setting.
+	$image_position = hd_ssi_get_image_position();
+
+	// if we have an image position.
+	if ( ! empty( $image_position ) ) {
+
+		// slipt the position result at the hyphen (-)
+		$image_position = explode( '-', $image_position );
+
+		// add classes for each position value.
+		$classes[] = 'position--' . $image_position[0];
+		$classes[] = 'position--' . $image_position[1];
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_image_classes', $classes );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
+ * Builds an array of classes for the template overlay and returns them as a string.
+ *
+ * @return string The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_overlay_classes() {
+
+	// create an array of classes.
+	$classes = array(
+		'ssi-template__overlay'
+	);
+
+	// get the overlay position setting.
+	$overlay_position = hd_ssi_get_overlay_position();
+
+	// if we have an overlay position.
+	if ( ! empty( $overlay_position ) ) {
+
+		// slipt the position result at the hyphen (-)
+		$overlay_position = explode( '-', $overlay_position );
+
+		// add classes for each position value.
+		$classes[] = 'position--' . $overlay_position[0];
+		$classes[] = 'position--' . $overlay_position[1];
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_overlay_classes', $classes );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
+ * Builds an array of classes for the template logo and returns them as a string.
+ *
+ * @return string The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_logo_classes() {
+
+	// create an array of classes.
+	$classes = array(
+		'ssi-template__logo'
+	);
+
+	// get the logo position setting.
+	$logo_position = hd_ssi_get_logo_position();
+
+	// if we have an logo position.
+	if ( ! empty( $logo_position ) ) {
+
+		// slipt the position result at the hyphen (-)
+		$logo_position = explode( '-', $logo_position );
+
+		// add classes for each position value.
+		$classes[] = 'position--' . $logo_position[0];
+		$classes[] = 'position--' . $logo_position[1];
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_logo_classes', $classes );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
+ * Builds an array of classes for the template title and returns them as a string.
+ *
+ * @return string The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_title_wrapper_classes() {
+
+	// create an array of classes.
+	$classes = array(
+		'ssi-template__title-wrapper'
+	);
+
+	// get the title position setting.
+	$title_position = hd_ssi_get_title_position();
+
+	// if we have an title position.
+	if ( ! empty( $title_position ) ) {
+
+		// slipt the position result at the hyphen (-)
+		$title_position = explode( '-', $title_position );
+
+		// add classes for each position value.
+		$classes[] = 'position--' . $title_position[0];
+		$classes[] = 'position--' . $title_position[1];
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_title_wrapper_classes', $classes );
+
+	// return the classes string;
+	return implode( ' ', $classes );
+
+}
+
+/**
+ * Builds an array of classes for the template title and returns them as a string.
+ *
+ * @return string The classes to add to the template wrapper div.
+ */
+function hd_ssi_output_template_title_classes() {
+
+	// create an array of classes.
+	$classes = array(
+		'ssi-template__title'
+	);
+
+	// get the title background type.
+	$title_bg_type = hd_ssi_get_title_background_type();
+
+	// if the background type is gradient.
+	if ( 'gradient' === $title_bg_type ) {
+
+		// add a class.
+		$classes[] = 'background--gradient--' . hd_ssi_get_title_background_gradient();
+
+	}
+
+	// allow template classes to be filtered.
+	$classes = apply_filters( 'hd_ssi_template_title_classes', $classes );
 
 	// return the classes string;
 	return implode( ' ', $classes );
@@ -419,9 +544,6 @@ function hd_ssi_render_template( $post_id = 0 ) {
 		'full'
 	);
 
-	// get the template.
-	$template = hd_ssi_get_template();
-
 	// if we have a logo.
 	if ( empty( $logo_url ) ) {
 
@@ -438,17 +560,24 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 	}
 
-	ob_start();
+	// set the template location to the plugin file.
+	$template = HD_SSI_LOCATION . '/templates/default.php';
 
-	// if our template exists.
-	if ( file_exists( $template ) ) {
+	// if the theme has a template that exists.
+	if ( file_exists( STYLESHEETPATH . '/ssi/template.php' ) ) {
 
-		// load the template markup, passing our args.
-		load_template( $template, true );
+		// set the template path to the theme.
+		$template = STYLESHEETPATH . '/ssi/template.php';
 
 	}
 
-	$template_markup = ob_get_clean();
+	ob_start();
+
+	// load the template markup, passing our args.
+	load_template( $template, true );
+
+	// get the template markup
+	$template_markup = apply_filters( 'hd_ssi_template_markup', ob_get_clean() );
 
 	// find all of the strings that need replacing. These are in square brackets.
 	preg_match_all( "/\[[^\]]*\]/", $template_markup, $matches );

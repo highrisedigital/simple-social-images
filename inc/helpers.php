@@ -186,53 +186,24 @@ function hd_ssi_get_settings() {
 }
 
 /**
- * Gets all of the available template locations.
- *
- * @param boolean $names False to return an array of template locations.
- *                       True to return an array of filenames only.
- * @return array         An array of template locations (default) or names.
+ * Returns an array of logo positions options.
  */
-function hd_ssi_get_templates() {
+function hd_ssi_get_position_options() {
 
-	// set the location of the templates.
-	$template_locations = apply_filters(
-		'hd_ssi_template_location',
+	return apply_filters(
+		'hd_ssi_position_options',
 		array(
-			HD_SSI_LOCATION . '/templates/',
-			STYLESHEETPATH . '/ssi/templates/',
+			'top-left'       => __( 'Top Left', 'simple-social-images' ),
+			'top-right'      => __( 'Top Right', 'simple-social-images' ),
+			'top-center'     => __( 'Top Center', 'simple-social-images' ),
+			'bottom-left'    => __( 'Bottom Left', 'simple-social-images' ),
+			'bottom-right'   => __( 'Bottom Right', 'simple-social-images' ),
+			'bottom-center'  => __( 'Bottom Center', 'simple-social-images' ),
+			'middle-left'    => __( 'Middle Left', 'simple-social-images' ),
+			'middle-right'   => __( 'Middle Right', 'simple-social-images' ),
+			'middle-center'  => __( 'Middle Center', 'simple-social-images' ),
 		)
-
 	);
-
-	// to store template names in.
-	$templates = array();
-
-	// if we have template paths.
-	if ( ! empty( $template_locations ) ) {
-
-		// loop through each template location.
-		foreach ( $template_locations as $template_location ) {
-
-			// get all of the template files locations.
-			$template_files = glob( $template_location . '*.html' );
-
-			// loop through the template files locations.
-			foreach( $template_files as $template_file ) {
-
-				// add this file to the array.
-				$templates[ $template_file ] = basename( $template_file, '.html' );
-
-			}
-
-		}
-
-	}
-
-	// sort the list numerically.
-	asort( $templates );
-
-	// return the templates.
-	return $templates;
 
 }
 
@@ -267,6 +238,114 @@ function hd_ssi_get_google_font_family() {
 	return apply_filters(
 		'hd_ssi_google_font_family',
 		$font_family
+	);
+
+}
+
+/**
+ * Gets the current image position.
+ */
+function hd_ssi_get_image_position() {
+
+	return apply_filters(
+		'hd_ssi_image_position',
+		get_option( 'hd_ssi_image_position' )
+	);
+
+}
+
+/**
+ * Gets the current image width.
+ */
+function hd_ssi_get_image_width() {
+
+	return apply_filters(
+		'hd_ssi_image_width',
+		get_option( 'hd_ssi_image_width' )
+	);
+
+}
+
+/**
+ * Gets the current image height.
+ */
+function hd_ssi_get_image_height() {
+
+	return apply_filters(
+		'hd_ssi_image_height',
+		get_option( 'hd_ssi_image_height' )
+	);
+
+}
+
+/**
+ * Gets the current image position.
+ */
+function hd_ssi_get_overlay_position() {
+
+	return apply_filters(
+		'hd_ssi_overlay_position',
+		get_option( 'hd_ssi_overlay_position' )
+	);
+
+}
+
+/**
+ * Gets the current overlay width.
+ */
+function hd_ssi_get_overlay_width() {
+
+	return apply_filters(
+		'hd_ssi_overlay_width',
+		get_option( 'hd_ssi_overlay_width' )
+	);
+
+}
+
+/**
+ * Gets the current overlay height.
+ */
+function hd_ssi_get_overlay_height() {
+
+	return apply_filters(
+		'hd_ssi_overlay_height',
+		get_option( 'hd_ssi_overlay_height' )
+	);
+
+}
+
+/**
+ * Gets the current overlay color.
+ */
+function hd_ssi_get_overlay_color() {
+
+	return apply_filters(
+		'hd_ssi_overlay_color',
+		get_option( 'hd_ssi_overlay_color' )
+	);
+
+}
+
+/**
+ * Gets the current overlay margin.
+ */
+function hd_ssi_get_overlay_margin() {
+
+	return apply_filters(
+		'hd_ssi_overlay_margin',
+		get_option( 'hd_ssi_overlay_margin' )
+	);
+
+}
+
+/**
+ * Gets the current overlay opacity.
+ */
+function hd_ssi_get_overlay_opacity() {
+
+	return apply_filters(
+		'hd_ssi_overlay_opacity',
+		absint( get_option( 'hd_ssi_overlay_opacity' ) ) / 100
 	);
 
 }
@@ -319,54 +398,25 @@ function hd_ssi_get_random_image_id() {
 }
 
 /**
- * Gets the current active template selected.
- *
- * @return string The template name.
- */
-function hd_ssi_get_template( $return = 'location' ) {
-
-	// get the template.
-	$template = get_option( 'hd_ssi_template' );
-
-	// if we are returning the name only.
-	if ( 'name' === $return ) {
-
-		// get the template file name.
-		$template = basename( $template );
-
-		// remove the file type.
-		$template = str_replace( '.html', '', $template );
-
-	}
-
-	return apply_filters(
-		'hd_ssi_template',
-		$template,
-		$return
-	);
-
-}
-
-/**
  * Gets the current title font size.
  */
-function hd_ssi_get_font_size() {
+function hd_ssi_get_title_font_size() {
 
 	return apply_filters(
-		'hd_ssi_font_size',
-		get_option( 'hd_ssi_font_size' )
+		'hd_ssi_title_font_size',
+		get_option( 'hd_ssi_title_font_size' )
 	);
 
 }
 
 /**
- * Gets the current title font weight.
+ * Gets the current title title weight.
  */
-function hd_ssi_get_font_weight() {
+function hd_ssi_get_title_weight() {
 
 	return apply_filters(
-		'hd_ssi_font_weight',
-		get_option( 'hd_ssi_font_weight' )
+		'hd_ssi_title_weight',
+		get_option( 'hd_ssi_title_weight' )
 	);
 
 }
@@ -374,11 +424,11 @@ function hd_ssi_get_font_weight() {
 /**
  * Gets the current title font style.
  */
-function hd_ssi_get_font_style() {
+function hd_ssi_get_title_style() {
 
 	return apply_filters(
-		'hd_ssi_font_style',
-		get_option( 'hd_ssi_font_style' )
+		'hd_ssi_title_style',
+		get_option( 'hd_ssi_title_style' )
 	);
 
 }
@@ -386,11 +436,107 @@ function hd_ssi_get_font_style() {
 /**
  * Gets the current title text alignment.
  */
-function hd_ssi_get_text_alignment() {
+function hd_ssi_get_title_alignment() {
 
 	return apply_filters(
-		'hd_ssi_text_align',
-		get_option( 'hd_ssi_text_align' )
+		'hd_ssi_title_align',
+		get_option( 'hd_ssi_title_align' )
+	);
+
+}
+
+/**
+ * Gets the current title width.
+ */
+function hd_ssi_get_title_width() {
+
+	return apply_filters(
+		'hd_ssi_title_width',
+		get_option( 'hd_ssi_title_width' )
+	);
+
+}
+
+/**
+ * Gets the current title margin.
+ */
+function hd_ssi_get_title_margin() {
+
+	return apply_filters(
+		'hd_ssi_title_margin',
+		get_option( 'hd_ssi_title_margin' )
+	);
+
+}
+
+/**
+ * Gets the current title text transform.
+ */
+function hd_ssi_get_title_text_transform() {
+
+	return apply_filters(
+		'hd_ssi_title_text_transform',
+		get_option( 'hd_ssi_title_text_transform' )
+	);
+
+}
+
+/**
+ * Gets the current active text color.
+ */
+function hd_ssi_get_title_color() {
+
+	return apply_filters(
+		'hd_ssi_title_color',
+		get_option( 'hd_ssi_title_color' )
+	);
+
+}
+
+/**
+ * Gets the current title background color.
+ */
+function hd_ssi_get_title_background_color() {
+
+	return apply_filters(
+		'hd_ssi_title_bg_color',
+		get_option( 'hd_ssi_title_bg_color' )
+	);
+
+}
+
+/**
+ * Gets the current title background type.
+ */
+function hd_ssi_get_title_background_type() {
+
+	return apply_filters(
+		'hd_ssi_title_background_type',
+		get_option( 'hd_ssi_title_background_type' )
+	);
+
+}
+
+/**
+ * Gets the current title background type.
+ */
+function hd_ssi_get_title_background_gradient() {
+
+	return apply_filters(
+		'hd_ssi_title_background_gradient',
+		get_option( 'hd_ssi_title_background_gradient' )
+	);
+
+}
+
+/**
+ * Gets the current title position.
+ */
+function hd_ssi_get_title_position() {
+
+	return apply_filters(
+		'hd_ssi_title_position',
+		get_option( 'hd_ssi_title_position' )
 	);
 
 }
@@ -408,41 +554,17 @@ function hd_ssi_get_placeholder_title() {
 }
 
 /**
- * Gets the current title text alignment.
- */
-function hd_ssi_is_template_reversed() {
-
-	return apply_filters(
-		'hd_ssi_template_reversed',
-		absint( get_option( 'hd_ssi_template_reversed' ) )
-	);
-
-}
-
-/**
- * Gets the current active text color.
- */
-function hd_ssi_get_text_color() {
-
-	return apply_filters(
-		'hd_ssi_text_color',
-		get_option( 'hd_ssi_text_color' )
-	);
-
-}
-
-/**
  * Checks whether a text colour has been set.
  *
  * @return integer 1 if a background colour is set and zero otherwise.
  */
-function hd_ssi_has_text_color() {
+function hd_ssi_has_title_color() {
 
 	// default to no background.
 	$output = 0;
 
 	// get the text color.
-	$text_color = hd_ssi_get_text_color();
+	$text_color = hd_ssi_get_title_color();
 
 	// if we have a text color set.
 	if ( ! empty( $text_color ) ) {
@@ -453,48 +575,20 @@ function hd_ssi_has_text_color() {
 	}
 
 	return apply_filters(
-		'hd_ssi_has_text_color',
+		'hd_ssi_has_title_color',
 		absint( $output )
 	);
 
 }
 
 /**
- * Gets the current active text background color.
+ * Gets the current active background color.
  */
-function hd_ssi_get_text_bg_color() {
+function hd_ssi_get_background_color() {
 
 	return apply_filters(
-		'hd_ssi_text_bg_color',
-		get_option( 'hd_ssi_text_bg_color' )
-	);
-
-}
-
-/**
- * Checks whether a background colour has been set.
- *
- * @return integer 1 if a background colour is set and zero otherwise.
- */
-function hd_ssi_has_text_background_color() {
-
-	// default to no text background.
-	$output = 0;
-
-	// get the text background color.
-	$text_bg_color = hd_ssi_get_text_bg_color();
-
-	// if we have a text background color set.
-	if ( ! empty( $text_bg_color ) ) {
-		
-		// set the output to true.
-		$output = 1;
-		
-	}
-
-	return apply_filters(
-		'hd_ssi_has_text_background_color',
-		absint( $output )
+		'hd_ssi_background_color',
+		get_option( 'hd_ssi_background_color' )
 	);
 
 }
@@ -560,6 +654,30 @@ function hd_ssi_get_logo_size() {
 	return apply_filters(
 		'hd_ssi_logo_size',
 		get_option( 'hd_ssi_logo_size' )
+	);
+
+}
+
+/**
+ * Gets the currently set logo position.
+ */
+function hd_ssi_get_logo_position() {
+
+	return apply_filters(
+		'hd_ssi_logo_position',
+		get_option( 'hd_ssi_logo_position' )
+	);
+
+}
+
+/**
+ * Gets the currently set logo position.
+ */
+function hd_ssi_get_logo_marginn() {
+
+	return apply_filters(
+		'hd_ssi_logo_margin',
+		get_option( 'hd_ssi_logo_margin' )
 	);
 
 }

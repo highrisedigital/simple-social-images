@@ -26,6 +26,8 @@ function hd_ssi_register_settings() {
 		'sanitize_callback' => null,
 		'show_in_rest'      => false,
 		'order'             => 10,
+		'default_value'     => '',
+		'custom_property'   => '',
 	);
 
 	// loop through each setting.
@@ -77,9 +79,6 @@ add_action( 'admin_init', 'hd_ssi_register_settings' );
  */
 function hd_ssi_register_default_settings( $settings ) {
 
-	// get the selected template.
-	$selected_template = hd_ssi_get_template();
-
 	$settings['license_key'] = array(
 		'option_name'    => 'hd_ssi_license_key',
 		'label'          => __( 'License Key', 'simple-social-images' ),
@@ -89,12 +88,12 @@ function hd_ssi_register_default_settings( $settings ) {
 	);
 
 	$settings['post_types'] = array(
-		'option_name'    => 'hd_ssi_post_types',
-		'label'          => __( 'Post Types', 'simple-social-images' ),
-		'description'    => __( 'Select the post types on which Simple Social Images will be activated and available on.' ),
-		'input_type'     => 'checkboxes',
-		'options'        => hd_ssi_get_site_post_types(),
-		'order'          => 20,
+		'option_name'     => 'hd_ssi_post_types',
+		'label'           => __( 'Post Types', 'simple-social-images' ),
+		'description'     => __( 'Select the post types on which Simple Social Images will be activated and available on.' ),
+		'input_type'      => 'checkboxes',
+		'options'         => hd_ssi_get_site_post_types(),
+		'order'           => 20,
 	);
 
 	$settings['ignore_featured_image'] = array(
@@ -104,75 +103,179 @@ function hd_ssi_register_default_settings( $settings ) {
 		'message'        => __( 'Ignore featured images.', 'simple-social-images' ),
 		'description'    => __( 'This will prevent the plugin from using a post\'s featured image in the generated social sharing image. Images will be chosen randomly from your uploaded background images below.', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
-		'order'          => 25,
-	);
-
-	$settings['template_section'] = array(
-		'option_name'    => 'hd_ssi_template_section',
-		'label'          => __( 'Template Settings', 'simple-social-images' ),
-		'input_type'     => 'section',
+		'default_value'  => 0,
 		'order'          => 30,
 	);
 
-	$settings['template'] = array(
-		'option_name'    => 'hd_ssi_template',
-		'label'          => __( 'Select a Template', 'simple-social-images' ),
-		'description'    => __( 'Choose which template to use. The template controls how your social sharing images will look. Please save these settings to force the preview to update the template.', 'simple-social-images' ),
-		'input_type'     => 'select',
-		'options'        => hd_ssi_get_templates(),
-		'order'          => 40,
+	$settings['background_color'] = array(
+		'option_name'     => 'hd_ssi_background_color',
+		'label'           => __( 'Background Color', 'simple-social-images' ),
+		'input_type'      => 'color_picker',
+		'custom_property' => '--ssi--background-color',
+		'order'           => 40,
 	);
 
-	// if the current template is from the plugin folder.
-	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
+	$settings['title_section'] = array(
+		'option_name'    => 'hd_ssi_title_section',
+		'label'          => __( 'Title settings', 'simple-social-images' ),
+		'input_type'     => 'section',
+		'order'          => 100,
+	);
 
-		$settings['template_reversed'] = array(
-			'option_name'    => 'hd_ssi_template_reversed',
-			'label'          => __( 'Reverse this template', 'simple-social-images' ),
-			'description'    => __( 'This will reverse the layout of the selected template, should the template support reversal.', 'simple-social-images' ),
-			'message'        => __( 'Reverse template', 'simple-social-images' ),
-			'input_type'     => 'checkbox',
-			'order'          => 45,
-		);
+	$settings['title_font_size'] = array(
+		'option_name'     => 'hd_ssi_title_font_size',
+		'label'           => __( 'Font Size', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '2',
+		'max'             => '8',
+		'step'            => '0.5',
+		'default_value'   => 4,
+		'custom_property' => '--ssi--title--font-size',
+		'order'           => 105,
+	);
 
-		$settings['colors_section'] = array(
-			'option_name'    => 'hd_ssi_colors_section',
-			'label'          => __( 'Color Settings', 'simple-social-images' ),
-			'input_type'     => 'section',
-			'order'          => 50,
-		);
-	
-		$settings['text_color'] = array(
-			'option_name'    => 'hd_ssi_text_color',
-			'label'          => __( 'Text Color', 'simple-social-images' ),
-			//'description'    => __( 'Enter or choose the text color.', 'simple-social-images' ),
-			'input_type'     => 'color_picker',
-			'order'          => 60,
-		);
-	
-		$settings['text_bg_color'] = array(
-			'option_name'    => 'hd_ssi_text_bg_color',
-			'label'          => __( 'Text Background Color', 'simple-social-images' ),
-			//'description'    => __( 'Enter or choose the text background color.', 'simple-social-images' ),
-			'input_type'     => 'color_picker',
-			'order'          => 70,
-		);
-	
-		$settings['bg_color'] = array(
-			'option_name'    => 'hd_ssi_bg_color',
-			'label'          => __( 'Background Color', 'simple-social-images' ),
-			//'description'    => __( 'Enter or choose the background color.', 'simple-social-images' ),
-			'input_type'     => 'color_picker',
-			'order'          => 80,
-		);
-		
-	}
+	$settings['title_width'] = array(
+		'option_name'     => 'hd_ssi_title_width',
+		'label'           => __( 'Width', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '1',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value'   => 100,
+		'custom_property' => '--ssi--title--width',
+		'order'           => 110,
+	);
+
+	$settings['title_align'] = array(
+		'option_name'       => 'hd_ssi_title_align',
+		'label'             => __( 'Alignment', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'default' => __( 'Default', 'simple-social-images' ),
+			'left'    => __( 'Left', 'simple-social-images' ),
+			'right'   => __( 'Right', 'simple-social-images' ),
+			'center'  => __( 'Center', 'simple-social-images' ),
+		),
+		'custom_property'   => '--ssi--title--text-align',
+		'default_value'     => 'default',
+		'order'             => 115,
+	);
+
+	$settings['title_weight'] = array(
+		'option_name'       => 'hd_ssi_title_weight',
+		'label'             => __( 'Weight', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'100' => __( '100 - Thin', 'simple-social-images' ),
+			'200' => '200',
+			'300' => '300',
+			'400' => __( '400 - Regular', 'simple-social-images' ),
+			'500' => '500',
+			'600' => '600',
+			'700' => __( '700 - Bold', 'simple-social-images' ),
+			'800' => '800',
+			'900' => __( '900 - Heavy', 'simple-social-images' ),
+		),
+		'custom_property'   => '--ssi--title--font-weight',
+		'default_value'     => '400',
+		'order'             => 120,
+	);
+
+	$settings['title_style'] = array(
+		'option_name'       => 'hd_ssi_title_style',
+		'label'             => __( 'Style', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'normal' => __( 'Normal', 'simple-social-images' ),
+			'italic' => __( 'Italic', 'simple-social-images' ),
+		),
+		'custom_property'   => '--ssi--title--font-style',
+		'default_value'     => 'normal',
+		'order'             => 125,
+	);
+
+	$settings['title_text_transform'] = array(
+		'option_name'       => 'hd_ssi_title_text_transform',
+		'label'             => __( 'Text Transform', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'default'   => __( 'Default', 'simple-social-images' ),
+			'uppercase' => __( 'Uppercase', 'simple-social-images' ),
+		),
+		'custom_property'   => '--ssi--title--text-transform',
+		'default_value'     => 'default',
+		'order'             => 130,
+	);
+
+	$settings['title_margin'] = array(
+		'option_name'       => 'hd_ssi_title_margin',
+		'label'             => __( 'Margin', 'simple-social-images' ),
+		'input_type'        => 'range',
+		'min'               => '0',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--margin',
+		'default_value'     => '0',
+		'order'             => 135,
+	);
+
+	$settings['title_color'] = array(
+		'option_name'       => 'hd_ssi_title_color',
+		'label'             => __( 'Color', 'simple-social-images' ),
+		'input_type'        => 'color_picker',
+		'custom_property'   => '--ssi--title--color',
+		'order'             => 140,
+	);
+
+	$settings['title_bg_color'] = array(
+		'option_name'       => 'hd_ssi_title_bg_color',
+		'label'             => __( 'Background Color', 'simple-social-images' ),
+		'input_type'        => 'color_picker',
+		'custom_property'   => '--ssi--title--background-color',
+		'order'             => 145,
+	);
+
+	$settings['title_background_type'] = array(
+		'option_name'       => 'hd_ssi_title_background_type',
+		'label'             => __( 'Background Type', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'block'    => __( 'Block', 'simple-social-images' ),
+			'inline'   => __( 'Inline', 'simple-social-images' ),
+			'gradient' => __( 'Gradient', 'simple-social-images' ),
+		),
+		'default_value'     => 'block',
+		'order'             => 150,
+	);
+
+	$settings['title_background_gradient'] = array(
+		'option_name'       => 'hd_ssi_title_background_gradient',
+		'label'             => __( 'Background Gradient', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => array(
+			'top'    => __( 'Top', 'simple-social-images' ),
+			'left'   => __( 'Left', 'simple-social-images' ),
+			'bottom' => __( 'Bottom', 'simple-social-images' ),
+			'right'  => __( 'Right', 'simple-social-images' ),
+		),
+		'default_value'     => 'bottom',
+		'order'             => 155,
+	);
+
+	$settings['title_position'] = array(
+		'option_name'   => 'hd_ssi_title_position',
+		'label'         => __( 'Position', 'simple-social-images' ),
+		'input_type'    => 'select',
+		'default_value' => 'bottom-center',
+		'options'       => hd_ssi_get_position_options(),
+		'order'         => 155,
+	);
 
 	$settings['logo_section'] = array(
-		'option_name' => 'hd_ssi_logo_section',
-		'label'       => __( 'Logo Settings', 'simple-social-images' ),
-		'input_type'  => 'section',
-		'order'       => 90,
+		'option_name'       => 'hd_ssi_logo_section',
+		'label'             => __( 'Logo Settings', 'simple-social-images' ),
+		'input_type'        => 'section',
+		'order'             => 200,
 	);
 
 	$settings['logo'] = array(
@@ -180,30 +283,47 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'       => __( 'Logo', 'simple-social-images' ),
 		'description' => __( 'Upload your logo to display on your template. Each template may place the logo in a slightly different place. The text alignment setting below, sometimes changes the logo position.', 'simple-social-images' ),
 		'input_type'  => 'image',
-		'order'       => 100,
+		'order'       => 205,
 	);
 
-	// if the current template is from the plugin folder.
-	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
+	$settings['logo_position'] = array(
+		'option_name'   => 'hd_ssi_logo_position',
+		'label'         => __( 'Position', 'simple-social-images' ),
+		'input_type'    => 'select',
+		'default_value' => 'top-left',
+		'options'       => hd_ssi_get_position_options(),
+		'order'         => 210,
+	);
 
-		$settings['logo_size'] = array(
-			'option_name' => 'hd_ssi_logo_size',
-			'label'       => __( 'Size', 'simple-social-images' ),
-			'description' => __( 'Click and drag the range slider to change the size of you logo.', 'simple-social-images' ),
-			'input_type'  => 'range',
-			'min'         => '4',
-			'max'         => '12',
-			'step'        => '0.1', 
-			'order'       => 110,
-		);
+	$settings['logo_size'] = array(
+		'option_name'     => 'hd_ssi_logo_size',
+		'label'           => __( 'Size', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '2',
+		'max'             => '8',
+		'step'            => '0.5',
+		'custom_property' => '--ssi--logo--size',
+		'default_value'   => '4',
+		'order'           => 215,
+	);
 
-	}
+	$settings['logo_margin'] = array(
+		'option_name'     => 'hd_ssi_logo_margin',
+		'label'           => __( 'Margin', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '0',
+		'custom_property' => '--ssi--logo--margin',
+		'order'           => 220,
+	);
 
-	$settings['background_images_section'] = array(
-		'option_name' => 'hd_ssi_background_images_section',
-		'label'       => __( 'Background Images Settings', 'simple-social-images' ),
-		'input_type'  => 'section',
-		'order'       => 120,
+	$settings['image_section'] = array(
+		'option_name'       => 'hd_ssi_image_section',
+		'label'             => __( 'Image Settings', 'simple-social-images' ),
+		'input_type'        => 'section',
+		'order'             => 300,
 	);
 
 	$settings['background_images'] = array(
@@ -211,100 +331,130 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'       => __( 'Add Images', 'simple-social-images' ),
 		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your post does not have a featured image.', 'simple-social-images' ),
 		'input_type'  => 'gallery',
-		'order'       => 130,
+		'order'       => 305,
 	);
 
-	// if the current template is from the plugin folder.
-	if ( str_contains( $selected_template, HD_SSI_LOCATION ) ) {
+	$settings['image_position'] = array(
+		'option_name'       => 'hd_ssi_image_position',
+		'label'             => __( 'Position', 'simple-social-images' ),
+		'input_type'        => 'select',
+		'options'           => hd_ssi_get_position_options(),
+		'order'             => 310,
+	);
 
-		$settings['fonts_section'] = array(
-			'option_name' => 'hd_ssi_font_sizes_section',
-			'label'       => __( 'Font Settings', 'simple-social-images' ),
-			'input_type'  => 'section',
-			'order'       => 140,
-		);
+	$settings['image_width'] = array(
+		'option_name'     => 'hd_ssi_image_width',
+		'label'           => __( 'Width', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '1',
+		'max'             => '100',
+		'step'            => '1',
+		'custom_property' => '--ssi--image--width',
+		'default_value;'  => '10',
+		'order'           => 315,
+	);
 
-		$settings['font_size'] = array(
-			'option_name' => 'hd_ssi_font_size',
-			'label'       => __( 'Font Size', 'simple-social-images' ),
-			//'description' => __( 'Select a size for the font.', 'simple-social-images' ),
-			'input_type'  => 'range',
-			'min'         => '2',
-			'max'         => '8',
-			'step'        => '0.5',
-			'order'       => 150,
-		);
+	$settings['image_height'] = array(
+		'option_name'     => 'hd_ssi_image_height',
+		'label'           => __( 'Height', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '1',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '100',
+		'custom_property' => '--ssi--image--height',
+		'order'           => 320,
+	);
 
-		$settings['font_weight'] = array(
-			'option_name'       => 'hd_ssi_font_weight',
-			'label'             => __( 'Font Weight', 'simple-social-images' ),
-			//'description'       => __( 'Choose the font weight to use on your selected template.', 'simple-social-images' ),
-			'input_type'        => 'select',
-			'options'           => array(
-				'100' => __( '100 - Thin', 'simple-social-images' ),
-				'200' => '200',
-				'300' => '300',
-				'400' => __( '400 - Regular', 'simple-social-images' ),
-				'500' => '500',
-				'600' => '600',
-				'700' => __( '700 - Bold', 'simple-social-images' ),
-				'800' => '800',
-				'900' => __( '900 - Heavy', 'simple-social-images' ),
-			),
-			'order'             => 160,
-		);
+	$settings['image_margin'] = array(
+		'option_name'     => 'hd_ssi_image_margin',
+		'label'           => __( 'Margin', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '0',
+		'custom_property' => '--ssi--image--margin',
+		'order'           => 325,
+	);
 
-		$settings['font_style'] = array(
-			'option_name'       => 'hd_ssi_font_style',
-			'label'             => __( 'Font Style', 'simple-social-images' ),
-			//'description'       => __( 'Choose the font style to use on your selected template.', 'simple-social-images' ),
-			'input_type'        => 'select',
-			'options'           => array(
-				'normal' => __( 'Normal', 'simple-social-images' ),
-				'italic' => __( 'Italic', 'simple-social-images' ),
-			),
-			'order'             => 170,
-		);
+	$settings['overlay_section'] = array(
+		'option_name'       => 'hd_ssi_overlay_section',
+		'label'             => __( 'Overlay Settings', 'simple-social-images' ),
+		'input_type'        => 'section',
+		'order'             => 400,
+	);
 
-		$settings['text_align'] = array(
-			'option_name'       => 'hd_ssi_text_align',
-			'label'             => __( 'Text Alignment', 'simple-social-images' ),
-			'description'       => __( 'Choose how to align the text in your template. This can effect the placement of your logo, depending on the selected template.', 'simple-social-images' ),
-			'input_type'        => 'select',
-			'options'           => array(
-				'default' => __( 'Default', 'simple-social-images' ),
-				'left'    => __( 'Left', 'simple-social-images' ),
-				'right'   => __( 'Right', 'simple-social-images' ),
-				'center'  => __( 'Center', 'simple-social-images' ),
-			),
-			'order'             => 180,
-		);
+	$settings['overlay_position'] = array(
+		'option_name'     => 'hd_ssi_overlay_position',
+		'label'           => __( 'Position', 'simple-social-images' ),
+		'input_type'      => 'select',
+		'default_value;'  => 'top-left',
+		'options'         => hd_ssi_get_position_options(),
+		'order'           => 405,
+	);
 
-		$settings['google_font_url'] = array(
-			'option_name'       => 'hd_ssi_google_font_url',
-			'label'             => __( 'Google Font URL', 'simple-social-images' ),
-			'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
-			'input_type'        => 'text',
-			'sanitize_callback' => 'sanitize_url',
-			'order'             => 190,
-		);
+	$settings['overlay_width'] = array(
+		'option_name'     => 'hd_ssi_overlay_width',
+		'label'           => __( 'Width', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '100',
+		'custom_property' => '--ssi--overlay--width',
+		'order'           => 410,
+	);
 
-		$settings['google_font_family'] = array(
-			'option_name' => 'hd_ssi_google_font_family',
-			'label'       => __( 'Google Font Family', 'simple-social-images' ),
-			'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
-			'input_type'  => 'text',
-			'order'       => 200,
-		);
+	$settings['overlay_height'] = array(
+		'option_name'     => 'hd_ssi_overlay_height',
+		'label'           => __( 'Height', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '100',
+		'custom_property' => '--ssi--overlay--height',
+		'order'           => 415,
+	);
 
-		$settings['placeholder_title'] = array(
-			'option_name' => 'hd_ssi_placeholder_title',
-			'label'       => __( 'Placeholder Title', 'simple-social-images' ),
-			'input_type'  => 'hidden',
-			'order'       => 900,
-		);
+	$settings['overlay_color'] = array(
+		'option_name'    => 'hd_ssi_overlay_color',
+		'label'          => __( 'Color', 'simple-social-images' ),
+		'input_type'     => 'color_picker',
+		'order'          => 420,
+	);
 
-	}
+	$settings['overlay_margin'] = array(
+		'option_name'     => 'hd_ssi_overlay_margin',
+		'label'           => __( 'Margin', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '0',
+		'custom_property' => '--ssi--overlay--margin',
+		'order'           => 425,
+	);
+
+	$settings['overlay_opacity'] = array(
+		'option_name'     => 'hd_ssi_overlay_opacity',
+		'label'           => __( 'Opacity', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '0',
+		'max'             => '100',
+		'step'            => '1',
+		'default_value;'  => '0',
+		'custom_property' => '--ssi--overlay--opacity',
+		'order'           => 430,
+	);
+
+	$settings['placeholder_title'] = array(
+		'option_name' => 'hd_ssi_placeholder_title',
+		'label'       => __( 'Placeholder Title', 'simple-social-images' ),
+		'input_type'  => 'hidden',
+		'order'       => 1000,
+	);
 
 	// return the registered settings array.
 	return $settings;
@@ -640,8 +790,8 @@ add_action( 'hd_ssi_setting_type_gallery', 'hd_ssi_setting_input_type_gallery', 
 function hd_ssi_setting_input_type_range( $setting, $value ) {
 
 	// defaults for min, max and step.
-	$min = '1';
-	$max = '20';
+	$min = '0';
+	$max = '100';
 	$step = '1';
 
 	// if we have a max.

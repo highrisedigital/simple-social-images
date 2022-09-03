@@ -44,7 +44,7 @@ function hd_ssi_settings_page_output() {
 			settings_fields( 'hd_ssi_settings' );
 
 			// get the registered settings for this settings page.
-			$settings =hd_ssi_get_settings();
+			$settings = hd_ssi_get_settings();
 
 			// check we have registered settings.
 			if ( ! empty( $settings ) ) {

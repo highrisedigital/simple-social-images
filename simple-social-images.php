@@ -41,75 +41,32 @@ function hd_ssi_on_activation() {
 	// store the plugin version number on activation.
 	update_option( 'hd_ssi_version', HD_SSI_VERSION );
 
-	// if we have no template saved already.
-	if ( empty( hd_ssi_get_template() ) ) {
-
-		// set the template.
-		update_option( 'hd_ssi_template', HD_SSI_LOCATION . '/templates/1.html' );
-
-	}
-
-	// if we have no text color.
-	if ( empty( hd_ssi_get_text_color() ) ) {
-
-		// set the default text color.
-		update_option( 'hd_ssi_text_color', '#FFFFFF' );
-
-	}
-
-	// if we have no text bg color.
-	if ( empty( hd_ssi_get_text_bg_color() ) ) {
-
-		// set the default text bg color.
-		update_option( 'hd_ssi_text_bg_color', '#B108AD' );
-
-	}
-
-	// if we have no bg color.
-	if ( empty( hd_ssi_get_bg_color() ) ) {
-
-		// set the default bg color.
-		update_option( 'hd_ssi_bg_color', '#FB2767' );
-
-	}
-
-	// if we have no font weight.
-	if ( empty( hd_ssi_get_font_weight() ) ) {
-
-		// set the default bg color.
-		update_option( 'hd_ssi_font_weight', '400' );
-
-	}
-
-	// if we have no font size.
-	if ( empty( hd_ssi_get_font_size() ) ) {
-
-		// set the default bg color.
-		update_option( 'hd_ssi_font_size', '4' );
-
-	}
-	
-	// if we have no font style.
-	if ( empty( hd_ssi_get_font_style() ) ) {
-
-		// set the default bg color.
-		update_option( 'hd_ssi_font_style', 'normal' );
-
-	}
-
-	// if we have no font style.
-	if ( empty( hd_ssi_get_text_alignment() ) ) {
-
-		// set the default bg color.
-		update_option( 'hd_ssi_text_align', 'default' );
-
-	}
-
 	// add the option to redirect the user to settings.
 	update_option( 'hd_ssi_activation_redirection', true );
 
 	// add the option to force a permalink refresh.
 	update_option( 'hd_ssi_plugin_permalinks_flushed', 0 );
+
+	// get all of the registered settings.
+	$settings = hd_ssi_get_settings();
+
+	// if we have settings.
+	if ( ! empty( $settings ) ) {
+
+		// loop through each settings.
+		foreach ( $settings as $setting ) {
+
+			// if this setting does not have a default value.
+			if ( empty( $setting['default_value'] ) ) {
+				continue;
+			}
+
+			// create the default value.
+			update_option( $setting['option_name'], $setting['default_value'] );
+
+		}
+
+	}
 
 }
 
