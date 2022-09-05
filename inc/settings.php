@@ -475,7 +475,7 @@ function hd_ssi_setting_input_type_text( $setting, $value ) {
 	// handle output for a text input.
 	?>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--text" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--text" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -494,7 +494,7 @@ function hd_ssi_setting_input_type_textarea( $setting, $value ) {
 	// handle output for a text input.
 	?>
 
-	<textarea name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--textarea" value="<?php echo esc_attr( $value ); ?>"></textarea>
+	<textarea name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--textarea" value="<?php echo esc_attr( $value ); ?><?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?>"></textarea>
 
 	<?php
 
@@ -513,7 +513,7 @@ function hd_ssi_setting_input_type_hidden( $setting, $value ) {
 	// handle output for a hidden input.
 	?>
 
-	<input type="hidden" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hidden hd-ssi-input hd-ssi-input--hidden" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="hidden" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hidden hd-ssi-input hd-ssi-input--hidden" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -532,7 +532,7 @@ function hd_ssi_setting_input_type_select( $setting, $value ) {
 	// handle the output for a select input type setting.
 	?>
 
-	<select name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--select">
+	<select name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--select"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?>>
 
 		<?php
 
@@ -573,7 +573,7 @@ function hd_ssi_setting_input_type_checkbox( $setting, $value ) {
 	?>
 
 	<label for="<?php echo esc_attr( $setting['option_name'] ); ?>">
-		<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="1" <?php checked( $value, 1 ); ?> />
+		<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="1" <?php checked( $value, 1 ); ?><?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 		<span class="hd-ssi-input-message"><?php echo wp_kses_post( $setting['message'] ); ?></span>
 	</label>
 
@@ -636,7 +636,7 @@ function hd_ssi_setting_input_type_color_picker( $setting, $value ) {
 	// handle output for a text input.
 	?>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--color-picker" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--color-picker" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -683,7 +683,7 @@ function hd_ssi_setting_input_type_image( $setting, $value ) {
 
 	</div>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--image" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<a href="#" class="button-secondary hd-ssi-image-button"><?php esc_html_e( 'Upload/Choose Image', 'simple-social-images' ); ?></a>
 
@@ -772,7 +772,7 @@ function hd_ssi_setting_input_type_gallery( $setting, $value ) {
 
 	</div>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( implode( ',', $gallery_images ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>-input" class="regular-text hd-ssi-input hd-ssi-input--gallery" value="<?php echo esc_attr( implode( ',', $gallery_images ) ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<a href="#" class="button-secondary hd-ssi-gallery-button"><?php esc_html_e( 'Upload/Choose Images', 'simple-social-images' ); ?></a>
 
@@ -813,7 +813,7 @@ function hd_ssi_setting_input_type_range( $setting, $value ) {
 	// handle output for a range input.
 	?>
 
-	<input type="range" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--range" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="<?php echo esc_attr( $step ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="range" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text hd-ssi-input hd-ssi-input--range" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="<?php echo esc_attr( $step ); ?>" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -861,7 +861,7 @@ function hd_ssi_setting_input_type_license( $setting, $value ) {
 
 	?>
 
-	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" value="<?php echo esc_attr( $value ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -939,3 +939,33 @@ function hd_ssi_add_top_tip_icon( $setting, $value ) {
 }
 
 add_action( 'hd_si_after_setting_label', 'hd_ssi_add_top_tip_icon', 10, 2 );
+
+/**
+ * Outputs any data attributes add to settings.
+ *
+ * @param array $settings The array of args for this setting.
+ */
+function hd_ssi_output_setting_data_attributes( $setting ) {
+
+	// if the setting has no data attributes.
+	if ( empty( $setting['data_attributes'] ) ) {
+		return '';
+	}
+
+	// create an output var.
+	$output = '';
+
+	// loop through each attribute.
+	foreach ( $setting['data_attributes'] as $attr_name => $attr_value ) {
+		
+		$output .= 'data-' . $attr_name . '="' . $attr_value . '" ';
+
+	}
+
+	// trim any trailing space off the output.
+	$output = trim( $output );
+
+	// return the output.
+	return $output;
+
+}
