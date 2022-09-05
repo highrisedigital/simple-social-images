@@ -47,9 +47,6 @@
 					// update the custom property.
 					document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
 
-					// remove the template class.
-					document.querySelector(".ssi-template").classList.remove('ssi-template--has-text-bg-color');
-
 				}
 
 			}
@@ -229,52 +226,6 @@
 
 	/* Live preview settings */
 
-	/* Template choice */
-	var templateChoice = document.querySelector("#hd_ssi_template");
-
-	if ( templateChoice ) {
-
-		templateChoiceInitialValue = templateChoice.value;
-
-		templateChoice.addEventListener("change", function() {
-
-			templateChangeNotice = document.getElementById('ssi-template--template-change-notice');
-
-			if( templateChangeNotice ) {
-			 	
-				templateChangeNotice.remove(); // Removes the div with the 'ssi-template--tmeplate-change-notice' id
-
-			}
-
-			if ( templateChoiceInitialValue !=  templateChoice.value ) {
-
-				templateChoice.insertAdjacentHTML('afterend', '<span id="ssi-template--template-change-notice" class="ssi-template--template-change-notice"><strong><input type="submit" value="Save changes" class="button-secondary" /> to update the template.</strong></span>');
-
-			}
-			
-		});
-
-	}
-
-	/* Template reverse */
-	var templateReverse = document.querySelector("#hd_ssi_template_reversed");
-
-	if ( templateReverse ) {
-
-		templateReverse.addEventListener("change", function() {
-		
-			var template = document.querySelector(".ssi-template");
-
-			if ( templateReverse.checked ) {
-				template.classList.add('ssi-template--reverse');
-			} else {
-				template.classList.remove('ssi-template--reverse');
-			}		
-			
-		});
-
-	}
-
 	/* Logo size */
 	var logoSize = document.querySelector("#hd_ssi_logo_size");
 
@@ -333,9 +284,6 @@
 			// update the color preview background color.
 			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
-			// add the template class.
-			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-bg-color');
-
 		}
 	});
 
@@ -370,6 +318,36 @@
 		}
 	});
 
+
+
+	// for each input
+	$('.hd-ssi-input').each( function(){
+
+		// if the custom property data attribute is present.
+		if (this.hasAttribute("data-custom-property")) {
+
+			// get the custom property.
+			var thisCustomProperty = $(this).data('custom-property');
+			
+			// when this input changes...
+			this.addEventListener("change", function() {
+
+				console.log('thisCustomProperty = ' + thisCustomProperty);
+				console.log('this.value = ' + this.value);
+				
+
+				// update the custom property.
+				document.querySelector(".ssi-template").style.setProperty(thisCustomProperty, this.value);
+
+			});
+		}
+
+	});
+		
+
+
+
+
 	$('body').on('propertychange change click keyup input paste', '#hd_ssi_bg_color', function(){
 
 		// get the current value.
@@ -385,55 +363,6 @@
 
 	});
 
-	
-	/* Font size */
-	var fontSize = document.querySelector("#hd_ssi_font_size");
-
-	if ( fontSize ) {
-		fontSize.addEventListener("change", function() {
-			document.querySelector(".ssi-template").style.setProperty("--ssi--font-size", this.value);
-		});
-	}
-
-	/* Font weight */
-	var fontWeight = document.querySelector("#hd_ssi_font_weight");
-
-	if ( fontWeight ) {
-		fontWeight.addEventListener("change", function() {
-			document.querySelector(".ssi-template").style.setProperty("--ssi--font-weight", this.value);
-		});
-	}
-
-	/* Font style */
-	var fontStyle = document.querySelector("#hd_ssi_font_style");
-
-	if ( fontStyle ) {
-		fontStyle.addEventListener("change", function() {
-			document.querySelector(".ssi-template").style.setProperty("--ssi--font-style", this.value);
-		});
-	}
-
-
-	/* Text align */
-	var textAlign = document.querySelector("#hd_ssi_text_align");
-
-	if ( textAlign ) {
-
-		textAlign.addEventListener("change", function() {
-
-			textAlign.addEventListener("change", function() {
-				document.querySelector(".ssi-template").style.setProperty("--ssi--text-align", this.value);
-			});
-		
-			var template = document.querySelector(".ssi-template");
-			
-			template.classList.remove('ssi-template--text-align--left', 'ssi-template--text-align--center', 'ssi-template--text-align--right');
-			
-			template.classList.add('ssi-template--text-align--' + this.value);
-			
-		});
-
-	}
 
 	/* Logo file */
 
