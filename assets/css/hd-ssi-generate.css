@@ -50,7 +50,7 @@ body {
 	text-align: var(--ssi--title--text-align);
 }
 
-.ssi-template__title {
+.ssi-template .ssi-template__title {
 	color: var(--ssi--title--color);
 	background-color: var(--ssi--title--background-color);
 	font-size: calc(
@@ -132,7 +132,7 @@ body {
 	padding: .5em;
 }
 
-[class*="background--gradient"] {
+.background--gradient {
 	background: linear-gradient(
 		to var(--background--gradient--direction),
 		#00000000,
