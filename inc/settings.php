@@ -422,6 +422,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name'    => 'hd_ssi_overlay_color',
 		'label'          => __( 'Color', 'simple-social-images' ),
 		'input_type'     => 'color_picker',
+		'custom_property' => '--ssi--overlay--background-color',
 		'order'          => 420,
 	);
 
