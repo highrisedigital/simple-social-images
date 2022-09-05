@@ -476,6 +476,9 @@ function hd_ssi_output_template_title_classes() {
 	// get the title background type.
 	$title_bg_type = hd_ssi_get_title_background_type();
 
+	// add the background type class.
+	$classes[] = 'background--' . $title_bg_type;
+
 	// if the background type is gradient.
 	if ( 'gradient' === $title_bg_type ) {
 
