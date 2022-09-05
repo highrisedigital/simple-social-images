@@ -81,10 +81,10 @@ body {
 	display: block;
 	position: absolute;
 	width: calc(var(--ssi--overlay--width) * var(--ssi-template--unit));
-	height: calc(var(--ssi--overlay--height) * var(--ssi-template--unit));
+	height: calc(var(--ssi--overlay--height) * 1%);
 	margin: calc(var(--ssi--overlay--margin) * var(--ssi-template--unit));
 	background-color: var(--ssi--overlay--background-color);
-	opacity: var(--ssi--overlay--opacity);
+	opacity: calc(var(--ssi--overlay--opacity) / 100);
 }
 
 .position--top {
@@ -132,7 +132,7 @@ body {
 	padding: .5em;
 }
 
-.background--gradient {
+.ssi-template .background--gradient {
 	background: linear-gradient(
 		to var(--background--gradient--direction),
 		#00000000,
