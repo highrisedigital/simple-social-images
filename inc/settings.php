@@ -349,9 +349,12 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'           => __( 'Size', 'simple-social-images' ),
 		'input_type'      => 'range',
 		'min'             => '2',
-		'max'             => '8',
+		'max'             => '20',
 		'step'            => '0.5',
-		'custom_property' => '--ssi--logo--size',
+		'custom_property' => '--ssi--logo--height',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--height',
+		),
 		'default_value'   => '4',
 		'order'           => 215,
 	);
@@ -499,6 +502,9 @@ function hd_ssi_register_default_settings( $settings ) {
 		'step'            => '1',
 		'default_value;'  => '0',
 		'custom_property' => '--ssi--overlay--margin',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--margin',
+		),
 		'order'           => 420,
 	);
 
