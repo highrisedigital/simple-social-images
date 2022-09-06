@@ -340,11 +340,11 @@ function hd_ssi_output_template_image_classes() {
 	if ( ! empty( $image_position ) ) {
 
 		// slipt the position result at the hyphen (-)
-		$image_position = explode( '-', $image_position );
+		//$image_position = explode( '-', $image_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $image_position[0];
-		$classes[] = 'position--' . $image_position[1];
+		$classes[] = 'position--' . $image_position;
+		//$classes[] = 'position--' . $image_position[1];
 
 	}
 
@@ -375,11 +375,11 @@ function hd_ssi_output_template_overlay_classes() {
 	if ( ! empty( $overlay_position ) ) {
 
 		// slipt the position result at the hyphen (-)
-		$overlay_position = explode( '-', $overlay_position );
+		//$overlay_position = explode( '-', $overlay_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $overlay_position[0];
-		$classes[] = 'position--' . $overlay_position[1];
+		$classes[] = 'position--' . $overlay_position;
+		//$classes[] = 'position--' . $overlay_position[1];
 
 	}
 
@@ -410,11 +410,11 @@ function hd_ssi_output_template_logo_classes() {
 	if ( ! empty( $logo_position ) ) {
 
 		// slipt the position result at the hyphen (-)
-		$logo_position = explode( '-', $logo_position );
+		// $logo_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $logo_position[0];
-		$classes[] = 'position--' . $logo_position[1];
+		$classes[] = 'position--' . $logo_position;
+		//$classes[] = 'position--' . $logo_position[1];
 
 	}
 
@@ -445,11 +445,11 @@ function hd_ssi_output_template_title_wrapper_classes() {
 	if ( ! empty( $title_position ) ) {
 
 		// slipt the position result at the hyphen (-)
-		$title_position = explode( '-', $title_position );
+		//$title_position = explode( '-', $title_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $title_position[0];
-		$classes[] = 'position--' . $title_position[1];
+		$classes[] = 'position--' . $title_position;
+		//$classes[] = 'position--' . $title_position[1];
 
 	}
 

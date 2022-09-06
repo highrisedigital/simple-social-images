@@ -340,7 +340,36 @@
 				document.querySelector(".ssi-template").style.setProperty(thisCustomProperty, this.value);
 
 			});
+
 		}
+
+		// if the custom property data attribute is present.
+		if (this.hasAttribute("data-modifier-class")) {
+
+			// get the target element.
+			var theTargetElementClass = $(this).data('target-class');
+
+			// get the modifier class.
+			var thisModifierClass = $(this).data('modifier-class');
+
+			// when this input changes...
+			this.addEventListener("change", function() {
+
+				console.log('theTargetElementClass = ' + theTargetElementClass);
+				console.log('thisModifierClass = ' + thisModifierClass);
+				console.log('this.value = ' + this.value);
+
+				// remove all classes that start with the modifier.
+				var prefix = thisModifierClass;
+				var classes = $('.' + theTargetElementClass)[0].className.split(" ").filter(c => !c.startsWith(prefix));
+				$('.' + theTargetElementClass)[0].className = classes.join(" ").trim();
+
+				// add the class.
+				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
+
+			});
+
+		};
 
 	});
 		
