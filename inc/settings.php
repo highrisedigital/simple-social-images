@@ -133,6 +133,9 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description'     => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
 		'input_type'      => 'text',
 		'custom_property' => '--ssi--font-family',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--font-family',
+		),
 		'order'           => 35,
 	);
 
@@ -347,6 +350,9 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description' => __( 'Upload your logo to display on your template. Each template may place the logo in a slightly different place. The text alignment setting below, sometimes changes the logo position.', 'simple-social-images' ),
 		'input_type'  => 'image',
 		'order'       => 205,
+		'data_attributes' => array(
+			'target-class'   => 'ssi-template__logo',
+		),
 	);
 
 	$settings['logo_position'] = array(
@@ -367,9 +373,12 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'           => __( 'Size', 'simple-social-images' ),
 		'input_type'      => 'range',
 		'min'             => '2',
-		'max'             => '8',
+		'max'             => '20',
 		'step'            => '0.5',
-		'custom_property' => '--ssi--logo--size',
+		'custom_property' => '--ssi--logo--height',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--height',
+		),
 		'default_value'   => '4',
 		'order'           => 215,
 	);
@@ -402,6 +411,9 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your post does not have a featured image.', 'simple-social-images' ),
 		'input_type'  => 'gallery',
 		'order'       => 305,
+		'data_attributes' => array(
+			'target-class'   => 'ssi-template__image',
+		),
 	);
 
 	$settings['image_position'] = array(
@@ -517,6 +529,9 @@ function hd_ssi_register_default_settings( $settings ) {
 		'step'            => '1',
 		'default_value;'  => '0',
 		'custom_property' => '--ssi--overlay--margin',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--margin',
+		),
 		'order'           => 420,
 	);
 

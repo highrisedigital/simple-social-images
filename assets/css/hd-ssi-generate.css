@@ -53,10 +53,12 @@ body {
 .ssi-template .ssi-template__title {
 	color: var(--ssi--title--color);
 	background-color: var(--ssi--title--background-color);
+	font-family: var(--ssi--font-family);
 	font-size: calc(
 		var(--ssi--title--font-size, var(--ssi--font-size)) *
 		var(--ssi-template--unit)
 	);
+	line-height: var(--ssi--line-height);
 	font-weight: var(--ssi--title--font-weight);
 	font-style: var(--ssi--title--font-style);
 	text-transform: var(--ssi--title--text-transform);
