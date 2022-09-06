@@ -368,7 +368,54 @@
 		};
 
 	});
+
 		
+
+
+	
+
+
+	// for each gallery or image input section.
+	$('.hd-ssi-setting-type--image, .hd-ssi-setting-type--gallery').each( function(){
+
+		/* Logo file */
+
+		var sectionDiv = this;
+
+		// Observe changes to the logo wrapper:
+		observeDOM( sectionDiv, function(m){ 
+
+			// get the first image in the list.
+			var firstImage = sectionDiv.querySelector('.hd-ssi-image, .hd-ssi-gallery-image');
+
+			if ( firstImage ) {
+
+				imgSrc = $(firstImage).attr('src');
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// get the template element class.
+				var targetElementClass = $(sectionDiv.querySelector('.hd-ssi-input')).data('target-class');
+
+				$('.' + targetElementClass).attr('src', fullImgSrc);
+
+			}
+
+		});
+
+	});
+
+	
+
+
+	
+
+
+
+
+
+
+
+
 
 
 
@@ -389,45 +436,47 @@
 	});
 
 
-	/* Logo file */
 
-	var imageWrapper = document.querySelector("#hd-ssi-image-wrapper");
 
-	// Observe changes to the logo wrapper:
-	observeDOM( imageWrapper, function(m){ 
+	// /* Logo file */
 
-		// get the first image in the list.
-		var firstImage = imageWrapper.querySelector('.hd-ssi-image');
+	// var imageWrapper = document.querySelector("#hd-ssi-image-wrapper");
 
-		if ( firstImage ) {
+	// // Observe changes to the logo wrapper:
+	// observeDOM( imageWrapper, function(m){ 
 
-			imgSrc = $(firstImage).attr('src');
-			fullImgSrc = imgSrc.replace("-150x150", "");
-			$('.ssi-template__logo').attr('src', fullImgSrc);
+	// 	// get the first image in the list.
+	// 	var firstImage = imageWrapper.querySelector('.hd-ssi-image');
 
-		}
+	// 	if ( firstImage ) {
 
-	});
+	// 		imgSrc = $(firstImage).attr('src');
+	// 		fullImgSrc = imgSrc.replace("-150x150", "");
+	// 		$('.ssi-template__logo').attr('src', fullImgSrc);
 
-	/* Background images */
+	// 	}
 
-	var galleryWrapper = document.querySelector("#hd-ssi-gallery-wrapper");
+	// });
 
-	// Observe changes to the image gallery:
-	observeDOM( galleryWrapper, function(m){ 
+	// /* Background images */
 
-		// get the first image in the list.
-		var firstImage = galleryWrapper.querySelector('.hd-ssi-gallery-image');
+	// var galleryWrapper = document.querySelector("#hd-ssi-gallery-wrapper");
 
-		if ( firstImage ) {
+	// // Observe changes to the image gallery:
+	// observeDOM( galleryWrapper, function(m){ 
 
-			imgSrc = $(firstImage).attr('src');
-			fullImgSrc = imgSrc.replace("-150x150", "");
-			$('.ssi-template__image').attr('src', fullImgSrc);
+	// 	// get the first image in the list.
+	// 	var firstImage = galleryWrapper.querySelector('.hd-ssi-gallery-image');
 
-		}
+	// 	if ( firstImage ) {
 
-	});
+	// 		imgSrc = $(firstImage).attr('src');
+	// 		fullImgSrc = imgSrc.replace("-150x150", "");
+	// 		$('.ssi-template__image').attr('src', fullImgSrc);
+
+	// 	}
+
+	// });
 
 	$(document).on('click', '.hd-ssi-gallery-image', function () {
 
