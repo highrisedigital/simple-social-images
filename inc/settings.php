@@ -159,8 +159,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
-	
-
 	$settings['title_width'] = array(
 		'option_name'     => 'hd_ssi_title_width',
 		'label'           => __( 'Width', 'simple-social-images' ),
@@ -168,7 +166,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value'   => 100,
+		'default_value'   => '100',
 		'custom_property' => '--ssi--title--width',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--title--width',
@@ -390,7 +388,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '0',
+		'default_value'  => '0',
 		'custom_property' => '--ssi--logo--margin',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--logo--margin',
@@ -436,7 +434,10 @@ function hd_ssi_register_default_settings( $settings ) {
 		'max'             => '100',
 		'step'            => '1',
 		'custom_property' => '--ssi--image--width',
-		'default_value;'  => '10',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--width',
+		),
+		'default_value'  => '10',
 		'order'           => 315,
 	);
 
@@ -447,7 +448,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '100',
+		'default_value'  => '100',
 		'custom_property' => '--ssi--image--height',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--height',
@@ -462,7 +463,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '0',
+		'default_value'  => '0',
 		'custom_property' => '--ssi--image--margin',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--margin',
@@ -481,7 +482,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'option_name'     => 'hd_ssi_overlay_position',
 		'label'           => __( 'Position', 'simple-social-images' ),
 		'input_type'      => 'select',
-		'default_value;'  => 'top-left',
+		'default_value'  => 'top-left',
 		'options'         => hd_ssi_get_position_options(),
 		'order'           => 405,
 		'data_attributes' => array(
@@ -497,7 +498,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '100',
+		'default_value'  => '100',
 		'custom_property' => '--ssi--overlay--width',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--overlay--width',
@@ -512,7 +513,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '100',
+		'default_value'  => '100',
 		'custom_property' => '--ssi--overlay--height',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--overlay--height',
@@ -527,7 +528,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '0',
+		'default_value'  => '0',
 		'custom_property' => '--ssi--overlay--margin',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--overlay--margin',
@@ -553,7 +554,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '0',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '0',
+		'default_value'  => '0',
 		'custom_property' => '--ssi--overlay--opacity',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--overlay--opacity',
