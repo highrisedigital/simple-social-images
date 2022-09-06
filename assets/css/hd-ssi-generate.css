@@ -162,10 +162,10 @@ body {
 	background: linear-gradient(
 		to var(--gradient--direction),
 		#00000000,
-		var(--ssi--title--background-color) 70%,
+		var(--ssi--title--background-color) 66%,
 		var(--ssi--title--background-color)
 	);
-	padding: 0.5em;
+	padding: 1em;
 }
 
 .gradient--top {
