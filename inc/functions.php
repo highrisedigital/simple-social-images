@@ -483,7 +483,7 @@ function hd_ssi_output_template_title_classes() {
 	if ( 'gradient' === $title_bg_type ) {
 
 		// add a class.
-		$classes[] = 'background--gradient--' . hd_ssi_get_title_background_gradient();
+		$classes[] = 'gradient--' . hd_ssi_get_title_background_gradient();
 
 	}
 

@@ -343,7 +343,7 @@
 
 		}
 
-		// if the custom property data attribute is present.
+		// if the modifier class data attribute is present.
 		if (this.hasAttribute("data-modifier-class")) {
 
 			// get the target element.
@@ -354,10 +354,6 @@
 
 			// when this input changes...
 			this.addEventListener("change", function() {
-
-				console.log('theTargetElementClass = ' + theTargetElementClass);
-				console.log('thisModifierClass = ' + thisModifierClass);
-				console.log('this.value = ' + this.value);
 
 				// remove all classes that start with the modifier.
 				var prefix = thisModifierClass;

@@ -138,20 +138,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
-	$settings['title_font_size'] = array(
-		'option_name'     => 'hd_ssi_title_font_size',
-		'label'           => __( 'Font Size', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '2',
-		'max'             => '8',
-		'step'            => '0.5',
-		'default_value'   => 4,
-		'custom_property' => '--ssi--title--font-size',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--title--font-size',
-		),
-		'order'           => 105,
-	);
+	
 
 	$settings['title_width'] = array(
 		'option_name'     => 'hd_ssi_title_width',
@@ -166,6 +153,36 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--width',
 		),
 		'order'           => 110,
+	);
+
+	$settings['title_margin'] = array(
+		'option_name'       => 'hd_ssi_title_margin',
+		'label'             => __( 'Margin', 'simple-social-images' ),
+		'input_type'        => 'range',
+		'min'               => '0',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--margin',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--margin',
+		),
+		'default_value'     => '0',
+		'order'             => 115,
+	);
+
+	$settings['title_font_size'] = array(
+		'option_name'     => 'hd_ssi_title_font_size',
+		'label'           => __( 'Font Size', 'simple-social-images' ),
+		'input_type'      => 'range',
+		'min'             => '2',
+		'max'             => '8',
+		'step'            => '0.5',
+		'default_value'   => 4,
+		'custom_property' => '--ssi--title--font-size',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--font-size',
+		),
+		'order'           => 120,
 	);
 
 	$settings['title_align'] = array(
@@ -183,7 +200,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--text-align',
 		),
 		'default_value'     => 'default',
-		'order'             => 115,
+		'order'             => 125,
 	);
 
 	$settings['title_weight'] = array(
@@ -206,7 +223,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--font-weight',
 		),
 		'default_value'     => '400',
-		'order'             => 120,
+		'order'             => 130,
 	);
 
 	$settings['title_style'] = array(
@@ -219,7 +236,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'custom_property'   => '--ssi--title--font-style',
 		'default_value'     => 'normal',
-		'order'             => 125,
+		'order'             => 135,
 	);
 
 	$settings['title_text_transform'] = array(
@@ -235,23 +252,10 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--text-transform',
 		),
 		'default_value'     => 'default',
-		'order'             => 130,
+		'order'             => 140,
 	);
 
-	$settings['title_margin'] = array(
-		'option_name'       => 'hd_ssi_title_margin',
-		'label'             => __( 'Margin', 'simple-social-images' ),
-		'input_type'        => 'range',
-		'min'               => '0',
-		'max'               => '100',
-		'step'              => '1',
-		'custom_property'   => '--ssi--title--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--title--margin',
-		),
-		'default_value'     => '0',
-		'order'             => 135,
-	);
+	
 
 	$settings['title_color'] = array(
 		'option_name'       => 'hd_ssi_title_color',
@@ -261,7 +265,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--title--color',
 		),
-		'order'             => 140,
+		'order'             => 145,
 	);
 
 	$settings['title_bg_color'] = array(
@@ -272,7 +276,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--title--background-color',
 		),
-		'order'             => 145,
+		'order'             => 150,
 	);
 
 	$settings['title_background_type'] = array(
@@ -285,7 +289,11 @@ function hd_ssi_register_default_settings( $settings ) {
 			'gradient' => __( 'Gradient', 'simple-social-images' ),
 		),
 		'default_value'     => 'block',
-		'order'             => 150,
+		'order'             => 155,
+		'data_attributes' => array(
+			'target-class'   => 'ssi-template__title',
+			'modifier-class' => 'background--',
+		)
 	);
 
 	$settings['title_background_gradient'] = array(
@@ -299,7 +307,11 @@ function hd_ssi_register_default_settings( $settings ) {
 			'right'  => __( 'Right', 'simple-social-images' ),
 		),
 		'default_value'     => 'bottom',
-		'order'             => 155,
+		'order'             => 160,
+		'data_attributes' => array(
+			'target-class'   => 'ssi-template__title',
+			'modifier-class' => 'gradient--',
+		)
 	);
 
 	
@@ -478,17 +490,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 415,
 	);
 
-	$settings['overlay_color'] = array(
-		'option_name'    => 'hd_ssi_overlay_color',
-		'label'          => __( 'Color', 'simple-social-images' ),
-		'input_type'     => 'color_picker',
-		'custom_property' => '--ssi--overlay--background-color',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--overlay--background-color',
-		),
-		'order'          => 420,
-	);
-
 	$settings['overlay_margin'] = array(
 		'option_name'     => 'hd_ssi_overlay_margin',
 		'label'           => __( 'Margin', 'simple-social-images' ),
@@ -498,7 +499,18 @@ function hd_ssi_register_default_settings( $settings ) {
 		'step'            => '1',
 		'default_value;'  => '0',
 		'custom_property' => '--ssi--overlay--margin',
-		'order'           => 425,
+		'order'           => 420,
+	);
+
+	$settings['overlay_color'] = array(
+		'option_name'    => 'hd_ssi_overlay_color',
+		'label'          => __( 'Color', 'simple-social-images' ),
+		'input_type'     => 'color_picker',
+		'custom_property' => '--ssi--overlay--background-color',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--background-color',
+		),
+		'order'          => 425,
 	);
 
 	$settings['overlay_opacity'] = array(
