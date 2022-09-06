@@ -51,7 +51,7 @@ function hd_ssi_output_template_custom_properties() {
 			$value = get_option( $setting['option_name'] );
 
 			// output the custom variable for this settings.
-			$output .= esc_attr( $setting['custom_property'] ) . ':' . esc_attr( $value ) . ';
+			$output .= esc_attr( $setting['custom_property'] ) . ':' . wp_kses_post( $value ) . ';
 			';
 			
 		}
