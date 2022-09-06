@@ -256,6 +256,9 @@ function hd_ssi_register_default_settings( $settings ) {
 			'italic' => __( 'Italic', 'simple-social-images' ),
 		),
 		'custom_property'   => '--ssi--title--font-style',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--font-style',
+		),
 		'default_value'     => 'normal',
 		'order'             => 135,
 	);
@@ -436,7 +439,10 @@ function hd_ssi_register_default_settings( $settings ) {
 		'max'             => '100',
 		'step'            => '1',
 		'custom_property' => '--ssi--image--width',
-		'default_value;'  => '10',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--width',
+		),
+		'default_value;'  => '80',
 		'order'           => 315,
 	);
 
@@ -447,7 +453,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '100',
+		'default_value;'  => '80',
 		'custom_property' => '--ssi--image--height',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--height',
