@@ -69,6 +69,125 @@
 	});
 
 
+	// for each input
+	$('.hd-ssi-input').each( function(){
+
+		// if the custom property data attribute is present.
+		if (this.hasAttribute("data-custom-property")) {
+
+			// get the custom property.
+			var thisCustomProperty = $(this).data('custom-property');
+			
+			// when this input changes...
+			this.addEventListener("change", function() {
+
+				// update the custom property.
+				document.querySelector(".ssi-template").style.setProperty(thisCustomProperty, this.value);
+
+			});
+
+		}
+
+		// if the modifier class data attribute is present.
+		if (this.hasAttribute("data-modifier-class")) {
+
+			// get the target element.
+			var theTargetElementClass = $(this).data('target-class');
+
+			// get the modifier class.
+			var thisModifierClass = $(this).data('modifier-class');
+
+			// when this input changes...
+			this.addEventListener("change", function() {
+
+				// remove all classes that start with the modifier.
+				var prefix = thisModifierClass;
+				var classes = $('.' + theTargetElementClass)[0].className.split(" ").filter(c => !c.startsWith(prefix));
+				$('.' + theTargetElementClass)[0].className = classes.join(" ").trim();
+
+				// add the class.
+				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
+
+			});
+
+		};
+
+	});
+
+
+	// image and gallery field preview behaviour.
+
+	// for each gallery or image input section.
+	$('.hd-ssi-setting-type--image, .hd-ssi-setting-type--gallery').each( function(){
+
+		/* Logo file */
+
+		var sectionDiv = this;
+
+		// Observe changes to the logo wrapper:
+		observeDOM( sectionDiv, function(m){ 
+
+			// get the first image in the list.
+			var firstImage = sectionDiv.querySelector('.hd-ssi-image, .hd-ssi-gallery-image');
+
+			if ( firstImage ) {
+
+				imgSrc = $(firstImage).attr('src');
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// get the template element class.
+				var targetElementClass = $(sectionDiv.querySelector('.hd-ssi-input')).data('target-class');
+
+				$('.' + targetElementClass).attr('src', fullImgSrc);
+
+			}
+
+		});
+
+	});
+
+
+	// Update preview image when clicked.
+	$(document).on('click', '.hd-ssi-gallery-image', function () {
+
+		// get the image source.
+		imgSrc = $(this).attr('src');
+		fullImgSrc = imgSrc.replace("-150x150", "");
+
+		// set template image source.
+		$('.ssi-template__image').attr('src', fullImgSrc);
+
+	});
+
+	/* Title placeholder */
+	$('.ssi-template__title__inner ').on('focusout', function () {
+
+		// set the input value.
+		$('#hd_ssi_placeholder_title').val($(this).text());
+
+	});
+
+	// tool tip work.
+	$( '.hd-ssi-tooltip' ).each( function( i, obj ) {
+
+		// if this tool tip has the checkbox class.
+		//if ( ! $( this ).hasClass( 'hd-ssi-tooltip--checkbox' ) ) {
+			
+			// when the tooltip is clicked.
+			$( this ).click( function() {
+
+				// get the parent element.
+				parent = $( this ).parent().next();
+				parent.children( '.hd-ssi-input-description' ).toggle();
+
+			});
+
+		//}
+
+	});
+
+
+
 
 
 
@@ -241,131 +360,6 @@
 			$('.ssi-template__image').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
 
 		}
-
-	});
-
-	/* Live preview settings */
-
-	// for each input
-	$('.hd-ssi-input').each( function(){
-
-		// if the custom property data attribute is present.
-		if (this.hasAttribute("data-custom-property")) {
-
-			// get the custom property.
-			var thisCustomProperty = $(this).data('custom-property');
-			
-			// when this input changes...
-			this.addEventListener("change", function() {
-
-				console.log('thisCustomProperty = ' + thisCustomProperty);
-				console.log('this.value = ' + this.value);
-				
-
-				// update the custom property.
-				document.querySelector(".ssi-template").style.setProperty(thisCustomProperty, this.value);
-
-			});
-
-		}
-
-		// if the modifier class data attribute is present.
-		if (this.hasAttribute("data-modifier-class")) {
-
-			// get the target element.
-			var theTargetElementClass = $(this).data('target-class');
-
-			// get the modifier class.
-			var thisModifierClass = $(this).data('modifier-class');
-
-			// when this input changes...
-			this.addEventListener("change", function() {
-
-				// remove all classes that start with the modifier.
-				var prefix = thisModifierClass;
-				var classes = $('.' + theTargetElementClass)[0].className.split(" ").filter(c => !c.startsWith(prefix));
-				$('.' + theTargetElementClass)[0].className = classes.join(" ").trim();
-
-				// add the class.
-				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
-
-			});
-
-		};
-
-	});
-
-
-	// image and gallery field preview behaviour.
-
-	// for each gallery or image input section.
-	$('.hd-ssi-setting-type--image, .hd-ssi-setting-type--gallery').each( function(){
-
-		/* Logo file */
-
-		var sectionDiv = this;
-
-		// Observe changes to the logo wrapper:
-		observeDOM( sectionDiv, function(m){ 
-
-			// get the first image in the list.
-			var firstImage = sectionDiv.querySelector('.hd-ssi-image, .hd-ssi-gallery-image');
-
-			if ( firstImage ) {
-
-				imgSrc = $(firstImage).attr('src');
-				fullImgSrc = imgSrc.replace("-150x150", "");
-
-				// get the template element class.
-				var targetElementClass = $(sectionDiv.querySelector('.hd-ssi-input')).data('target-class');
-
-				$('.' + targetElementClass).attr('src', fullImgSrc);
-
-			}
-
-		});
-
-	});
-
-
-	// Update preview image when clicked.
-	$(document).on('click', '.hd-ssi-gallery-image', function () {
-
-		// get the image source.
-		imgSrc = $(this).attr('src');
-		fullImgSrc = imgSrc.replace("-150x150", "");
-
-		// set template image source.
-		$('.ssi-template__image').attr('src', fullImgSrc);
-
-	});
-
-	/* Title placeholder */
-	$('.ssi-template__title__inner ').on('focusout', function () {
-
-		console.log($(this).text());
-
-		// set the input value.
-		$('#hd_ssi_placeholder_title').val($(this).text());
-
-	});
-
-	// tool tip work.
-	$( '.hd-ssi-tooltip' ).each( function( i, obj ) {
-
-		// if this tool tip has the checkbox class.
-		//if ( ! $( this ).hasClass( 'hd-ssi-tooltip--checkbox' ) ) {
-			
-			// when the tooltip is clicked.
-			$( this ).click( function() {
-
-				// get the parent element.
-				parent = $( this ).parent().next();
-				parent.children( '.hd-ssi-input-description' ).toggle();
-
-			});
-
-		//}
 
 	});
 
