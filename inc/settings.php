@@ -93,7 +93,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description'     => __( 'Select the post types on which Simple Social Images will be activated and available on.' ),
 		'input_type'      => 'checkboxes',
 		'options'         => hd_ssi_get_site_post_types(),
-		'order'           => 20,
+		'order'           => 15,
 	);
 
 	$settings['ignore_featured_image'] = array(
@@ -104,7 +104,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'description'    => __( 'This will prevent the plugin from using a post\'s featured image in the generated social sharing image. Images will be chosen randomly from your uploaded background images below.', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
 		'default_value'  => 0,
-		'order'          => 30,
+		'order'          => 20,
 	);
 
 	$settings['background_color'] = array(
@@ -115,7 +115,25 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--background-color',
 		),
-		'order'           => 40,
+		'order'           => 25,
+	);
+
+	$settings['google_font_url'] = array(
+		'option_name'       => 'hd_ssi_google_font_url',
+		'label'             => __( 'Google Font URL', 'simple-social-images' ),
+		'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
+		'input_type'        => 'text',
+		'sanitize_callback' => 'sanitize_url',
+		'order'             => 30,
+	);
+
+	$settings['font_family'] = array(
+		'option_name'     => 'hd_ssi_font_family',
+		'label'           => __( 'Font Family', 'simple-social-images' ),
+		'description'     => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
+		'input_type'      => 'text',
+		'custom_property' => '--ssi--font-family',
+		'order'           => 35,
 	);
 
 	$settings['title_section'] = array(

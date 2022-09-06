@@ -220,12 +220,12 @@ function hd_ssi_get_google_font_url() {
 }
 
 /**
- * Gets the current Google font family.
+ * Gets the current font family.
  */
-function hd_ssi_get_google_font_family() {
+function hd_ssi_get_font_family() {
 
 	// get the font family from settings.
-	$font_family = get_option( 'hd_ssi_google_font_family' );
+	$font_family = get_option( 'hd_ssi_font_family' );
 
 	// if the font family is empty.
 	if ( empty( $font_family ) ) {
@@ -236,7 +236,7 @@ function hd_ssi_get_google_font_family() {
 	}
 
 	return apply_filters(
-		'hd_ssi_google_font_family',
+		'hd_ssi_font_family',
 		$font_family
 	);
 
