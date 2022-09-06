@@ -26,32 +26,52 @@
 
 	// Add Color Picker to all inputs that have .hd-ssi-input--color-picker
 	$( function() {
-		$( '.hd-ssi-input--color-picker' ).wpColorPicker({
+		$( '.hd-ssi-input--color-picker' ).wpColorPicker();
+	});
+
+	$( '.hd-ssi-input--color-picker' ).each( function(){
 		
-			/**
-			 * @param {Event} event - standard jQuery event, produced by "Clear"
-			 * button.
-			 */
-			clear: function (event) {
+		// used to be #hd_ssi_title_color
+		$(this).iris({
 
-				// get the ID of the input element.
-				inputId = $(event.target).prev().find('input').attr('id');
+			//hide: false,
+			change: function(event, ui) {
+				// event = standard jQuery event, produced by whichever control was changed.
+				// ui = standard jQuery UI object, with a color member containing a Color.js object
+		
+				// get the custom property of the input element.
+				var customProperty = $(event.target).data('custom-property');
 
-				if ( 'hd_ssi_bg_color' == inputId ) {
-					
+				if ( customProperty ) {
+
+					// update customproperty on 'Clear' button press.
+					$(this).parents('.wp-picker-input-wrap').find('.wp-picker-clear').on('click', function(){
+						
+						// update the custom property.
+						document.querySelector(".ssi-template").style.setProperty(customProperty, 'transparent');
+
+					});
+				
 					// update the custom property.
-					document.querySelector(".ssi-template").style.setProperty("--ssi--background-color", '#FFFFFF');
-
-				} else if ( 'hd_ssi_text_bg_color' == inputId ) {
-
-					// update the custom property.
-					document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
-
+					document.querySelector(".ssi-template").style.setProperty(customProperty, ui.color.toString());
+				
 				}
+
+				// update the color preview background color.
+				$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
+
+				// add the template class.
+				document.querySelector(".ssi-template").classList.add('ssi-template--has-text-color');
 
 			}
 		});
+
 	});
+
+
+
+
+
 
 	$('body').on('click', '.hd-ssi-image-button', function(e) {
         e.preventDefault();
@@ -226,100 +246,6 @@
 
 	/* Live preview settings */
 
-	/* Logo size */
-	var logoSize = document.querySelector("#hd_ssi_logo_size");
-
-	if ( logoSize ) {
-		logoSize.addEventListener("change", function() {
-			document.querySelector(".ssi-template").style.setProperty("--ssi--logo--height", this.value);
-		});
-	}
-	
-	/* Text color */
-	$('#hd_ssi_text_color').iris({
-		//hide: false,
-		change: function(event, ui) {
-			// event = standard jQuery event, produced by whichever control was changed.
-			// ui = standard jQuery UI object, with a color member containing a Color.js object
-	
-			// update customproperty on 'Clear' button press.
-			$('.wp-picker-clear').on('click', function(){
-				
-				// update the custom property.
-				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
-
-			});
-
-			// update the custom property.
-			document.querySelector(".ssi-template").style.setProperty("--ssi--text--color", ui.color.toString());
-			
-			// update the color preview background color.
-			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
-
-			// add the template class.
-			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-color');
-
-		}
-	});
-
-	/* Text background color */
-	//var added_clearer = false;
-	$('#hd_ssi_text_bg_color').iris({
-		//hide: false,
-		change: function(event, ui) {
-			// event = standard jQuery event, produced by whichever control was changed.
-			// ui = standard jQuery UI object, with a color member containing a Color.js object
-	
-			// update customproperty on 'Clear' button press.
-			$('.wp-picker-clear').on('click', function(){
-				
-				// update the custom property.
-				document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", 'transparent');
-
-			});
-			
-			// update the custom property.
-			document.querySelector(".ssi-template").style.setProperty("--ssi--text--background-color", ui.color.toString());
-			
-			// update the color preview background color.
-			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
-
-		}
-	});
-
-	$('body').on('propertychange change click keyup input paste', '#hd_ssi_text_bg_color', function(){
-
-		// get the current value.
-		inputValue = $(this).val();
-			
-		if ( inputValue == '' ) {
-			// remove the template class.
-			document.querySelector(".ssi-template").classList.remove('ssi-template--has-text-bg-color');
-		} else {
-			// add the template class.
-			document.querySelector(".ssi-template").classList.add('ssi-template--has-text-bg-color');
-		}
-
-	});
-
-
-	/* Background color */
-	$('#hd_ssi_bg_color').iris({
-		//hide: false,
-		change: function(event, ui) {
-			// event = standard jQuery event, produced by whichever control was changed.
-			// ui = standard jQuery UI object, with a color member containing a Color.js object
-
-			// update the custom property.
-			document.querySelector(".ssi-template").style.setProperty("--ssi--background-color", ui.color.toString());
-
-			// update the color preview background color.
-			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
-		}
-	});
-
-
-
 	// for each input
 	$('.hd-ssi-input').each( function(){
 
@@ -369,11 +295,8 @@
 
 	});
 
-		
 
-
-	
-
+	// image and gallery field preview behaviour.
 
 	// for each gallery or image input section.
 	$('.hd-ssi-setting-type--image, .hd-ssi-setting-type--gallery').each( function(){
@@ -404,80 +327,8 @@
 
 	});
 
-	
 
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-	$('body').on('propertychange change click keyup input paste', '#hd_ssi_bg_color', function(){
-
-		// get the current value.
-		inputValue = $(this).val();
-			
-		if ( inputValue == '' ) {
-			// remove the template class.
-			document.querySelector(".ssi-template").classList.remove('ssi-template--has-bg-color');
-		} else {
-			// add the template class.
-			document.querySelector(".ssi-template").classList.add('ssi-template--has-bg-color');
-		}
-
-	});
-
-
-
-
-	// /* Logo file */
-
-	// var imageWrapper = document.querySelector("#hd-ssi-image-wrapper");
-
-	// // Observe changes to the logo wrapper:
-	// observeDOM( imageWrapper, function(m){ 
-
-	// 	// get the first image in the list.
-	// 	var firstImage = imageWrapper.querySelector('.hd-ssi-image');
-
-	// 	if ( firstImage ) {
-
-	// 		imgSrc = $(firstImage).attr('src');
-	// 		fullImgSrc = imgSrc.replace("-150x150", "");
-	// 		$('.ssi-template__logo').attr('src', fullImgSrc);
-
-	// 	}
-
-	// });
-
-	// /* Background images */
-
-	// var galleryWrapper = document.querySelector("#hd-ssi-gallery-wrapper");
-
-	// // Observe changes to the image gallery:
-	// observeDOM( galleryWrapper, function(m){ 
-
-	// 	// get the first image in the list.
-	// 	var firstImage = galleryWrapper.querySelector('.hd-ssi-gallery-image');
-
-	// 	if ( firstImage ) {
-
-	// 		imgSrc = $(firstImage).attr('src');
-	// 		fullImgSrc = imgSrc.replace("-150x150", "");
-	// 		$('.ssi-template__image').attr('src', fullImgSrc);
-
-	// 	}
-
-	// });
-
+	// Update preview image when clicked.
 	$(document).on('click', '.hd-ssi-gallery-image', function () {
 
 		// get the image source.
