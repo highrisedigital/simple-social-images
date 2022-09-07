@@ -29,41 +29,52 @@
 		$( '.hd-ssi-input--color-picker' ).wpColorPicker();
 	});
 
-	$( '.hd-ssi-input--color-picker' ).each( function(){
+	// when the page is fully loaded.
+	window.addEventListener('load', (event) => {
+
+		$( '.hd-ssi-input--color-picker' ).each( function(){
 		
-		// used to be #hd_ssi_title_color
-		$(this).iris({
-
-			//hide: false,
-			change: function(event, ui) {
-				// event = standard jQuery event, produced by whichever control was changed.
-				// ui = standard jQuery UI object, with a color member containing a Color.js object
-		
-				// get the custom property of the input element.
-				var customProperty = $(event.target).data('custom-property');
-
-				if ( customProperty ) {
-
-					// update customproperty on 'Clear' button press.
-					$(this).parents('.wp-picker-input-wrap').find('.wp-picker-clear').on('click', function(){
-						
+			$(this).iris({
+	
+				//hide: false,
+				change: function(event, ui) {
+					// event = standard jQuery event, produced by whichever control was changed.
+					// ui = standard jQuery UI object, with a color member containing a Color.js object
+	
+					// get the custom property of the input element.
+					var customProperty = $(event.target).data('custom-property');
+	
+					if ( customProperty ) {
+					
 						// update the custom property.
-						document.querySelector(".ssi-template").style.setProperty(customProperty, 'transparent');
-
-					});
-				
-					// update the custom property.
-					document.querySelector(".ssi-template").style.setProperty(customProperty, ui.color.toString());
-				
+						document.querySelector(".ssi-template").style.setProperty(customProperty, ui.color.toString());
+					
+					}
+	
+					// update the color preview background color.
+					$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
+	
+					// add the template class.
+					document.querySelector(".ssi-template").classList.add('ssi-template--has-text-color');
+	
 				}
+	
+			});
+	
+			// get the 'Clear' button.
+			var clearButton = $(this).parents('.wp-picker-input-wrap').find('.wp-picker-clear');
 
-				// update the color preview background color.
-				$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
-
-				// add the template class.
-				document.querySelector(".ssi-template").classList.add('ssi-template--has-text-color');
-
-			}
+			// get the custom property of the input element.
+			var customProperty = $(this).data('custom-property');
+	
+			// update customproperty on 'Clear' button press.
+			clearButton.on('click', function(){
+		
+				// update the custom property.
+				document.querySelector(".ssi-template").style.setProperty(customProperty, 'transparent');
+	
+			});
+	
 		});
 
 	});
