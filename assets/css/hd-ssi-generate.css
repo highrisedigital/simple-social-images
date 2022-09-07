@@ -160,7 +160,7 @@ body {
 
 .ssi-template .background--gradient {
 	background: linear-gradient(
-		to var(--gradient--direction),
+		to var(--gradient--direction, bottom),
 		#00000000,
 		var(--ssi--title--background-color) 66%,
 		var(--ssi--title--background-color)
