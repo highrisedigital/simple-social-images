@@ -57,7 +57,7 @@ function hd_ssi_on_activation() {
 		foreach ( $settings as $setting ) {
 
 			// if this setting does not have a default value.
-			if ( empty( $setting['default_value'] ) ) {
+			if ( ! isset( $setting['default_value'] ) ) {
 				continue;
 			}
 
