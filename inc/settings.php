@@ -136,6 +136,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--font-family',
 		),
+		'default_value'  => 'sans-serif',
 		'order'           => 35,
 	);
 
