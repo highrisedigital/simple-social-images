@@ -107,6 +107,13 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'          => 20,
 	);
 
+	$settings['template_section'] = array(
+		'option_name'    => 'hd_ssi_template_section',
+		'label'          => __( 'Template settings', 'simple-social-images' ),
+		'input_type'     => 'section',
+		'order'          => 50,
+	);
+
 	$settings['background_color'] = array(
 		'option_name'     => 'hd_ssi_background_color',
 		'label'           => __( 'Background Color', 'simple-social-images' ),
@@ -115,16 +122,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--background-color',
 		),
-		'order'           => 25,
-	);
-
-	$settings['google_font_url'] = array(
-		'option_name'       => 'hd_ssi_google_font_url',
-		'label'             => __( 'Google Font URL', 'simple-social-images' ),
-		'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
-		'input_type'        => 'text',
-		'sanitize_callback' => 'sanitize_url',
-		'order'             => 30,
+		'order'           => 55,
 	);
 
 	$settings['font_family'] = array(
@@ -137,7 +135,16 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--font-family',
 		),
 		'default_value'  => 'sans-serif',
-		'order'           => 35,
+		'order'           => 60,
+	);
+
+	$settings['google_font_url'] = array(
+		'option_name'       => 'hd_ssi_google_font_url',
+		'label'             => __( 'Google Font URL', 'simple-social-images' ),
+		'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
+		'input_type'        => 'text',
+		'sanitize_callback' => 'sanitize_url',
+		'order'             => 65,
 	);
 
 	$settings['title_section'] = array(
@@ -269,14 +276,16 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'             => __( 'Text Transform', 'simple-social-images' ),
 		'input_type'        => 'select',
 		'options'           => array(
-			'default'   => __( 'Default', 'simple-social-images' ),
+			'none'   => __( 'None', 'simple-social-images' ),
 			'uppercase' => __( 'Uppercase', 'simple-social-images' ),
+			'lowercase' => __( 'Lowercase', 'simple-social-images' ),
+			'capitalize' => __( 'Capitalize', 'simple-social-images' ),
 		),
 		'custom_property'   => '--ssi--title--text-transform',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--title--text-transform',
 		),
-		'default_value'     => 'default',
+		'default_value'     => 'none',
 		'order'             => 140,
 	);
 
