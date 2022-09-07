@@ -187,7 +187,7 @@ add_action( 'hd_ssi_generate_html_head', 'hd_ssi_output_generate_custom_properti
 function hd_ssi_output_generate_google_font_data( $post_id ) {
 
 	// if we have a google font url.
-	if ( ! empty( hd_ssi_get_google_font_family() ) && ! empty( hd_ssi_get_google_font_url() ) ) {
+	if ( ! empty( hd_ssi_get_font_family() ) && ! empty( hd_ssi_get_google_font_url() ) ) {
 
 		// output the link elements to load the font.
 		?>
@@ -209,7 +209,7 @@ add_action( 'hd_ssi_generate_html_head', 'hd_ssi_output_generate_google_font_dat
  * the user must click the activate button to make this work
  */
 function hd_ssi_activate_license() {
-	
+
 	// listen for our activate button to be clicked
 	if( isset( $_POST[ 'hd_ssi_license_activate' ] ) ) {
 		

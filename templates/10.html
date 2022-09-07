@@ -22,8 +22,11 @@
 }
 
 .ssi-template--10 .ssi-template__image-wrapper {
-  position: relative;
-  flex-grow: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .ssi-template--10 .ssi-template__image {
@@ -47,7 +50,9 @@
   
 .ssi-template--10 .ssi-template__text {
   --ssi-template--text--margin: calc(2 * var(--ssi-template--unit));
-  grid-area: text;
+
+  position: relative;
+  z-index: 1;
   background-color: var(--ssi--text--background-color);
   padding: var(--ssi-template__logo-offset);
 }
