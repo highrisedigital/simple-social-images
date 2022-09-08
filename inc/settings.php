@@ -167,7 +167,35 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
-	
+	$settings['title_offset_x'] = array(
+		'option_name'       => 'hd_ssi_title_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 106,
+	);
+
+	$settings['title_offset_y'] = array(
+		'option_name'       => 'hd_ssi_title_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 107,
+	);
 
 	$settings['title_width'] = array(
 		'option_name'     => 'hd_ssi_title_width',
@@ -184,20 +212,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 110,
 	);
 
-	$settings['title_margin'] = array(
-		'option_name'       => 'hd_ssi_title_margin',
-		'label'             => __( 'Margin', 'simple-social-images' ),
-		'input_type'        => 'range',
-		'min'               => '0',
-		'max'               => '100',
-		'step'              => '1',
-		'custom_property'   => '--ssi--title--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--title--margin',
-		),
-		'default_value'     => '0',
-		'order'             => 115,
-	);
+	// $settings['title_margin'] = array(
+	// 	'option_name'       => 'hd_ssi_title_margin',
+	// 	'label'             => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'        => 'range',
+	// 	'min'               => '0',
+	// 	'max'               => '100',
+	// 	'step'              => '1',
+	// 	'custom_property'   => '--ssi--title--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--title--margin',
+	// 	),
+	// 	'default_value'     => '0',
+	// 	'order'             => 115,
+	// );
 
 	$settings['title_font_size'] = array(
 		'option_name'     => 'hd_ssi_title_font_size',
@@ -381,6 +409,36 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
+	$settings['logo_offset_x'] = array(
+		'option_name'       => 'hd_ssi_logo_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--logo--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 211,
+	);
+
+	$settings['logo_offset_y'] = array(
+		'option_name'       => 'hd_ssi_logo_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--logo--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 212,
+	);
+
 	$settings['logo_size'] = array(
 		'option_name'     => 'hd_ssi_logo_size',
 		'label'           => __( 'Size', 'simple-social-images' ),
@@ -396,20 +454,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 215,
 	);
 
-	$settings['logo_margin'] = array(
-		'option_name'     => 'hd_ssi_logo_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--logo--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--logo--margin',
-		),
-		'order'           => 220,
-	);
+	// $settings['logo_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_logo_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--logo--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--logo--margin',
+	// 	),
+	// 	'order'           => 220,
+	// );
 
 	$settings['image_section'] = array(
 		'option_name'       => 'hd_ssi_image_section',
@@ -439,6 +497,36 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__image',
 			'modifier-class' => 'position--',
 		)
+	);
+
+	$settings['image_offset_x'] = array(
+		'option_name'       => 'hd_ssi_image_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--image--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 311,
+	);
+
+	$settings['image_offset_y'] = array(
+		'option_name'       => 'hd_ssi_image_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--image--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 312,
 	);
 
 	$settings['image_width'] = array(
@@ -471,20 +559,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 320,
 	);
 
-	$settings['image_margin'] = array(
-		'option_name'     => 'hd_ssi_image_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--image--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--image--margin',
-		),
-		'order'           => 325,
-	);
+	// $settings['image_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_image_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--image--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--image--margin',
+	// 	),
+	// 	'order'           => 325,
+	// );
 
 	$settings['overlay_section'] = array(
 		'option_name'       => 'hd_ssi_overlay_section',
@@ -504,6 +592,36 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__overlay',
 			'modifier-class' => 'position--',
 		)
+	);
+
+	$settings['overlay_offset_x'] = array(
+		'option_name'       => 'hd_ssi_overlay_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--overlay--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 406,
+	);
+
+	$settings['overlay_offset_y'] = array(
+		'option_name'       => 'hd_ssi_overlay_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--overlay--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 407,
 	);
 
 	$settings['overlay_width'] = array(
@@ -536,20 +654,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 415,
 	);
 
-	$settings['overlay_margin'] = array(
-		'option_name'     => 'hd_ssi_overlay_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--overlay--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--overlay--margin',
-		),
-		'order'           => 420,
-	);
+	// $settings['overlay_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_overlay_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--overlay--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--overlay--margin',
+	// 	),
+	// 	'order'           => 420,
+	// );
 
 	$settings['overlay_color'] = array(
 		'option_name'    => 'hd_ssi_overlay_color',
@@ -609,6 +727,25 @@ function hd_ssi_setting_input_type_text( $setting, $value ) {
 }
 
 add_action( 'hd_ssi_setting_type_text', 'hd_ssi_setting_input_type_text', 10, 2 );
+
+/**
+ * Controls the output of number input setting.
+ *
+ * @param  array $setting an array of the current setting.
+ * @param  mixed $value   the current value of this setting saved in the database.
+ */
+function hd_ssi_setting_input_type_number( $setting, $value ) {
+
+	// handle output for a number input.
+	?>
+
+	<input type="number" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-number hd-ssi-input hd-ssi-input--number" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
+
+	<?php
+
+}
+
+add_action( 'hd_ssi_setting_type_number', 'hd_ssi_setting_input_type_number', 10, 2 );
 
 /**
  * Controls the output of textarea input setting.
