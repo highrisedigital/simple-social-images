@@ -70,26 +70,28 @@ body {
 	font-weight: var(--ssi--title--font-weight);
 	font-style: var(--ssi--title--font-style);
 	text-transform: var(--ssi--title--text-transform);
-	transform: translateX( calc( var(--ssi--title--offset--x) *
-	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--title--offset--y)*
-	var(--ssi-template--unit) ) );
+
+	--this--offset--x: calc( var(--ssi--title--offset--x) * var(--ssi-template--unit) );
+	--this--offset--y: calc( var(--ssi--title--offset--y) * var(--ssi-template--unit) );
+	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 }
 
 .ssi-template__logo {
 	position: absolute;
 	height: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
 	/* margin: calc(var(--ssi--logo--margin) * var(--ssi-template--unit)); */
-	transform: translateX( calc( var(--ssi--logo--offset--x) *
-	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--logo--offset--y)*
-	var(--ssi-template--unit) ) );
+
+	--this--offset--x: calc( var(--ssi--logo--offset--x) * var(--ssi-template--unit) );
+	--this--offset--y: calc( var(--ssi--logo--offset--y) * var(--ssi-template--unit) );
+	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 }
 
 .ssi-template__image {
 	display: block;
 	position: absolute;
-	transform: translateX( calc( var(--ssi--image--offset--x) *
-	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--image--offset--y)*
-	var(--ssi-template--unit) ) );
+	--this--offset--x: calc( var(--ssi--image--offset--x) * var(--ssi-template--unit) );
+	--this--offset--y: calc( var(--ssi--image--offset--y) * var(--ssi-template--unit) );
+	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 	width: calc(var(--ssi--image--width) * 1%);
 	height: calc(var(--ssi--image--height) * 1%);
 	/* margin: calc(var(--ssi--image--margin) * var(--ssi-template--unit)); */
@@ -99,9 +101,9 @@ body {
 .ssi-template__overlay {
 	display: block;
 	position: absolute;
-	transform: translateX( calc( var(--ssi--overlay--offset--x) *
-	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--overlay--offset--y)*
-	var(--ssi-template--unit) ) );
+	--this--offset--x: calc( var(--ssi--overlay--offset--x) * var(--ssi-template--unit) );
+	--this--offset--y: calc( var(--ssi--overlay--offset--y) * var(--ssi-template--unit) );
+	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 	width: calc(var(--ssi--overlay--width) * var(--ssi-template--unit));
 	height: calc(var(--ssi--overlay--height) * 1%);
 	/* margin: calc(var(--ssi--overlay--margin) * var(--ssi-template--unit)); */
@@ -117,7 +119,7 @@ body {
 .position--top-center {
 	top: 0;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(calc(-50% + var(--this--offset--x))) translateY(var(--this--offset--y));
 }
 
 .position--top-right {
@@ -127,20 +129,20 @@ body {
 
 .position--middle-left {
 	top: 50%;
-	transform: translateY(-50%);
+	transform: translateX(var(--this--offset--x)) translateY(calc(-50% + var(--this--offset--y)));
 	left: 0;
 }
 
 .position--middle-center {
 	top: 50%;
 	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
+	transform: translateX(calc(-50% + var(--this--offset--x))) translateY(calc(-50% + var(--this--offset--y)));
 }
 
 .position--middle-right {
 	top: 50%;
 	right: 0;
-	transform: translateY(-50%);
+	transform: translateX(var(--this--offset--x)) translateY(calc(-50% + var(--this--offset--y)));
 }
 
 .position--bottom-left {
@@ -151,7 +153,7 @@ body {
 .position--bottom-center {
 	bottom: 0;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(calc(-50% + var(--this--offset--x))) translateY(var(--this--offset--y));
 }
 
 .position--bottom-right {

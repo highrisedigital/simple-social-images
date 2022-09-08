@@ -499,6 +499,36 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
+	$settings['image_offset_x'] = array(
+		'option_name'       => 'hd_ssi_image_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--image--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 311,
+	);
+
+	$settings['image_offset_y'] = array(
+		'option_name'       => 'hd_ssi_image_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--image--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--image--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 312,
+	);
+
 	$settings['image_width'] = array(
 		'option_name'     => 'hd_ssi_image_width',
 		'label'           => __( 'Width', 'simple-social-images' ),
@@ -562,6 +592,36 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__overlay',
 			'modifier-class' => 'position--',
 		)
+	);
+
+	$settings['overlay_offset_x'] = array(
+		'option_name'       => 'hd_ssi_overlay_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--overlay--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 406,
+	);
+
+	$settings['overlay_offset_y'] = array(
+		'option_name'       => 'hd_ssi_overlay_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--overlay--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--overlay--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 407,
 	);
 
 	$settings['overlay_width'] = array(
