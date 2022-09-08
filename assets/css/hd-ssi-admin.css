@@ -110,13 +110,14 @@ input[type=text].hd-ssi-input--license-invalid {
 
 @media screen and (min-width: 1000px) {
 	.hd-ssi-settings-form .form-table {
-		width: calc(100% - 520px - 4em);
+		width: calc(100% - (520px * .7) - 4em);
 	}
 }
 
 
 .hd-ssi-template-preview  {
 	
+	position: relative;
 	max-width: var(--ssi-template--width);
 
 }
@@ -131,6 +132,19 @@ input[type=text].hd-ssi-input--license-invalid {
 
 	}
 
+}
+
+.hd-ssi-template-preview__size-toggle {
+	position: absolute;
+	bottom: -.75em;
+	right: -.75em;
+	appearance: none;
+	border: none;
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 50%;
+	font-size: 2em;
+	cursor: pointer;
 }
 
 .hd-ssi-template-preview .ssi-template {

@@ -405,4 +405,36 @@
 
 	});
 
+	/* Preview size toggle */
+
+	var thePreviewElement = document.getElementsByClassName('hd-ssi-template-preview');
+	thePreviewElement = thePreviewElement[0];
+
+	var theTemplateElement = document.getElementsByClassName('ssi-template');
+	theTemplateElement = theTemplateElement[0];	
+
+	$(thePreviewElement).append('<button class="hd-ssi-template-preview__size-toggle"><span class="screen-reader-text">Toggle size</span>&#10529;</button>');
+	
+	$('body').on('click', '.hd-ssi-template-preview__size-toggle', function(event){
+
+		event.stopPropagation();
+		
+		var templateWidth = getComputedStyle(theTemplateElement).getPropertyValue("--ssi-template--scale");
+
+		// if the template width is set to 1
+		if ( templateWidth === ' 1'  ) {
+
+			// set width to .7
+			theTemplateElement.style.setProperty("--ssi-template--scale", " .7");	
+			
+
+		} else {
+
+			// set width to 1
+			theTemplateElement.style.setProperty("--ssi-template--scale", " 1");	
+
+		}
+
+	});
+
 })( jQuery );
