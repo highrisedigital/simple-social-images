@@ -13,7 +13,9 @@ body {
 	--ssi--title--font-size: 6;
 	--ssi--line-height: 1.25;
 	--ssi--title--width: 80;
-	--ssi--title--margin: 5;
+	/* --ssi--title--margin: 5; */
+	--ssi--title--offset--x: 0;
+	--ssi--title--offset--y: 0;
 	--ssi--title--font-weight: inherit;
 	--ssi--title--text-transform: inherit;
 	--ssi--title--text-align: right;
@@ -62,6 +64,9 @@ body {
 	font-weight: var(--ssi--title--font-weight);
 	font-style: var(--ssi--title--font-style);
 	text-transform: var(--ssi--title--text-transform);
+	transform: translateX( calc( var(--ssi--title--offset--x) *
+	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--title--offset--y)*
+	var(--ssi-template--unit) ) );
 }
 
 .ssi-template__logo {

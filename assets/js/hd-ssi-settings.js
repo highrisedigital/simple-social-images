@@ -119,6 +119,37 @@
 				// add the class.
 				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
 
+				if ( thisModifierClass == 'position--' ) {
+
+					// get the parent element.
+					var thisParent = $(this).parents('.hd-ssi-setting');
+
+					// get the first sibling of the parent.
+					var firstParentSibling = thisParent[0].nextElementSibling;
+
+					// get the second sibling of the parent.
+					var secondParentSibling = firstParentSibling.nextElementSibling;
+
+					// get the X-axis input.
+					var xAxisInput = firstParentSibling.querySelector('.hd-ssi-input--number');
+
+					// reset the x-axis value to 0.
+					xAxisInput.value = 0;
+
+					// force the 'change' event to update the template.
+					xAxisInput.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+					// get the Y-axis input.
+					var yAxisInput = secondParentSibling.querySelector('.hd-ssi-input--number');
+
+					// reset the y-axis value to 0.
+					yAxisInput.value = 0;
+
+					// force the 'change' event to update the template.
+					yAxisInput.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+				}
+
 			});
 
 		};

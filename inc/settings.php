@@ -167,7 +167,35 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
-	
+	$settings['title_offset_x'] = array(
+		'option_name'       => 'hd_ssi_title_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 106,
+	);
+
+	$settings['title_offset_y'] = array(
+		'option_name'       => 'hd_ssi_title_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--title--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--title--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 107,
+	);
 
 	$settings['title_width'] = array(
 		'option_name'     => 'hd_ssi_title_width',
@@ -184,20 +212,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 110,
 	);
 
-	$settings['title_margin'] = array(
-		'option_name'       => 'hd_ssi_title_margin',
-		'label'             => __( 'Margin', 'simple-social-images' ),
-		'input_type'        => 'range',
-		'min'               => '0',
-		'max'               => '100',
-		'step'              => '1',
-		'custom_property'   => '--ssi--title--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--title--margin',
-		),
-		'default_value'     => '0',
-		'order'             => 115,
-	);
+	// $settings['title_margin'] = array(
+	// 	'option_name'       => 'hd_ssi_title_margin',
+	// 	'label'             => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'        => 'range',
+	// 	'min'               => '0',
+	// 	'max'               => '100',
+	// 	'step'              => '1',
+	// 	'custom_property'   => '--ssi--title--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--title--margin',
+	// 	),
+	// 	'default_value'     => '0',
+	// 	'order'             => 115,
+	// );
 
 	$settings['title_font_size'] = array(
 		'option_name'     => 'hd_ssi_title_font_size',
@@ -609,6 +637,25 @@ function hd_ssi_setting_input_type_text( $setting, $value ) {
 }
 
 add_action( 'hd_ssi_setting_type_text', 'hd_ssi_setting_input_type_text', 10, 2 );
+
+/**
+ * Controls the output of number input setting.
+ *
+ * @param  array $setting an array of the current setting.
+ * @param  mixed $value   the current value of this setting saved in the database.
+ */
+function hd_ssi_setting_input_type_number( $setting, $value ) {
+
+	// handle output for a number input.
+	?>
+
+	<input type="number" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-number hd-ssi-input hd-ssi-input--number" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
+
+	<?php
+
+}
+
+add_action( 'hd_ssi_setting_type_number', 'hd_ssi_setting_input_type_number', 10, 2 );
 
 /**
  * Controls the output of textarea input setting.
