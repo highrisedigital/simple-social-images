@@ -409,6 +409,36 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
+	$settings['logo_offset_x'] = array(
+		'option_name'       => 'hd_ssi_logo_offset_x',
+		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--logo--offset--x',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--offset--x',
+		),
+		'default_value'     => '0',
+		'order'             => 211,
+	);
+
+	$settings['logo_offset_y'] = array(
+		'option_name'       => 'hd_ssi_logo_offset_y',
+		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'input_type'        => 'number',
+		'min'               => '-100',
+		'max'               => '100',
+		'step'              => '1',
+		'custom_property'   => '--ssi--logo--offset--y',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--logo--offset--y',
+		),
+		'default_value'     => '0',
+		'order'             => 212,
+	);
+
 	$settings['logo_size'] = array(
 		'option_name'     => 'hd_ssi_logo_size',
 		'label'           => __( 'Size', 'simple-social-images' ),
@@ -424,20 +454,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 215,
 	);
 
-	$settings['logo_margin'] = array(
-		'option_name'     => 'hd_ssi_logo_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--logo--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--logo--margin',
-		),
-		'order'           => 220,
-	);
+	// $settings['logo_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_logo_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--logo--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--logo--margin',
+	// 	),
+	// 	'order'           => 220,
+	// );
 
 	$settings['image_section'] = array(
 		'option_name'       => 'hd_ssi_image_section',
@@ -499,20 +529,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 320,
 	);
 
-	$settings['image_margin'] = array(
-		'option_name'     => 'hd_ssi_image_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--image--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--image--margin',
-		),
-		'order'           => 325,
-	);
+	// $settings['image_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_image_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--image--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--image--margin',
+	// 	),
+	// 	'order'           => 325,
+	// );
 
 	$settings['overlay_section'] = array(
 		'option_name'       => 'hd_ssi_overlay_section',
@@ -564,20 +594,20 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 415,
 	);
 
-	$settings['overlay_margin'] = array(
-		'option_name'     => 'hd_ssi_overlay_margin',
-		'label'           => __( 'Margin', 'simple-social-images' ),
-		'input_type'      => 'range',
-		'min'             => '0',
-		'max'             => '100',
-		'step'            => '1',
-		'default_value;'  => '0',
-		'custom_property' => '--ssi--overlay--margin',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--overlay--margin',
-		),
-		'order'           => 420,
-	);
+	// $settings['overlay_margin'] = array(
+	// 	'option_name'     => 'hd_ssi_overlay_margin',
+	// 	'label'           => __( 'Margin', 'simple-social-images' ),
+	// 	'input_type'      => 'range',
+	// 	'min'             => '0',
+	// 	'max'             => '100',
+	// 	'step'            => '1',
+	// 	'default_value;'  => '0',
+	// 	'custom_property' => '--ssi--overlay--margin',
+	// 	'data_attributes' => array(
+	// 		'custom-property' => '--ssi--overlay--margin',
+	// 	),
+	// 	'order'           => 420,
+	// );
 
 	$settings['overlay_color'] = array(
 		'option_name'    => 'hd_ssi_overlay_color',

@@ -22,14 +22,20 @@ body {
 	--ssi--image--background-blend-mode: none;
 	--ssi--image--width: 80;
 	--ssi--image--height: 80;
-	--ssi--image--margin: 2;
+	/* --ssi--image--margin: 2; */
+	--ssi--image--offset--x: 0;
+	--ssi--image--offset--y: 0;
 	--ssi--logo--height: 5;
 	--ssi--logo--width: auto;
-	--ssi--logo--margin: 3;
+	/* --ssi--logo--margin: 3; */
+	--ssi--logo--offset--x: 0;
+	--ssi--logo--offset--y: 0;
 	--ssi--overlay--background-color: green;
 	--ssi--overlay--width: 50;
 	--ssi--overlay--height: 100;
-	--ssi--overlay--margin: 5;
+	/* --ssi--overlay--margin: 5; */
+	--ssi--overlay--offset--x: 0;
+	--ssi--overlay--offset--y: 0;
 	--ssi--overlay--opacity: 0.5;
 
 	position: relative;
@@ -48,7 +54,7 @@ body {
 .ssi-template__title-wrapper {
 	position: absolute;
 	width: calc(var(--ssi--title--width) * var(--ssi-template--unit));
-	margin: calc(var(--ssi--title--margin) * var(--ssi-template--unit));
+	/* margin: calc(var(--ssi--title--margin) * var(--ssi-template--unit)); */
 	text-align: var(--ssi--title--text-align);
 }
 
@@ -72,24 +78,33 @@ body {
 .ssi-template__logo {
 	position: absolute;
 	height: calc(var(--ssi--logo--height) * var(--ssi-template--unit));
-	margin: calc(var(--ssi--logo--margin) * var(--ssi-template--unit));
+	/* margin: calc(var(--ssi--logo--margin) * var(--ssi-template--unit)); */
+	transform: translateX( calc( var(--ssi--logo--offset--x) *
+	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--logo--offset--y)*
+	var(--ssi-template--unit) ) );
 }
 
 .ssi-template__image {
 	display: block;
 	position: absolute;
+	transform: translateX( calc( var(--ssi--image--offset--x) *
+	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--image--offset--y)*
+	var(--ssi-template--unit) ) );
 	width: calc(var(--ssi--image--width) * 1%);
 	height: calc(var(--ssi--image--height) * 1%);
-	margin: calc(var(--ssi--image--margin) * var(--ssi-template--unit));
+	/* margin: calc(var(--ssi--image--margin) * var(--ssi-template--unit)); */
 	object-fit: cover;
 }
 
 .ssi-template__overlay {
 	display: block;
 	position: absolute;
+	transform: translateX( calc( var(--ssi--overlay--offset--x) *
+	var(--ssi-template--unit) ) ) translateY( calc( var(--ssi--overlay--offset--y)*
+	var(--ssi-template--unit) ) );
 	width: calc(var(--ssi--overlay--width) * var(--ssi-template--unit));
 	height: calc(var(--ssi--overlay--height) * 1%);
-	margin: calc(var(--ssi--overlay--margin) * var(--ssi-template--unit));
+	/* margin: calc(var(--ssi--overlay--margin) * var(--ssi-template--unit)); */
 	background-color: var(--ssi--overlay--background-color);
 	opacity: calc(var(--ssi--overlay--opacity) / 100);
 }
