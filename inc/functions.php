@@ -472,6 +472,14 @@ function hd_ssi_output_template_title_classes() {
  */
 function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 
+	// get the status of whether we are using images.
+	$use_image = hd_ssi_use_image();
+
+	// if we have not using image.
+	if ( 0 === $use_image ) {
+		return '';
+	}
+
 	$image_url = '';
 
 	// if the current post has a featured image.
@@ -487,6 +495,14 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 			hd_ssi_get_random_image_id(),
 			'hd_ssi_image',
 		);
+
+		// if we don't have an image added to settings.
+		if ( empty( $image_url ) ) {
+
+			// use the default image URL.
+			$image_url = HD_SSI_LOCATION_URL . '/assets/img/image-placeholder.jpg';
+
+		}
 
 	}
 

@@ -522,18 +522,6 @@ function hd_ssi_get_background_color() {
 }
 
 /**
- * Gets the current active background color.
- */
-function hd_ssi_get_bg_color() {
-
-	return apply_filters(
-		'hd_ssi_bg_color',
-		get_option( 'hd_ssi_bg_color' )
-	);
-
-}
-
-/**
  * Checks whether a background colour has been set.
  *
  * @return integer 1 if a background colour is set and zero otherwise.
@@ -544,7 +532,7 @@ function hd_ssi_has_background_color() {
 	$output = 0;
 
 	// get the background color.
-	$bg_color = hd_ssi_get_bg_color();
+	$bg_color = hd_ssi_get_background_color();
 
 	// if we have a background color set.
 	if ( ! empty( $bg_color ) ) {
@@ -610,7 +598,7 @@ function hd_ssi_get_logo_url() {
 	if ( empty( $logo_url ) ) {
 
 		// set the logo URL to the default.
-		$logo_url = HD_SSI_LOCATION_URL . '/assets/img/logo-placeholder.jpg';
+		$logo_url = HD_SSI_LOCATION_URL . '/assets/img/logo-placeholder.svg';
 
 	}
 
@@ -653,6 +641,18 @@ function hd_ssi_get_logo_marginn() {
 	return apply_filters(
 		'hd_ssi_logo_margin',
 		get_option( 'hd_ssi_logo_margin' )
+	);
+
+}
+
+/**
+ * Returns 1 if image is being used and zero otherwise.
+ */
+function hd_ssi_use_image() {
+
+	return apply_filters(
+		'hd_ssi_use_image',
+		absint( get_option( 'hd_ssi_use_image' ) )
 	);
 
 }
