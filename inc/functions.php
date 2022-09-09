@@ -422,6 +422,14 @@ function hd_ssi_output_template_title_wrapper_classes() {
 
 	}
 
+	// if the title is hidden.
+	if ( 0 === hd_ssi_use_title() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
+
+	}
+
 	// allow template classes to be filtered.
 	$classes = apply_filters( 'hd_ssi_template_title_wrapper_classes', $classes );
 

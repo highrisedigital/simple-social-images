@@ -562,6 +562,18 @@ function hd_ssi_use_logo() {
 }
 
 /**
+ * Returns 1 if title is being used and zero otherwise.
+ */
+function hd_ssi_use_title() {
+
+	return apply_filters(
+		'hd_ssi_use_title',
+		absint( get_option( 'hd_ssi_use_title' ) )
+	);
+
+}
+
+/**
  * Gets the currently uploaded logo attachment ID.
  */
 function hd_ssi_get_logo_id() {
