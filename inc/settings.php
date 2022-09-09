@@ -94,6 +94,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'      => 'checkboxes',
 		'options'         => hd_ssi_get_site_post_types(),
 		'order'           => 15,
+		'group'           => 'start',
 	);
 
 	$settings['template_section'] = array(
@@ -795,7 +796,7 @@ function hd_ssi_setting_input_type_checkboxes( $setting, $value ) {
 			?>
 			<label for="<?php echo esc_attr( $setting['option_name'] ); ?>-<?php echo esc_attr( $post_type ); ?>">
 				<input type="checkbox" name="<?php echo esc_attr( $setting['option_name'] ); ?>[]" id="<?php echo esc_attr( $setting['option_name'] ); ?>-<?php echo esc_attr( $post_type ); ?>" class="hd-ssi-input hd-ssi-input--checkbox" value="<?php echo esc_attr( $post_type ); ?>"<?php echo esc_attr( $checked ); ?> />
-				<span style="line-height: 1.8;"><?php echo esc_html( $label ); ?></span>
+				<span class="hd-ssi-input-message" style="line-height: 1.8;"><?php echo esc_html( $label ); ?></span>
 			</label>
 
 			<?php
