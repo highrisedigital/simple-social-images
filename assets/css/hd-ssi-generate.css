@@ -60,6 +60,10 @@ body {
 	width: calc(var(--ssi--title--width) * var(--ssi-template--unit));
 	/* margin: calc(var(--ssi--title--margin) * var(--ssi-template--unit)); */
 	text-align: var(--ssi--title--text-align);
+	
+	--this--offset--x: calc( var(--ssi--title--offset--x) * var(--ssi-template--unit) );
+	--this--offset--y: calc( var(--ssi--title--offset--y) * var(--ssi-template--unit) );
+	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 }
 
 .ssi-template .ssi-template__title {
@@ -74,10 +78,6 @@ body {
 	font-weight: var(--ssi--title--font-weight);
 	font-style: var(--ssi--title--font-style);
 	text-transform: var(--ssi--title--text-transform);
-
-	--this--offset--x: calc( var(--ssi--title--offset--x) * var(--ssi-template--unit) );
-	--this--offset--y: calc( var(--ssi--title--offset--y) * var(--ssi-template--unit) );
-	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
 }
 
 .ssi-template__logo {
