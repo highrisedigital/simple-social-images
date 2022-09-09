@@ -345,7 +345,6 @@ function hd_ssi_output_template_image_classes() {
 
 		// add classes for each position value.
 		$classes[] = 'ssi--position--' . $image_position;
-		//$classes[] = 'ssi--position--' . $image_position[1];
 
 	}
 
@@ -385,7 +384,6 @@ function hd_ssi_output_template_logo_classes() {
 
 		// add classes for each position value.
 		$classes[] = 'ssi--position--' . $logo_position;
-		//$classes[] = 'ssi--position--' . $logo_position[1];
 
 	}
 
@@ -423,12 +421,8 @@ function hd_ssi_output_template_title_wrapper_classes() {
 	// if we have an title position.
 	if ( ! empty( $title_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		//$title_position = explode( '-', $title_position );
-
 		// add classes for each position value.
 		$classes[] = 'ssi--position--' . $title_position;
-		//$classes[] = 'ssi--position--' . $title_position[1];
 
 	}
 
