@@ -683,13 +683,13 @@ function hd_ssi_get_logo_marginn() {
 }
 
 /**
- * Gets the ignore featured images setting.
+ * Gets the use featured images setting.
  */
-function hd_ssi_ignore_featured_images() {
+function hd_ssi_use_featured_images() {
 
 	return apply_filters(
-		'hd_ssi_ignore_featured_image',
-		absint( get_option( 'hd_ssi_ignore_featured_image' ) )
+		'hd_ssi_use_featured_image',
+		absint( get_option( 'hd_ssi_use_featured_image' ) )
 	);
 
 }
