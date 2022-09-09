@@ -522,18 +522,6 @@ function hd_ssi_get_background_color() {
 }
 
 /**
- * Gets the current active background color.
- */
-function hd_ssi_get_bg_color() {
-
-	return apply_filters(
-		'hd_ssi_bg_color',
-		get_option( 'hd_ssi_bg_color' )
-	);
-
-}
-
-/**
  * Checks whether a background colour has been set.
  *
  * @return integer 1 if a background colour is set and zero otherwise.
