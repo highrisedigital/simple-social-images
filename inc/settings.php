@@ -96,17 +96,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 15,
 	);
 
-	$settings['use_featured_image'] = array(
-		'option_name'    => 'hd_ssi_use_featured_image',
-		'label'          => __( 'Use featured images', 'simple-social-images' ),
-		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
-		'message'        => __( 'Use featured images', 'simple-social-images' ),
-		'description'    => __( 'Instead of using an image from the images added below, if a post has a featured image assigned, the feature image will be used instead.', 'simple-social-images' ),
-		'input_type'     => 'checkbox',
-		'default_value'  => 0,
-		'order'          => 20,
-	);
-
 	$settings['template_section'] = array(
 		'option_name'    => 'hd_ssi_template_section',
 		'label'          => __( 'Template settings', 'simple-social-images' ),
@@ -365,8 +354,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		)
 	);
 
-	
-
 	$settings['logo_section'] = array(
 		'option_name'       => 'hd_ssi_logo_section',
 		'label'             => __( 'Logo Settings', 'simple-social-images' ),
@@ -451,6 +438,17 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'             => 300,
 	);
 
+	$settings['use_featured_image'] = array(
+		'option_name'    => 'hd_ssi_use_featured_image',
+		'label'          => __( 'Use featured images', 'simple-social-images' ),
+		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
+		'message'        => __( 'Use featured images', 'simple-social-images' ),
+		'description'    => __( 'Instead of using an image from the images added below, if a post has a featured image assigned, the feature image will be used instead.', 'simple-social-images' ),
+		'input_type'     => 'checkbox',
+		'default_value'  => 0,
+		'order'          => 302,
+	);
+
 	$settings['background_images'] = array(
 		'option_name' => 'hd_ssi_background_images',
 		'label'       => __( 'Add Images', 'simple-social-images' ),
@@ -460,6 +458,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'target-class'   => 'ssi-template__image',
 		),
+		'group'           => 'start',
 	);
 
 	$settings['image_position'] = array(
@@ -1045,7 +1044,12 @@ add_action( 'hd_ssi_after_setting', 'hd_ssi_output_setting_descriptions', 10, 2 
 function hd_ssi_output_group_start_markup( $setting, $value ) {
 
 	// if we have a group.
-	if ( empty( $setting['group'] ) && 'start' !== $setting['group'] ) {
+	if ( empty( $setting['group'] ) ) {
+		return;
+	}
+
+	// if this is not a group start.
+	if ( 'start' !== $setting['group'] ) {
 		return;
 	}
 
