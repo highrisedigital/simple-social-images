@@ -419,19 +419,19 @@
 
 		event.stopPropagation();
 		
-		var templateWidth = getComputedStyle(theTemplateElement).getPropertyValue("--ssi-template--scale");
+		var templateWidth = getComputedStyle(theTemplateElement).getPropertyValue("--ssi--template--scale");
 
 		// if the template width is set to 1
 		if ( templateWidth === ' 1'  ) {
 
 			// set width to .7
-			theTemplateElement.style.setProperty("--ssi-template--scale", " .7");	
+			theTemplateElement.style.setProperty("--ssi--template--scale", " .7");	
 			
 
 		} else {
 
 			// set width to 1
-			theTemplateElement.style.setProperty("--ssi-template--scale", " 1");	
+			theTemplateElement.style.setProperty("--ssi--template--scale", " 1");	
 
 		}
 

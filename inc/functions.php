@@ -361,41 +361,6 @@ function hd_ssi_output_template_image_classes() {
 }
 
 /**
- * Builds an array of classes for the template overlay and returns them as a string.
- *
- * @return string The classes to add to the template wrapper div.
- */
-function hd_ssi_output_template_overlay_classes() {
-
-	// create an array of classes.
-	$classes = array(
-		'ssi-template__overlay'
-	);
-
-	// get the overlay position setting.
-	$overlay_position = hd_ssi_get_overlay_position();
-
-	// if we have an overlay position.
-	if ( ! empty( $overlay_position ) ) {
-
-		// slipt the position result at the hyphen (-)
-		//$overlay_position = explode( '-', $overlay_position );
-
-		// add classes for each position value.
-		$classes[] = 'position--' . $overlay_position;
-		//$classes[] = 'position--' . $overlay_position[1];
-
-	}
-
-	// allow template classes to be filtered.
-	$classes = apply_filters( 'hd_ssi_template_overlay_classes', $classes );
-
-	// return the classes string;
-	return implode( ' ', $classes );
-
-}
-
-/**
  * Builds an array of classes for the template logo and returns them as a string.
  *
  * @return string The classes to add to the template wrapper div.

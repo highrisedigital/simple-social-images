@@ -51,7 +51,25 @@ img.ssi-image {
     margin-right: 32px;
 	position: relative;
 }
-.form-table td .hd-ssi-input-description {
+.form-table {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em 2em;
+}
+.group-divider {
+	width: 100%;
+	display: block;
+}
+.form-table label,
+.label {
+	font-weight: bold;
+	display: inline-block;
+	padding-bottom: .5em;
+}
+ label .hd-ssi-input-message {
+	font-weight: normal;
+}
+.form-table .hd-ssi-input-description {
 	margin-top: 15px;
 	font-style: italic;
 	max-width: 35em;
@@ -71,38 +89,26 @@ input[type=text].hd-ssi-input--license-invalid {
 .form-table .hd-ssi-image-button {
 	margin-bottom: 8px;
 }
-
 .hd-ssi-setting-type--section {
 	border-top: 1px solid #CCCCCC;
-}
-.hd-ssi-settings-form .hd-ssi-setting-type--section th {
-	flex-basis: 100%;
-	font-size: 130%;
-	font-weight: bold;
+	margin-top: 2em;
+	padding-top: 2em;
+	width: 100%;
 }
 .hd-ssi-settings-form .hd-ssi-setting-type--section {
 	gap: 0;
 }
-
 .hd-ssi-settings-form .hd-ssi-setting-type--hidden {
 	display: none;
 }
-
-.hd-ssi-settings-form tr {
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 2em;
-}
-.hd-ssi-settings-form th {
-	padding: 15px 0 0;
-	flex-basis: 25%;
-}
-.hd-ssi-settings-form td {
-	padding: 15px 0;
-	margin: 0;
-}
 .hd-ssi-settings-form .form-table {
 	width: 100%;
+}
+.hd-ssi-setting-type--text {
+	max-width: calc(50% - 1em);
+}
+.hd-ssi-input--text {
+	max-width: 100%;
 }
 .hd-ssi-tooltip {
 	cursor: pointer;
@@ -118,7 +124,7 @@ input[type=text].hd-ssi-input--license-invalid {
 .hd-ssi-template-preview  {
 	
 	position: relative;
-	max-width: var(--ssi-template--width);
+	max-width: var(--ssi--template--width);
 
 }
 
@@ -149,7 +155,7 @@ input[type=text].hd-ssi-input--license-invalid {
 
 .hd-ssi-template-preview .ssi-template {
 
-	--ssi-template--width: 80vw;
+	--ssi--template--width: 80vw;
 	box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
 
 }
@@ -158,7 +164,7 @@ input[type=text].hd-ssi-input--license-invalid {
 	
 	.hd-ssi-template-preview .ssi-template {
 
-		--ssi-template--width: 520px;
+		--ssi--template--width: 520px;
 	
 	}
 
