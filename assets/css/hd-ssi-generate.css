@@ -5,6 +5,7 @@ body {
 
 .ssi-template {
 	--ssi-template--width: 100vw;
+	--ssi-template--scale: 1;
 	--ssi-template--unit: calc(var(--ssi-template--width) / 100);
 	--ssi--title--color: white;
 	--ssi--title--background-color: red;
@@ -46,10 +47,13 @@ body {
 	place-items: center;
 	background-color: var(--ssi--background-color);
 	transition: all .3s ease;
-	--ssi-template--scale: .7;
 	transform: scale(var(--ssi-template--scale));
 	transform-origin: 100% 100%;
 
+}
+
+.hd-ssi-template-preview .ssi-template {
+	--ssi--template--scale: .7;
 }
 
 .ssi-template * {
