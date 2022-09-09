@@ -347,8 +347,8 @@ function hd_ssi_output_template_image_classes() {
 		//$image_position = explode( '-', $image_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $image_position;
-		//$classes[] = 'position--' . $image_position[1];
+		$classes[] = 'ssi--position--' . $image_position;
+		//$classes[] = 'ssi--position--' . $image_position[1];
 
 	}
 
@@ -382,8 +382,8 @@ function hd_ssi_output_template_logo_classes() {
 		// $logo_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $logo_position;
-		//$classes[] = 'position--' . $logo_position[1];
+		$classes[] = 'ssi--position--' . $logo_position;
+		//$classes[] = 'ssi--position--' . $logo_position[1];
 
 	}
 
@@ -417,8 +417,8 @@ function hd_ssi_output_template_title_wrapper_classes() {
 		//$title_position = explode( '-', $title_position );
 
 		// add classes for each position value.
-		$classes[] = 'position--' . $title_position;
-		//$classes[] = 'position--' . $title_position[1];
+		$classes[] = 'ssi--position--' . $title_position;
+		//$classes[] = 'ssi--position--' . $title_position[1];
 
 	}
 
@@ -446,7 +446,7 @@ function hd_ssi_output_template_title_classes() {
 	$title_bg_type = hd_ssi_get_title_background_type();
 
 	// add the background type class.
-	$classes[] = 'background--' . $title_bg_type;
+	$classes[] = 'ssi-background--' . $title_bg_type;
 
 	// if the background type is gradient.
 	if ( 'gradient' === $title_bg_type ) {

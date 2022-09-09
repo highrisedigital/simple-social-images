@@ -119,7 +119,7 @@
 				// add the class.
 				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
 
-				if ( thisModifierClass == 'position--' ) {
+				if ( thisModifierClass == 'ssi--position--' ) {
 
 					// get the parent element.
 					var thisParent = $(this).parents('.hd-ssi-setting');

@@ -164,7 +164,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'         => 105,
 		'data_attributes' => array(
 			'target-class'   => 'ssi-template__title-wrapper',
-			'modifier-class' => 'position--',
+			'modifier-class' => 'ssi--position--',
 		),
 		'section'     => 'hd_ssi_title_section',
 		'group'             => 'start',
@@ -355,7 +355,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'             => 155,
 		'data_attributes' => array(
 			'target-class'   => 'ssi-template__title',
-			'modifier-class' => 'background--',
+			'modifier-class' => 'ssi-background--',
 		),
 		'section'     => 'hd_ssi_title_section',
 	);
@@ -418,7 +418,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'         => 210,
 		'data_attributes' => array(
 			'target-class'   => 'ssi-template__logo',
-			'modifier-class' => 'position--',
+			'modifier-class' => 'ssi--position--',
 		),
 		'group'         => 'start',
 		'section'     => 'hd_ssi_logo_section',
@@ -523,7 +523,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'             => 310,
 		'data_attributes'   => array(
 			'target-class'   => 'ssi-template__image',
-			'modifier-class' => 'position--',
+			'modifier-class' => 'ssi--position--',
 		),
 		'default_value'     => 'middle-center',
 		'group'             => 'start',
