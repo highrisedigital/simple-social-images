@@ -561,6 +561,17 @@ function hd_ssi_has_background_color() {
 
 }
 
+/**
+ * Returns 1 if logo is being used and zero otherwise.
+ */
+function hd_ssi_use_logo() {
+
+	return apply_filters(
+		'hd_ssi_use_logo',
+		absint( get_option( 'hd_ssi_use_logo' ) )
+	);
+
+}
 
 /**
  * Gets the currently uploaded logo attachment ID.
@@ -570,6 +581,42 @@ function hd_ssi_get_logo_id() {
 	return apply_filters(
 		'hd_ssi_logo_id',
 		get_option( 'hd_ssi_logo' )
+	);
+
+}
+
+/**
+ * Gets the currently uploaded logo URL.
+ *
+ * @return string An empty string if logo not being used or the logo URL.
+ */
+function hd_ssi_get_logo_url() {
+
+	// get the logo usage status.
+	$use_logo = hd_ssi_use_logo();
+
+	// if we are not using a logo.
+	if ( 0 === $use_logo ) {
+		return '';
+	}
+
+	// get the URL of the logo added to settings.
+	$logo_url = wp_get_attachment_image_url(
+		hd_ssi_get_logo_id(),
+		'full'
+	);
+
+	// if we don't have a logo added to settings.
+	if ( empty( $logo_url ) ) {
+
+		// set the logo URL to the default.
+		$logo_url = HD_SSI_LOCATION_URL . '/assets/img/logo-placeholder.jpg';
+
+	}
+
+	return apply_filters(
+		'hd_ssi_logo_url',
+		$logo_url
 	);
 
 }
