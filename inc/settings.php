@@ -614,10 +614,11 @@ function hd_ssi_register_default_settings( $settings ) {
 	);
 
 	$settings['placeholder_title'] = array(
-		'option_name' => 'hd_ssi_placeholder_title',
-		'label'       => __( 'Placeholder Title', 'simple-social-images' ),
-		'input_type'  => 'hidden',
-		'order'       => 1000,
+		'option_name'   => 'hd_ssi_placeholder_title',
+		'label'         => __( 'Placeholder Title', 'simple-social-images' ),
+		'input_type'    => 'hidden',
+		'default_value' => 'Placeholder title - click to edit',
+		'order'         => 1000,
 	);
 
 	// return the registered settings array.
