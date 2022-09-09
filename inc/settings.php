@@ -572,7 +572,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--width',
 		),
-		'default_value;'  => '95',
+		'default_valu;'  => '95',
 		'order'           => 315,
 		'group'           => 'start',
 		'section'     => 'hd_ssi_image_section',
@@ -585,7 +585,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
-		'default_value;'  => '92',
+		'default_value'  => '92',
 		'custom_property' => '--ssi--image--height',
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--height',
