@@ -572,7 +572,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'data_attributes' => array(
 			'custom-property' => '--ssi--image--width',
 		),
-		'default_valu;'  => '95',
+		'default_value'  => '95',
 		'order'           => 315,
 		'group'           => 'start',
 		'section'     => 'hd_ssi_image_section',
