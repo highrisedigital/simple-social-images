@@ -343,12 +343,16 @@ function hd_ssi_output_template_image_classes() {
 	// if we have an image position.
 	if ( ! empty( $image_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		//$image_position = explode( '-', $image_position );
-
 		// add classes for each position value.
 		$classes[] = 'position--' . $image_position;
-		//$classes[] = 'position--' . $image_position[1];
+
+	}
+
+	// if the image is hidden.
+	if ( 0 === hd_ssi_use_image() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
 
 	}
 
@@ -378,12 +382,16 @@ function hd_ssi_output_template_logo_classes() {
 	// if we have an logo position.
 	if ( ! empty( $logo_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		// $logo_position );
-
 		// add classes for each position value.
 		$classes[] = 'position--' . $logo_position;
-		//$classes[] = 'position--' . $logo_position[1];
+
+	}
+
+	// if the logo is hidden.
+	if ( 0 === hd_ssi_use_logo() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
 
 	}
 
