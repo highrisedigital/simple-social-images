@@ -96,12 +96,12 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'           => 15,
 	);
 
-	$settings['ignore_featured_image'] = array(
-		'option_name'    => 'hd_ssi_ignore_featured_image',
-		'label'          => __( 'Ignore featured images', 'simple-social-images' ),
+	$settings['use_featured_image'] = array(
+		'option_name'    => 'hd_ssi_use_featured_image',
+		'label'          => __( 'Use featured images', 'simple-social-images' ),
 		'description'    => __( 'This will prevent post featured images being used', 'simple-social-images' ),
-		'message'        => __( 'Ignore featured images.', 'simple-social-images' ),
-		'description'    => __( 'This will prevent the plugin from using a post\'s featured image in the generated social sharing image. Images will be chosen randomly from your uploaded background images below.', 'simple-social-images' ),
+		'message'        => __( 'Use featured images', 'simple-social-images' ),
+		'description'    => __( 'Instead of using an image from the images added below, if a post has a featured image assigned, the feature image will be used instead.', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
 		'default_value'  => 0,
 		'order'          => 20,
@@ -1179,7 +1179,10 @@ function hd_ssi_output_setting_descriptions( $setting, $value ) {
 
 add_action( 'hd_ssi_after_setting', 'hd_ssi_output_setting_descriptions', 10, 2 );
 
-function hd_ssi_add_top_tip_icon( $setting, $value ) {
+/**
+ * Adds a tooltip items to settings that have a description.
+ */
+function hd_ssi_add_tool_tip_icon( $setting, $value ) {
 
 	// if the setting has no description.
 	if ( empty( $setting['description'] ) ) {
@@ -1202,7 +1205,7 @@ function hd_ssi_add_top_tip_icon( $setting, $value ) {
 
 }
 
-add_action( 'hd_si_after_setting_label', 'hd_ssi_add_top_tip_icon', 10, 2 );
+add_action( 'hd_si_after_setting_label', 'hd_ssi_add_tool_tip_icon', 10, 2 );
 
 /**
  * Outputs any data attributes add to settings.
