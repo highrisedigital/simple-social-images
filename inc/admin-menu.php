@@ -64,11 +64,27 @@ function hd_ssi_settings_page_output() {
 						// get the current value of this setting.
 						$value = get_option( $setting['option_name'], '' );
 
+						/**
+						 * Fires an action which runs before the settings wrapper is output.
+						 *
+						 * @hooked hd_ssi_output_group_start_markup - 10
+						 */
 						do_action( 'hd_ssi_before_settings_wrapper', $setting, $value );
+
+						// create a section data id.
+						$section_id = '';
+
+						// if this setting has a section.
+						if ( ! empty( $setting['section'] ) ) {
+
+							// store the section name.
+							$section_id = $setting['section'];
+
+						}
 
 						?>
 
-						<div valign="top" class="hd-ssi-setting hd-ssi-setting-type--<?php echo esc_attr( $setting['input_type'] ); ?>">
+						<div class="hd-ssi-setting hd-ssi-setting-type--<?php echo esc_attr( $setting['input_type'] ); ?>" data-section-id="<?php echo esc_attr( str_replace( '_', '-', $section_id ) ); ?>">
 
 							<div scope="row">
 
@@ -83,10 +99,11 @@ function hd_ssi_settings_page_output() {
 									<?php
 
 								} elseif ( 'section' === $setting['input_type'] ) {
+									
 
 									// output the section heading.
 									?>
-									<h2 class="hd-ssi-section-heading"><?php echo esc_html( $setting['label'] ); ?></h2>
+									<h2 class="hd-ssi-section-heading" data-section-id="<?php echo str_replace( '_', '-', esc_attr( $setting['option_name'] ) ); ?>"><?php echo esc_html( $setting['label'] ); ?></h2>
 									<?php
 
 								} else { // setting type is not a checkbox.
@@ -150,6 +167,12 @@ function hd_ssi_settings_page_output() {
 						</div>
 
 						<?php
+
+						/**
+						 * Fires an action which runs after the settings wrapper is output.
+						 *
+						 */
+						do_action( 'hd_ssi_after_settings_wrapper', $setting, $value );
 
 					}
 
