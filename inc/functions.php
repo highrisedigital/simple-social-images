@@ -500,7 +500,7 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 		if ( empty( $image_url ) ) {
 
 			// use the default image URL.
-			$image_url = HD_SSI_LOCATION_URL . '/assets/img/image-placeholder.jpg';
+			$image_url = HD_SSI_LOCATION_URL . '/assets/img/image-placeholder.jpeg';
 
 		}
 
@@ -527,10 +527,7 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 	// get the logo and image urls.
 	$image_url = hd_ssi_get_post_background_image_url( $post_id );
-	$logo_url = wp_get_attachment_image_url(
-		hd_ssi_get_logo_id(),
-		'full'
-	);
+	$logo_url = hd_ssi_get_logo_url();
 
 	// if we have a logo.
 	if ( empty( $logo_url ) ) {
