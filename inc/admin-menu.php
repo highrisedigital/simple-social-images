@@ -86,47 +86,51 @@ function hd_ssi_settings_page_output() {
 
 						<div class="hd-ssi-setting hd-ssi-setting-type--<?php echo esc_attr( $setting['input_type'] ); ?>" data-section-id="<?php echo esc_attr( str_replace( '_', '-', $section_id ) ); ?>">
 
-							<div scope="row">
+							<?php
 
+							// set up label classes.
+							$label_classes = 'label';
+
+							// if 'Hide_label' is set to true.
+							if ( $setting['hide_label'] ) {
+
+								// add the screen reader class to the label classes.
+								$label_classes .= ' screen-reader-text ';
+
+							}
+
+							// if this is a checkbox field.
+							if ( 'checkbox' === $setting['input_type'] ) {
+
+								// output the label.
+								?>
+								<span class="<?php echo esc_attr( $label_classes ); ?>"><?php echo esc_html( $setting['label'] ); ?></span>
 								<?php
 
-								// if this is a checkbox field.
-								if ( 'checkbox' === $setting['input_type'] ) {
-
-									// output the label.
-									?>
-									<span class="label"><?php echo esc_html( $setting['label'] ); ?></span>
-									<?php
-
-								} elseif ( 'section' === $setting['input_type'] ) {
-									
-
-									// output the section heading.
-									?>
-									<h2 class="hd-ssi-section-heading" data-section-id="<?php echo str_replace( '_', '-', esc_attr( $setting['option_name'] ) ); ?>"><?php echo esc_html( $setting['label'] ); ?></h2>
-									<?php
-
-								} else { // setting type is not a checkbox.
-
-									// output the field label.
-									?>
-									<label for="<?php echo esc_attr( $setting['option_name'] ); ?>"><?php echo esc_attr( $setting['label'] ); ?></label>
-									<?php
-
-								}
+							} elseif ( 'section' === $setting['input_type'] ) {
 								
-								/**
-								 * Fire and action after the setting label.
-								 *
-								 * @hooked hd_ssi_add_top_tip_icon() - 10
-								 */
-								do_action( 'hd_si_after_setting_label', $setting, $value );
 
+								// output the section heading.
 								?>
+								<h2 class="hd-ssi-section-heading" data-section-id="<?php echo str_replace( '_', '-', esc_attr( $setting['option_name'] ) ); ?>"><?php echo esc_html( $setting['label'] ); ?></h2>
+								<?php
 
-							</div>
+							} else { // setting type is not a checkbox.
 
-							<?php
+								// output the field label.
+								?>
+								<label class="<?php echo esc_attr( $label_classes ); ?>" for="<?php echo esc_attr( $setting['option_name'] ); ?>"><?php echo esc_attr( $setting['label'] ); ?></label>
+								<?php
+
+							}
+							
+							/**
+							 * Fire and action after the setting label.
+							 *
+							 * @hooked hd_ssi_add_top_tip_icon() - 10
+							 */
+							do_action( 'hd_si_after_setting_label', $setting, $value );
+
 
 							// if the setting is not a section.
 							if ( 'section' !== $setting['input_type'] ) {

@@ -136,13 +136,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'        => 'text',
 		'sanitize_callback' => 'sanitize_url',
 		'order'             => 65,
-	);
-
-	$settings['title_section'] = array(
-		'option_name'    => 'hd_ssi_title_section',
-		'label'          => __( 'Title settings', 'simple-social-images' ),
-		'input_type'     => 'section',
-		'order'          => 100,
+		'group'             => 'end',
 	);
 
 	$settings['use_title'] = array(
@@ -151,8 +145,54 @@ function hd_ssi_register_default_settings( $settings ) {
 		'message'        => __( 'Use title', 'simple-social-images' ),
 		'input_type'     => 'checkbox',
 		'default_value'  => 1,
-		'order'          => 101,
-		'section'     => 'hd_ssi_title_section',
+		'hide_label'     => true,
+		'order'          => 66,
+		'data_attributes' => array(
+			'section-toggle'   => 'hd_ssi_title_section',
+			'toggle-target'    => 'ssi-template__title-wrapper',
+		),
+		'section'        => 'hd_ssi_title_section',
+	);
+
+	$settings['use_logo'] = array(
+		'option_name'    => 'hd_ssi_use_logo',
+		'label'          => __( 'Use a logo', 'simple-social-images' ),
+		'message'        => __( 'Use a logo', 'simple-social-images' ),
+		'input_type'     => 'checkbox',
+		'default_value'  => 1,
+		'hide_label'     => true,
+		'order'          => 67,
+		'section'        => 'hd_ssi_logo_section',
+		'data_attributes' => array(
+			'section-toggle'   => 'hd_ssi_logo_section',
+			'toggle-target'    => 'ssi-template__logo',
+		),
+	);
+
+	$settings['use_image'] = array(
+		'option_name'    => 'hd_ssi_use_image',
+		'label'          => __( 'Use an image', 'simple-social-images' ),
+		'message'        => __( 'Use an image', 'simple-social-images' ),
+		'input_type'     => 'checkbox',
+		'default_value'  => 1,
+		'hide_label'     => true,
+		'order'          => 68,
+		'section'     => 'hd_ssi_image_section',
+		'data_attributes' => array(
+			'section-toggle'   => 'hd_ssi_image_section',
+			'toggle-target'    => 'ssi-template__image',
+		),
+	);
+
+	$settings['title_section'] = array(
+		'option_name'    => 'hd_ssi_title_section',
+		'label'          => __( 'Title settings', 'simple-social-images' ),
+		'input_type'     => 'section',
+		'order'          => 100,
+		'data_attributes' => array(
+			'section-toggle'   => 'hd_ssi_title_section',
+		),
+		'section'        => 'hd_ssi_title_section',
 	);
 
 	$settings['title_position'] = array(
@@ -166,8 +206,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__title-wrapper',
 			'modifier-class' => 'ssi--position--',
 		),
-		'section'     => 'hd_ssi_title_section',
-		'group'             => 'start',
+		'section'       => 'hd_ssi_title_section',
 	);
 
 	$settings['title_offset_x'] = array(
@@ -183,7 +222,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => '5',
 		'order'             => 106,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_offset_y'] = array(
@@ -199,13 +238,13 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => '-5',
 		'order'             => 107,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_width'] = array(
 		'option_name'     => 'hd_ssi_title_width',
 		'label'           => __( 'Width', 'simple-social-images' ),
-		'input_type'      => 'range',
+		'input_type'      => 'number',
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
@@ -215,14 +254,13 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--width',
 		),
 		'order'           => 110,
-		'group'           => 'start',
-		'section'     => 'hd_ssi_title_section',
+		'section'         => 'hd_ssi_title_section',
 	);
 
 	$settings['title_font_size'] = array(
 		'option_name'     => 'hd_ssi_title_font_size',
 		'label'           => __( 'Font Size', 'simple-social-images' ),
-		'input_type'      => 'range',
+		'input_type'      => 'number',
 		'min'             => '2',
 		'max'             => '8',
 		'step'            => '0.5',
@@ -232,7 +270,8 @@ function hd_ssi_register_default_settings( $settings ) {
 			'custom-property' => '--ssi--title--font-size',
 		),
 		'order'           => 120,
-		'section'     => 'hd_ssi_title_section',
+		'section'         => 'hd_ssi_title_section',
+		'group'             => 'start',
 	);
 
 	$settings['title_align'] = array(
@@ -251,8 +290,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => 'left',
 		'order'             => 125,
-		'group'             => 'start',
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_weight'] = array(
@@ -276,7 +314,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => '700',
 		'order'             => 130,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_style'] = array(
@@ -293,7 +331,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => 'normal',
 		'order'             => 135,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_text_transform'] = array(
@@ -312,7 +350,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => 'none',
 		'order'             => 140,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_color'] = array(
@@ -326,7 +364,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'default_value'     => 'white',
 		'order'             => 145,
 		'group'             => 'start',
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_bg_color'] = array(
@@ -334,12 +372,12 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'             => __( 'Background Color', 'simple-social-images' ),
 		'input_type'        => 'color_picker',
 		'custom_property'   => '--ssi--title--background-color',
-		'data_attributes' => array(
+		'data_attributes'   => array(
 			'custom-property' => '--ssi--title--background-color',
 		),
 		'default_value'     => '#5f0ddb',
 		'order'             => 150,
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_background_type'] = array(
@@ -357,7 +395,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__title',
 			'modifier-class' => 'ssi-background--',
 		),
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['title_background_gradient'] = array(
@@ -372,11 +410,11 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'     => 'bottom',
 		'order'             => 160,
-		'data_attributes' => array(
+		'data_attributes'   => array(
 			'target-class'   => 'ssi-template__title',
 			'modifier-class' => 'gradient--',
 		),
-		'section'     => 'hd_ssi_title_section',
+		'section'           => 'hd_ssi_title_section',
 	);
 
 	$settings['logo_section'] = array(
@@ -384,16 +422,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'             => __( 'Logo Settings', 'simple-social-images' ),
 		'input_type'        => 'section',
 		'order'             => 200,
-	);
-
-	$settings['use_logo'] = array(
-		'option_name'    => 'hd_ssi_use_logo',
-		'label'          => __( 'Use a logo', 'simple-social-images' ),
-		'message'        => __( 'Use a logo', 'simple-social-images' ),
-		'input_type'     => 'checkbox',
-		'default_value'  => 1,
-		'order'          => 202,
-		'section'     => 'hd_ssi_logo_section',
+		'section'           => 'hd_ssi_logo_section',
 	);
 
 	$settings['logo'] = array(
@@ -406,7 +435,6 @@ function hd_ssi_register_default_settings( $settings ) {
 			'target-class'   => 'ssi-template__logo',
 		),
 		'section'     => 'hd_ssi_logo_section',
-		'group'             => 'start',
 	);
 
 	$settings['logo_position'] = array(
@@ -421,7 +449,7 @@ function hd_ssi_register_default_settings( $settings ) {
 			'modifier-class' => 'ssi--position--',
 		),
 		'group'         => 'start',
-		'section'     => 'hd_ssi_logo_section',
+		'section'       => 'hd_ssi_logo_section',
 	);
 
 	$settings['logo_offset_x'] = array(
@@ -432,12 +460,12 @@ function hd_ssi_register_default_settings( $settings ) {
 		'max'               => '100',
 		'step'              => '1',
 		'custom_property'   => '--ssi--logo--offset--x',
-		'data_attributes' => array(
+		'data_attributes'   => array(
 			'custom-property' => '--ssi--logo--offset--x',
 		),
 		'default_value'     => '-5',
 		'order'             => 211,
-		'section'     => 'hd_ssi_logo_section',
+		'section'           => 'hd_ssi_logo_section',
 	);
 
 	$settings['logo_offset_y'] = array(
@@ -448,18 +476,18 @@ function hd_ssi_register_default_settings( $settings ) {
 		'max'               => '100',
 		'step'              => '1',
 		'custom_property'   => '--ssi--logo--offset--y',
-		'data_attributes' => array(
+		'data_attributes'   => array(
 			'custom-property' => '--ssi--logo--offset--y',
 		),
 		'default_value'     => '5',
 		'order'             => 212,
-		'section'     => 'hd_ssi_logo_section',
+		'section'           => 'hd_ssi_logo_section',
 	);
 
 	$settings['logo_size'] = array(
 		'option_name'     => 'hd_ssi_logo_size',
 		'label'           => __( 'Size', 'simple-social-images' ),
-		'input_type'      => 'range',
+		'input_type'      => 'number',
 		'min'             => '2',
 		'max'             => '20',
 		'step'            => '0.5',
@@ -469,7 +497,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'   => '5',
 		'order'           => 215,
-		'section'     => 'hd_ssi_logo_section',
+		'section'         => 'hd_ssi_logo_section',
 	);
 
 	$settings['image_section'] = array(
@@ -477,16 +505,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'label'             => __( 'Image Settings', 'simple-social-images' ),
 		'input_type'        => 'section',
 		'order'             => 300,
-	);
-
-	$settings['use_image'] = array(
-		'option_name'    => 'hd_ssi_use_image',
-		'label'          => __( 'Use an image', 'simple-social-images' ),
-		'message'        => __( 'Use an image', 'simple-social-images' ),
-		'input_type'     => 'checkbox',
-		'default_value'  => 1,
-		'order'          => 301,
-		'section'     => 'hd_ssi_image_section',
+		'section'           => 'hd_ssi_image_section',
 	);
 
 	$settings['use_featured_image'] = array(
@@ -499,7 +518,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		'default_value'  => 0,
 		'order'          => 302,
 		'section'     => 'hd_ssi_image_section',
-		'group'             => 'start',
 	);
 
 	$settings['background_images'] = array(
@@ -565,7 +583,7 @@ function hd_ssi_register_default_settings( $settings ) {
 	$settings['image_width'] = array(
 		'option_name'     => 'hd_ssi_image_width',
 		'label'           => __( 'Width', 'simple-social-images' ),
-		'input_type'      => 'range',
+		'input_type'      => 'number',
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
@@ -575,14 +593,13 @@ function hd_ssi_register_default_settings( $settings ) {
 		),
 		'default_value'  => '95',
 		'order'           => 315,
-		'group'           => 'start',
 		'section'     => 'hd_ssi_image_section',
 	);
 
 	$settings['image_height'] = array(
 		'option_name'     => 'hd_ssi_image_height',
 		'label'           => __( 'Height', 'simple-social-images' ),
-		'input_type'      => 'range',
+		'input_type'      => 'number',
 		'min'             => '1',
 		'max'             => '100',
 		'step'            => '1',
@@ -601,8 +618,21 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'        => 'select',
 		'options'           => array(
 			'default' => __( 'None', 'simple-social-images' ),
+			'darken' => __( 'Darken', 'simple-social-images' ),
 			'multiply' => __( 'Multiply', 'simple-social-images' ),
+			'color-burn' => __( 'Color burn', 'simple-social-images' ),
+			'lighten' => __( 'Lighten', 'simple-social-images' ),
 			'screen' => __( 'Screen', 'simple-social-images' ),
+			'color-dodge' => __( 'Color dodge', 'simple-social-images' ),
+			'overlay' => __( 'Overlay', 'simple-social-images' ),
+			'soft-light' => __( 'Soft light', 'simple-social-images' ),
+			'hard-light' => __( 'Hard light', 'simple-social-images' ),
+			'difference' => __( 'Difference', 'simple-social-images' ),
+			'exclusion' => __( 'Exclusion', 'simple-social-images' ),
+			'hue' => __( 'Hue', 'simple-social-images' ),
+			'saturation' => __( 'Saturation', 'simple-social-images' ),
+			'color' => __( 'Color', 'simple-social-images' ),
+			'luminosity' => __( 'Luminosity', 'simple-social-images' ),
 		),
 		'order'             => 321,
 		'custom_property'   => '--ssi--image--blend-mode',
@@ -656,10 +686,30 @@ add_action( 'hd_ssi_setting_type_text', 'hd_ssi_setting_input_type_text', 10, 2 
  */
 function hd_ssi_setting_input_type_number( $setting, $value ) {
 
+	// defaults for min, max and step.
+	$min = '0';
+	$max = '100';
+	$step = '1';
+
+	// if we have a max.
+	if ( ! empty( $setting['max'] ) ) {
+		$max = $setting['max'];
+	}
+
+	// if we have a min.
+	if ( ! empty( $setting['min'] ) ) {
+		$min = $setting['min'];
+	}
+
+	// if we have a step.
+	if ( ! empty( $setting['step'] ) ) {
+		$step = $setting['step'];
+	}
+
 	// handle output for a number input.
 	?>
 
-	<input type="number" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-number hd-ssi-input hd-ssi-input--number" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
+	<input type="number" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-number hd-ssi-input hd-ssi-input--number" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="<?php echo esc_attr( $step ); ?>" value="<?php echo esc_attr( $value ); ?>"<?php echo wp_kses_post( hd_ssi_output_setting_data_attributes( $setting ) ); ?> />
 
 	<?php
 
@@ -1100,7 +1150,7 @@ function hd_ssi_output_setting_descriptions( $setting, $value ) {
 add_action( 'hd_ssi_after_setting', 'hd_ssi_output_setting_descriptions', 10, 2 );
 
 /**
- * Adds the group markup beneath each input.
+ * Adds the group divider above the input.
  */
 function hd_ssi_output_group_start_markup( $setting, $value ) {
 
@@ -1114,14 +1164,60 @@ function hd_ssi_output_group_start_markup( $setting, $value ) {
 		return;
 	}
 
+	// create a section data id.
+	$section_id = '';
+
+	// if this setting has a section.
+	if ( ! empty( $setting['section'] ) ) {
+
+		// store the section name.
+		$section_id = $setting['section'];
+
+	}
+
 	// output the description.
 	?>
-	<hr class="group-divider">
+	<hr class="group-divider" data-section-id="<?php echo esc_attr( str_replace( '_', '-', $section_id ) ); ?>" >
 	<?php
 
 }
 
 add_action( 'hd_ssi_before_settings_wrapper', 'hd_ssi_output_group_start_markup', 10, 2 );
+
+/**
+ * Adds the group divider below the input.
+ */
+function hd_ssi_output_group_end_markup( $setting, $value ) {
+
+	// if we have a group.
+	if ( empty( $setting['group'] ) ) {
+		return;
+	}
+
+	// if this is not a group end.
+	if ( 'end' !== $setting['group'] ) {
+		return;
+	}
+
+	// create a section data id.
+	$section_id = '';
+
+	// if this setting has a section.
+	if ( ! empty( $setting['section'] ) ) {
+
+		// store the section name.
+		$section_id = $setting['section'];
+
+	}
+
+	// output the divider.
+	?>
+	<hr class="group-divider" data-section-id="<?php echo esc_attr( str_replace( '_', '-', $section_id ) ); ?>" >
+	<?php
+
+}
+
+add_action( 'hd_ssi_after_settings_wrapper', 'hd_ssi_output_group_end_markup', 10, 2 );
 
 /**
  * Adds a tooltip items to settings that have a description.

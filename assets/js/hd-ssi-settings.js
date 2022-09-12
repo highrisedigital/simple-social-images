@@ -437,4 +437,127 @@
 
 	});
 
+	function showHideInputs(toggleElement){
+
+		// get the value of the toggle.
+		var toggleChecked = toggleElement.checked;
+
+		// get the parent wrapper.
+		var inputWrapper = $(toggleElement).parents('.hd-ssi-setting');
+
+		// get the data section id.
+		var dataSectionId = inputWrapper.data('section-id');
+
+		$('[data-section-id="' + dataSectionId + '"]').not(':has([data-section-toggle])').each(function() {
+
+			if ( toggleChecked == 1 ) {
+				this.style.display = "block";
+			} else {
+				this.style.display = "none";
+			}
+
+		});
+
+	}
+
+	function showHideElements(toggleElement){
+
+		// replace the logo src when logo is enabled.
+		$('.hd-ssi-setting-type--image').each(function(){
+
+			// get the src of the first image.
+			imgSrc = $(this).find('img').attr('src');	
+			
+			if( imgSrc ) {
+
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// set template logo source.
+				$('.ssi-template__logo').attr('src', fullImgSrc);
+				
+			}
+
+		});
+
+		// replace the img src when images are enabled.
+		$('.hd-ssi-setting-type--gallery').each(function(){
+
+			// get the src of the first image.
+			imgSrc = $(this).find('img').attr('src');	
+			
+			if( imgSrc ) {
+
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// set template image source.
+				$('.ssi-template__image').attr('src', fullImgSrc);
+
+			}
+
+		});
+
+	}
+
+	// when the page is fully loaded.
+	window.addEventListener('load', (event) => {
+
+		// for each input with an id that starts with hd_ssi_use_.
+		document.querySelectorAll('[data-section-toggle]').forEach( function(element) {
+			
+			showHideInputs(element);
+			showHideElements(element);
+
+			element.addEventListener('change', (event) => {
+		
+				showHideInputs(element);
+				showHideElements(element);
+
+				// get the target class.
+				var toggleTargetClass = $(element).data('toggle-target');
+
+				// get the target element.
+				var targetElements = document.getElementsByClassName(toggleTargetClass);
+				var targetElement = targetElements[0];
+
+				// toggle the hidden class.
+				targetElement.classList.toggle("ssi-hidden");
+
+			})
+
+		});
+
+	});
+
+
+	// when the page is fully loaded.
+	window.addEventListener('load', (event) => {
+
+		// for each input with an id that starts with hd_ssi_use_.
+		document.querySelectorAll('.hd-ssi-section-heading').forEach( function(element) {
+			
+			//showHideInputs(element);
+
+			element.addEventListener('click', (event) => {
+
+				console.log(element);
+		
+				//showHideInputs(element);
+
+				// // get the target class.
+				// var toggleTargetClass = $(element).data('toggle-target');
+
+				// // get the target element.
+				// var targetElements = document.getElementsByClassName(toggleTargetClass);
+				// var targetElement = targetElements[0];
+
+				// // toggle the hidden class.
+				// targetElement.classList.toggle("ssi-hidden");
+
+			})
+
+		});
+
+	});
+
+
 })( jQuery );

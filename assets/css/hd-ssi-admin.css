@@ -60,6 +60,9 @@ img.ssi-image {
 	width: 100%;
 	display: block;
 }
+.hd-ssi-section-heading {
+	font-size: 1.66em;
+}
 .form-table label,
 .label {
 	font-weight: bold;
