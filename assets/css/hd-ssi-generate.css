@@ -9,13 +9,13 @@ body {
 	--ssi--template--scale: 1;
 	--ssi-template--unit: calc(var(--ssi--template--width) / 100);
 	
-	--ssi--background-color: #a47cdd;
+	--ssi--background-color: transparent;
 	--ssi--font-family: sans-serif;
 	--ssi--title--font-size: 5;
 	--ssi--line-height: 1.25;
 	
 	--ssi--title--color: white;
-	--ssi--title--background-color: #5f0ddb;
+	--ssi--title--background-color: transparent;
 	--ssi--title--width: 80;
 	--ssi--title--offset--x: 5;
 	--ssi--title--offset--y: -5;
