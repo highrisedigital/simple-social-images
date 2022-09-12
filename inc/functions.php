@@ -343,52 +343,21 @@ function hd_ssi_output_template_image_classes() {
 	// if we have an image position.
 	if ( ! empty( $image_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		//$image_position = explode( '-', $image_position );
-
 		// add classes for each position value.
-		$classes[] = 'position--' . $image_position;
-		//$classes[] = 'position--' . $image_position[1];
+		$classes[] = 'ssi--position--' . $image_position;
+
+	}
+
+	// if the image is hidden.
+	if ( 0 === hd_ssi_use_image() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
 
 	}
 
 	// allow template classes to be filtered.
 	$classes = apply_filters( 'hd_ssi_template_image_classes', $classes );
-
-	// return the classes string;
-	return implode( ' ', $classes );
-
-}
-
-/**
- * Builds an array of classes for the template overlay and returns them as a string.
- *
- * @return string The classes to add to the template wrapper div.
- */
-function hd_ssi_output_template_overlay_classes() {
-
-	// create an array of classes.
-	$classes = array(
-		'ssi-template__overlay'
-	);
-
-	// get the overlay position setting.
-	$overlay_position = hd_ssi_get_overlay_position();
-
-	// if we have an overlay position.
-	if ( ! empty( $overlay_position ) ) {
-
-		// slipt the position result at the hyphen (-)
-		//$overlay_position = explode( '-', $overlay_position );
-
-		// add classes for each position value.
-		$classes[] = 'position--' . $overlay_position;
-		//$classes[] = 'position--' . $overlay_position[1];
-
-	}
-
-	// allow template classes to be filtered.
-	$classes = apply_filters( 'hd_ssi_template_overlay_classes', $classes );
 
 	// return the classes string;
 	return implode( ' ', $classes );
@@ -413,12 +382,16 @@ function hd_ssi_output_template_logo_classes() {
 	// if we have an logo position.
 	if ( ! empty( $logo_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		// $logo_position );
-
 		// add classes for each position value.
-		$classes[] = 'position--' . $logo_position;
-		//$classes[] = 'position--' . $logo_position[1];
+		$classes[] = 'ssi--position--' . $logo_position;
+
+	}
+
+	// if the logo is hidden.
+	if ( 0 === hd_ssi_use_logo() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
 
 	}
 
@@ -448,12 +421,16 @@ function hd_ssi_output_template_title_wrapper_classes() {
 	// if we have an title position.
 	if ( ! empty( $title_position ) ) {
 
-		// slipt the position result at the hyphen (-)
-		//$title_position = explode( '-', $title_position );
-
 		// add classes for each position value.
-		$classes[] = 'position--' . $title_position;
-		//$classes[] = 'position--' . $title_position[1];
+		$classes[] = 'ssi--position--' . $title_position;
+
+	}
+
+	// if the title is hidden.
+	if ( 0 === hd_ssi_use_title() ) {
+
+		// add a hidden class.
+		$classes[] = 'ssi-hidden';
 
 	}
 
@@ -481,7 +458,7 @@ function hd_ssi_output_template_title_classes() {
 	$title_bg_type = hd_ssi_get_title_background_type();
 
 	// add the background type class.
-	$classes[] = 'background--' . $title_bg_type;
+	$classes[] = 'ssi-background--' . $title_bg_type;
 
 	// if the background type is gradient.
 	if ( 'gradient' === $title_bg_type ) {
@@ -507,10 +484,18 @@ function hd_ssi_output_template_title_classes() {
  */
 function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 
+	// get the status of whether we are using images.
+	$use_image = hd_ssi_use_image();
+
+	// if we have not using image.
+	if ( 0 === $use_image ) {
+		return '';
+	}
+
 	$image_url = '';
 
 	// if the current post has a featured image.
-	if ( has_post_thumbnail( $post_id ) && 0 === hd_ssi_ignore_featured_images() ) {
+	if ( has_post_thumbnail( $post_id ) && 1 === hd_ssi_use_featured_images() ) {
 
 		// set the image URL to the featured image URL.
 		$image_url = get_the_post_thumbnail_url( $post_id, 'hd_ssi_image' );
@@ -522,6 +507,14 @@ function hd_ssi_get_post_background_image_url( $post_id = 0 ) {
 			hd_ssi_get_random_image_id(),
 			'hd_ssi_image',
 		);
+
+		// if we don't have an image added to settings.
+		if ( empty( $image_url ) ) {
+
+			// use the default image URL.
+			$image_url = HD_SSI_LOCATION_URL . '/assets/img/image-placeholder.jpeg';
+
+		}
 
 	}
 
@@ -546,10 +539,7 @@ function hd_ssi_render_template( $post_id = 0 ) {
 
 	// get the logo and image urls.
 	$image_url = hd_ssi_get_post_background_image_url( $post_id );
-	$logo_url = wp_get_attachment_image_url(
-		hd_ssi_get_logo_id(),
-		'full'
-	);
+	$logo_url = hd_ssi_get_logo_url();
 
 	// if we have a logo.
 	if ( empty( $logo_url ) ) {

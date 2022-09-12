@@ -119,6 +119,37 @@
 				// add the class.
 				$('.' + theTargetElementClass).addClass(thisModifierClass + this.value);
 
+				if ( thisModifierClass == 'ssi--position--' ) {
+
+					// get the parent element.
+					var thisParent = $(this).parents('.hd-ssi-setting');
+
+					// get the first sibling of the parent.
+					var firstParentSibling = thisParent[0].nextElementSibling;
+
+					// get the second sibling of the parent.
+					var secondParentSibling = firstParentSibling.nextElementSibling;
+
+					// get the X-axis input.
+					var xAxisInput = firstParentSibling.querySelector('.hd-ssi-input--number');
+
+					// reset the x-axis value to 0.
+					xAxisInput.value = 0;
+
+					// force the 'change' event to update the template.
+					xAxisInput.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+					// get the Y-axis input.
+					var yAxisInput = secondParentSibling.querySelector('.hd-ssi-input--number');
+
+					// reset the y-axis value to 0.
+					yAxisInput.value = 0;
+
+					// force the 'change' event to update the template.
+					yAxisInput.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+				}
+
 			});
 
 		};
@@ -373,5 +404,160 @@
 		}
 
 	});
+
+	/* Preview size toggle */
+
+	var thePreviewElement = document.getElementsByClassName('hd-ssi-template-preview');
+	thePreviewElement = thePreviewElement[0];
+
+	var theTemplateElement = document.getElementsByClassName('ssi-template');
+	theTemplateElement = theTemplateElement[0];	
+
+	$(thePreviewElement).append('<button class="hd-ssi-template-preview__size-toggle"><span class="screen-reader-text">Toggle size</span>&#10529;</button>');
+	
+	$('body').on('click', '.hd-ssi-template-preview__size-toggle', function(event){
+
+		event.stopPropagation();
+		
+		var templateWidth = getComputedStyle(theTemplateElement).getPropertyValue("--ssi--template--scale");
+
+		// if the template width is set to 1
+		if ( templateWidth === ' 1'  ) {
+
+			// set width to .7
+			theTemplateElement.style.setProperty("--ssi--template--scale", " .7");	
+			
+
+		} else {
+
+			// set width to 1
+			theTemplateElement.style.setProperty("--ssi--template--scale", " 1");	
+
+		}
+
+	});
+
+	function showHideInputs(toggleElement){
+
+		// get the value of the toggle.
+		var toggleChecked = toggleElement.checked;
+
+		// get the parent wrapper.
+		var inputWrapper = $(toggleElement).parents('.hd-ssi-setting');
+
+		// get the data section id.
+		var dataSectionId = inputWrapper.data('section-id');
+
+		$('[data-section-id="' + dataSectionId + '"]').not(':has([data-section-toggle])').each(function() {
+
+			if ( toggleChecked == 1 ) {
+				this.style.display = "block";
+			} else {
+				this.style.display = "none";
+			}
+
+		});
+
+	}
+
+	function showHideElements(toggleElement){
+
+		// replace the logo src when logo is enabled.
+		$('.hd-ssi-setting-type--image').each(function(){
+
+			// get the src of the first image.
+			imgSrc = $(this).find('img').attr('src');	
+			
+			if( imgSrc ) {
+
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// set template logo source.
+				$('.ssi-template__logo').attr('src', fullImgSrc);
+				
+			}
+
+		});
+
+		// replace the img src when images are enabled.
+		$('.hd-ssi-setting-type--gallery').each(function(){
+
+			// get the src of the first image.
+			imgSrc = $(this).find('img').attr('src');	
+			
+			if( imgSrc ) {
+
+				fullImgSrc = imgSrc.replace("-150x150", "");
+
+				// set template image source.
+				$('.ssi-template__image').attr('src', fullImgSrc);
+
+			}
+
+		});
+
+	}
+
+	// when the page is fully loaded.
+	window.addEventListener('load', (event) => {
+
+		// for each input with an id that starts with hd_ssi_use_.
+		document.querySelectorAll('[data-section-toggle]').forEach( function(element) {
+			
+			showHideInputs(element);
+			showHideElements(element);
+
+			element.addEventListener('change', (event) => {
+		
+				showHideInputs(element);
+				showHideElements(element);
+
+				// get the target class.
+				var toggleTargetClass = $(element).data('toggle-target');
+
+				// get the target element.
+				var targetElements = document.getElementsByClassName(toggleTargetClass);
+				var targetElement = targetElements[0];
+
+				// toggle the hidden class.
+				targetElement.classList.toggle("ssi-hidden");
+
+			})
+
+		});
+
+	});
+
+
+	// when the page is fully loaded.
+	window.addEventListener('load', (event) => {
+
+		// for each input with an id that starts with hd_ssi_use_.
+		document.querySelectorAll('.hd-ssi-section-heading').forEach( function(element) {
+			
+			//showHideInputs(element);
+
+			element.addEventListener('click', (event) => {
+
+				console.log(element);
+		
+				//showHideInputs(element);
+
+				// // get the target class.
+				// var toggleTargetClass = $(element).data('toggle-target');
+
+				// // get the target element.
+				// var targetElements = document.getElementsByClassName(toggleTargetClass);
+				// var targetElement = targetElements[0];
+
+				// // toggle the hidden class.
+				// targetElement.classList.toggle("ssi-hidden");
+
+			})
+
+		});
+
+	});
+
 
 })( jQuery );

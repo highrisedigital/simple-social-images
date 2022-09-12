@@ -279,78 +279,6 @@ function hd_ssi_get_image_height() {
 }
 
 /**
- * Gets the current image position.
- */
-function hd_ssi_get_overlay_position() {
-
-	return apply_filters(
-		'hd_ssi_overlay_position',
-		get_option( 'hd_ssi_overlay_position' )
-	);
-
-}
-
-/**
- * Gets the current overlay width.
- */
-function hd_ssi_get_overlay_width() {
-
-	return apply_filters(
-		'hd_ssi_overlay_width',
-		get_option( 'hd_ssi_overlay_width' )
-	);
-
-}
-
-/**
- * Gets the current overlay height.
- */
-function hd_ssi_get_overlay_height() {
-
-	return apply_filters(
-		'hd_ssi_overlay_height',
-		get_option( 'hd_ssi_overlay_height' )
-	);
-
-}
-
-/**
- * Gets the current overlay color.
- */
-function hd_ssi_get_overlay_color() {
-
-	return apply_filters(
-		'hd_ssi_overlay_color',
-		get_option( 'hd_ssi_overlay_color' )
-	);
-
-}
-
-/**
- * Gets the current overlay margin.
- */
-function hd_ssi_get_overlay_margin() {
-
-	return apply_filters(
-		'hd_ssi_overlay_margin',
-		get_option( 'hd_ssi_overlay_margin' )
-	);
-
-}
-
-/**
- * Gets the current overlay opacity.
- */
-function hd_ssi_get_overlay_opacity() {
-
-	return apply_filters(
-		'hd_ssi_overlay_opacity',
-		absint( get_option( 'hd_ssi_overlay_opacity' ) ) / 100
-	);
-
-}
-
-/**
  * Gets the currently uploaded logo attachment IDs as an array.
  *
  * @return array An array of attachment IDs or an empty array if no images added.
@@ -594,18 +522,6 @@ function hd_ssi_get_background_color() {
 }
 
 /**
- * Gets the current active background color.
- */
-function hd_ssi_get_bg_color() {
-
-	return apply_filters(
-		'hd_ssi_bg_color',
-		get_option( 'hd_ssi_bg_color' )
-	);
-
-}
-
-/**
  * Checks whether a background colour has been set.
  *
  * @return integer 1 if a background colour is set and zero otherwise.
@@ -616,7 +532,7 @@ function hd_ssi_has_background_color() {
 	$output = 0;
 
 	// get the background color.
-	$bg_color = hd_ssi_get_bg_color();
+	$bg_color = hd_ssi_get_background_color();
 
 	// if we have a background color set.
 	if ( ! empty( $bg_color ) ) {
@@ -633,6 +549,29 @@ function hd_ssi_has_background_color() {
 
 }
 
+/**
+ * Returns 1 if logo is being used and zero otherwise.
+ */
+function hd_ssi_use_logo() {
+
+	return apply_filters(
+		'hd_ssi_use_logo',
+		absint( get_option( 'hd_ssi_use_logo' ) )
+	);
+
+}
+
+/**
+ * Returns 1 if title is being used and zero otherwise.
+ */
+function hd_ssi_use_title() {
+
+	return apply_filters(
+		'hd_ssi_use_title',
+		absint( get_option( 'hd_ssi_use_title' ) )
+	);
+
+}
 
 /**
  * Gets the currently uploaded logo attachment ID.
@@ -642,6 +581,42 @@ function hd_ssi_get_logo_id() {
 	return apply_filters(
 		'hd_ssi_logo_id',
 		get_option( 'hd_ssi_logo' )
+	);
+
+}
+
+/**
+ * Gets the currently uploaded logo URL.
+ *
+ * @return string An empty string if logo not being used or the logo URL.
+ */
+function hd_ssi_get_logo_url() {
+
+	// get the logo usage status.
+	$use_logo = hd_ssi_use_logo();
+
+	// if we are not using a logo.
+	if ( 0 === $use_logo ) {
+		return '';
+	}
+
+	// get the URL of the logo added to settings.
+	$logo_url = wp_get_attachment_image_url(
+		hd_ssi_get_logo_id(),
+		'full'
+	);
+
+	// if we don't have a logo added to settings.
+	if ( empty( $logo_url ) ) {
+
+		// set the logo URL to the default.
+		$logo_url = HD_SSI_LOCATION_URL . '/assets/img/logo-placeholder.svg';
+
+	}
+
+	return apply_filters(
+		'hd_ssi_logo_url',
+		$logo_url
 	);
 
 }
@@ -683,13 +658,25 @@ function hd_ssi_get_logo_marginn() {
 }
 
 /**
- * Gets the ignore featured images setting.
+ * Returns 1 if image is being used and zero otherwise.
  */
-function hd_ssi_ignore_featured_images() {
+function hd_ssi_use_image() {
 
 	return apply_filters(
-		'hd_ssi_ignore_featured_image',
-		absint( get_option( 'hd_ssi_ignore_featured_image' ) )
+		'hd_ssi_use_image',
+		absint( get_option( 'hd_ssi_use_image' ) )
+	);
+
+}
+
+/**
+ * Gets the use featured images setting.
+ */
+function hd_ssi_use_featured_images() {
+
+	return apply_filters(
+		'hd_ssi_use_featured_image',
+		absint( get_option( 'hd_ssi_use_featured_image' ) )
 	);
 
 }

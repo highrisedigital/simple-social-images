@@ -3,7 +3,7 @@ Contributors: highrisedigital, wpmarkuk, keithdevon
 Tags: social sharing, social media, open graph, social images, twitter, facebook, linkedin
 Requires at least: 6.0.1
 Tested up to: 6.0.1
-Stable tag: 0.3
+Stable tag: 0.4
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,17 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 7. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
 
 == Changelog ==
+
+= 0.4 =
+* Fix default gradient direction
+* Removed margin controls in favour of X and Y axis controls
+* Add template preview size toggle
+* Better default settings
+* UI layout improvements
+* element toggles
+* show/hide element settings
+* use number fields instead of range sliders
+* add remaining blend modes
 
 = 0.3 =
 * Removed templates to allows settings to control the output of the image.
