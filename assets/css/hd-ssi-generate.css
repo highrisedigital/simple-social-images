@@ -4,7 +4,7 @@ body {
 }
 
 .ssi-template {
-
+	
 	--ssi--template--width: 100vw;
 	--ssi--template--scale: 1;
 	--ssi-template--unit: calc(var(--ssi--template--width) / 100);
@@ -47,10 +47,6 @@ body {
 
 }
 
-.hd-ssi-template-preview .ssi-template {
-	--ssi--template--scale: .7;
-}
-
 .ssi-template * {
 	box-sizing: border-box;
 }
@@ -60,7 +56,7 @@ body {
 	width: calc(var(--ssi--title--width) * var(--ssi-template--unit));
 	/* margin: calc(var(--ssi--title--margin) * var(--ssi-template--unit)); */
 	text-align: var(--ssi--title--text-align);
-	
+
 	--this--offset--x: calc( var(--ssi--title--offset--x) * var(--ssi-template--unit) );
 	--this--offset--y: calc( var(--ssi--title--offset--y) * var(--ssi-template--unit) );
 	transform: translateX( var(--this--offset--x) ) translateY( var(--this--offset--y) );
