@@ -92,7 +92,7 @@ function hd_ssi_settings_page_output() {
 							$label_classes = 'label';
 
 							// if 'Hide_label' is set to true.
-							if ( $setting['hide_label'] ) {
+							if ( ! empty( $setting['hide_label'] ) ) {
 
 								// add the screen reader class to the label classes.
 								$label_classes .= ' screen-reader-text ';
