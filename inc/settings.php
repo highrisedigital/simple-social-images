@@ -211,7 +211,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['title_offset_x'] = array(
 		'option_name'       => 'hd_ssi_title_offset_x',
-		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'label'             => __( 'X-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -227,7 +227,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['title_offset_y'] = array(
 		'option_name'       => 'hd_ssi_title_offset_y',
-		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -454,7 +454,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['logo_offset_x'] = array(
 		'option_name'       => 'hd_ssi_logo_offset_x',
-		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'label'             => __( 'X-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -470,7 +470,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['logo_offset_y'] = array(
 		'option_name'       => 'hd_ssi_logo_offset_y',
-		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -550,7 +550,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['image_offset_x'] = array(
 		'option_name'       => 'hd_ssi_image_offset_x',
-		'label'             => __( 'X-axis offset &#8596;', 'simple-social-images' ),
+		'label'             => __( 'X-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -566,7 +566,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['image_offset_y'] = array(
 		'option_name'       => 'hd_ssi_image_offset_y',
-		'label'             => __( 'Y-axis offset &#8597;', 'simple-social-images' ),
+		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
