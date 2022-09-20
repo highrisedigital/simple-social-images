@@ -1,14 +1,14 @@
 === Simple Social Images ===
 Contributors: highrisedigital, wpmarkuk, keithdevon
 Tags: social sharing, social media, open graph, social images, twitter, facebook, linkedin
-Requires at least: 6.0.1
-Tested up to: 6.0.1
-Stable tag: 0.4
+Requires at least: 6.0
+Tested up to: 6.0.2
+Stable tag: 1.0
 Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically generate beautiful and branded social sharing images for your WP Job Manager jobs.
+Automatically generate beautiful and branded social sharing images for posts.
 
 == Description ==
 
@@ -22,19 +22,18 @@ Custom sharing images **increase engagement** when you, or others, share your po
 
 To solve this, many WordPress users will create their own images and upload them to WordPress. But this can be very time consuming to produce (e.g. using Canva) and difficult to maintain consistency.
 
-With Simple Social Images you can automate this process, getting the engagement that you want while saving 50+ hours per year.
+With Simple Social Images you can automate this process, getting the engagement that you want while saving time.
 
 How it works:
 
-1. Choose your template and customise it to your brand
-2. Create and publish a job
+1. Create your template using the Simple Social Images settings page, setting colours, fonts, logo, images and sizes
+2. Create and publish a post (also works for pages and custom post types)
 3. The plugin will create an image and save it to your WordPress Media Library
 4. The plugin will set the og:image tag to the URL of the custom image
 5. Share your post online and see your custom sharing image
 
 The images that are generated can be customised to suit your brand. You have control over:
 
-* Template choice
 * Fonts
 * Text sizes
 * Colors
@@ -47,9 +46,9 @@ Our simple preview tool allows you to preview what you images will look like in 
 
 1. Log into WordPress
 2. Go to Plugins, Add New
-3. Search for Simple Social Images for WP Job Manager
+3. Search for Simple Social Images
 4. Click Install Now, then Activate
-5. Go to Job Listings, the Simple Social Images
+5. Go to Settings, the Simple Social Images
 6. Enter your license key for [Simple Social Images](https://simplesocialimages.com) and complete the settings to setup your images.
 
 == Frequently Asked Questions ==
@@ -74,15 +73,14 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 
 == Screenshots ==
 
-1. Template 1 preview
-2. Template 2 preview
-3. Template 3 preview
-4. Template 4 preview
-5. Template 5 preview
-6. The Simple Social Images for WP Job Manager settings screen
-7. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
+1. Simple Social Images settings screen
+2. Sample generated sharing image
 
 == Changelog ==
+
+= 1.0 =
+* Small prep for launch on wordpress.org plugin repository
+* Update readme.txt for launch
 
 = 0.4 =
 * Fix default gradient direction

@@ -104,41 +104,6 @@ function hd_ssi_register_default_settings( $settings ) {
 		'order'          => 50,
 	);
 
-	$settings['background_color'] = array(
-		'option_name'     => 'hd_ssi_background_color',
-		'label'           => __( 'Background Color', 'simple-social-images' ),
-		'input_type'      => 'color_picker',
-		'custom_property' => '--ssi--background-color',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--background-color',
-		),
-		'order'           => 55,
-	);
-
-	$settings['font_family'] = array(
-		'option_name'     => 'hd_ssi_font_family',
-		'label'           => __( 'Font Family', 'simple-social-images' ),
-		'description'     => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
-		'input_type'      => 'text',
-		'custom_property' => '--ssi--font-family',
-		'data_attributes' => array(
-			'custom-property' => '--ssi--font-family',
-		),
-		'default_value'   => 'sans-serif',
-		'order'           => 60,
-		'group'           => 'start',
-	);
-
-	$settings['google_font_url'] = array(
-		'option_name'       => 'hd_ssi_google_font_url',
-		'label'             => __( 'Google Font URL', 'simple-social-images' ),
-		'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
-		'input_type'        => 'text',
-		'sanitize_callback' => 'sanitize_url',
-		'order'             => 65,
-		'group'             => 'end',
-	);
-
 	$settings['use_title'] = array(
 		'option_name'    => 'hd_ssi_use_title',
 		'label'          => __( 'Use title', 'simple-social-images' ),
@@ -146,7 +111,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'     => 'checkbox',
 		'default_value'  => 1,
 		'hide_label'     => true,
-		'order'          => 66,
+		'order'          => 52,
 		'data_attributes' => array(
 			'section-toggle'   => 'hd_ssi_title_section',
 			'toggle-target'    => 'ssi-template__title-wrapper',
@@ -161,7 +126,7 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'     => 'checkbox',
 		'default_value'  => 1,
 		'hide_label'     => true,
-		'order'          => 67,
+		'order'          => 53,
 		'section'        => 'hd_ssi_logo_section',
 		'data_attributes' => array(
 			'section-toggle'   => 'hd_ssi_logo_section',
@@ -176,12 +141,50 @@ function hd_ssi_register_default_settings( $settings ) {
 		'input_type'     => 'checkbox',
 		'default_value'  => 1,
 		'hide_label'     => true,
-		'order'          => 68,
+		'order'          => 54,
 		'section'     => 'hd_ssi_image_section',
 		'data_attributes' => array(
 			'section-toggle'   => 'hd_ssi_image_section',
 			'toggle-target'    => 'ssi-template__image',
 		),
+	);
+
+	$settings['background_color'] = array(
+		'option_name'     => 'hd_ssi_background_color',
+		'label'           => __( 'Background Color', 'simple-social-images' ),
+		'input_type'      => 'color_picker',
+		'custom_property' => '--ssi--background-color',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--background-color',
+		),
+		'order'           => 55,
+		'group'           => 'start',
+	);
+
+	$settings['font_family'] = array(
+		'option_name'     => 'hd_ssi_font_family',
+		'label'           => __( 'Font Family', 'simple-social-images' ),
+		'description'     => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
+		'input_type'      => 'text',
+		'custom_property' => '--ssi--font-family',
+		'data_attributes' => array(
+			'custom-property' => '--ssi--font-family',
+		),
+		'default_value'   => 'sans-serif',
+		'order'           => 56,
+		'group'           => 'start',
+		'section'       => 'hd_ssi_title_section',
+	);
+
+	$settings['google_font_url'] = array(
+		'option_name'       => 'hd_ssi_google_font_url',
+		'label'             => __( 'Google Font URL', 'simple-social-images' ),
+		'description'  => sprintf( __( '%1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images' ), '<a target="_blank" href="' . esc_url( HD_SSI_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
+		'input_type'        => 'text',
+		'sanitize_callback' => 'sanitize_url',
+		'order'             => 57,
+		'group'             => 'end',
+		'section'       => 'hd_ssi_title_section',
 	);
 
 	$settings['title_section'] = array(
@@ -211,7 +214,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['title_offset_x'] = array(
 		'option_name'       => 'hd_ssi_title_offset_x',
-		'label'             => __( 'X-axis offset', 'simple-social-images' ),
+		'label'             => __( 'X-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -227,7 +230,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['title_offset_y'] = array(
 		'option_name'       => 'hd_ssi_title_offset_y',
-		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
+		'label'             => __( 'Y-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -454,7 +457,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['logo_offset_x'] = array(
 		'option_name'       => 'hd_ssi_logo_offset_x',
-		'label'             => __( 'X-axis offset', 'simple-social-images' ),
+		'label'             => __( 'X-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -470,7 +473,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['logo_offset_y'] = array(
 		'option_name'       => 'hd_ssi_logo_offset_y',
-		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
+		'label'             => __( 'Y-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -550,7 +553,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['image_offset_x'] = array(
 		'option_name'       => 'hd_ssi_image_offset_x',
-		'label'             => __( 'X-axis offset', 'simple-social-images' ),
+		'label'             => __( 'X-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',
@@ -566,7 +569,7 @@ function hd_ssi_register_default_settings( $settings ) {
 
 	$settings['image_offset_y'] = array(
 		'option_name'       => 'hd_ssi_image_offset_y',
-		'label'             => __( 'Y-axis offset', 'simple-social-images' ),
+		'label'             => __( 'Y-axis', 'simple-social-images' ),
 		'input_type'        => 'number',
 		'min'               => '-100',
 		'max'               => '100',

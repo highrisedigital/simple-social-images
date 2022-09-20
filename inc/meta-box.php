@@ -16,10 +16,10 @@ function hd_ssi_add_ssi_jobs_meta_box() {
 
 	add_meta_box(
 		'hd_ssi',
-		__( 'Simple Social Images', 'simple-social-image' ),
+		__( 'Social image', 'simple-social-image' ),
 		'hd_ssi_jobs_meta_box_output',
 		hd_ssi_get_supported_post_types(),
-		'normal',
+		'side',
 		'default'
 	);
 

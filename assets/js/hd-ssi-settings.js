@@ -218,8 +218,12 @@
 			// when the tooltip is clicked.
 			$( this ).click( function() {
 
+				console.log('clicked');
+
 				// get the parent element.
-				parent = $( this ).parent().next();
+				parent = $( this ).next();
+				console.log(parent);
+
 				parent.children( '.hd-ssi-input-description' ).toggle();
 
 			});
